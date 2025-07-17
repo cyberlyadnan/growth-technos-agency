@@ -9,6 +9,7 @@ import { Card, CardContent } from '@/components/ui/card';
 
 const services = [
   {
+    id: 'web-development',
     icon: Code,
     title: 'Web Development',
     description: 'Custom websites and web applications built with modern technologies for optimal performance and user experience.',
@@ -21,9 +22,11 @@ const services = [
       'Maintenance & Support'
     ],
     technologies: ['React', 'Next.js', 'Node.js', 'Python', 'PHP'],
-    color: 'text-blue-600'
+    color: 'text-blue-600',
+    gradient: 'from-blue-500 to-blue-600'
   },
   {
+    id: 'seo-services',
     icon: Search,
     title: 'SEO Services',
     description: 'Comprehensive search engine optimization to improve your rankings and drive organic traffic to your website.',
@@ -36,9 +39,11 @@ const services = [
       'Local SEO'
     ],
     technologies: ['Google Analytics', 'SEMrush', 'Ahrefs', 'Screaming Frog'],
-    color: 'text-green-600'
+    color: 'text-green-600',
+    gradient: 'from-green-500 to-green-600'
   },
   {
+    id: 'digital-marketing',
     icon: Megaphone,
     title: 'Digital Marketing',
     description: 'Strategic marketing campaigns across digital channels to reach your target audience and drive conversions.',
@@ -51,9 +56,11 @@ const services = [
       'Marketing Analytics'
     ],
     technologies: ['Google Ads', 'Facebook Ads', 'HubSpot', 'Mailchimp'],
-    color: 'text-purple-600'
+    color: 'text-purple-600',
+    gradient: 'from-purple-500 to-purple-600'
   },
   {
+    id: 'branding',
     icon: Palette,
     title: 'Branding',
     description: 'Create a strong brand identity that resonates with your audience and differentiates you from competitors.',
@@ -66,9 +73,11 @@ const services = [
       'Packaging Design'
     ],
     technologies: ['Adobe Creative Suite', 'Figma', 'Sketch', 'InDesign'],
-    color: 'text-pink-600'
+    color: 'text-pink-600',
+    gradient: 'from-pink-500 to-pink-600'
   },
   {
+    id: 'ui-ux-design',
     icon: Globe,
     title: 'UI/UX Design',
     description: 'User-centered design solutions that create intuitive and engaging experiences for your customers.',
@@ -81,9 +90,11 @@ const services = [
       'Design Systems'
     ],
     technologies: ['Figma', 'Adobe XD', 'Sketch', 'InVision'],
-    color: 'text-indigo-600'
+    color: 'text-indigo-600',
+    gradient: 'from-indigo-500 to-indigo-600'
   },
   {
+    id: 'mobile-development',
     icon: Smartphone,
     title: 'Mobile Development',
     description: 'Native and cross-platform mobile applications that deliver exceptional user experiences on all devices.',
@@ -96,9 +107,11 @@ const services = [
       'App Maintenance'
     ],
     technologies: ['React Native', 'Flutter', 'Swift', 'Kotlin'],
-    color: 'text-orange-600'
+    color: 'text-orange-600',
+    gradient: 'from-orange-500 to-orange-600'
   },
   {
+    id: 'ecommerce-solutions',
     icon: ShoppingCart,
     title: 'E-commerce Solutions',
     description: 'Complete e-commerce platforms that drive sales and provide seamless shopping experiences.',
@@ -111,9 +124,11 @@ const services = [
       'Analytics & Reporting'
     ],
     technologies: ['Shopify', 'WooCommerce', 'Magento', 'BigCommerce'],
-    color: 'text-red-600'
+    color: 'text-red-600',
+    gradient: 'from-red-500 to-red-600'
   },
   {
+    id: 'analytics-reporting',
     icon: BarChart,
     title: 'Analytics & Reporting',
     description: 'Data-driven insights to track performance, understand your audience, and optimize your digital strategy.',
@@ -126,7 +141,8 @@ const services = [
       'ROI Analysis'
     ],
     technologies: ['Google Analytics', 'Google Tag Manager', 'Hotjar', 'Mixpanel'],
-    color: 'text-emerald-600'
+    color: 'text-emerald-600',
+    gradient: 'from-emerald-500 to-emerald-600'
   }
 ];
 
@@ -214,33 +230,50 @@ export function ServicesPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="h-full hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-6">
-                    <div className={`w-12 h-12 rounded-lg bg-gray-100 dark:bg-gray-700 flex items-center justify-center mb-4`}>
-                      <service.icon className={`w-6 h-6 ${service.color}`} />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white">
-                      {service.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">
-                      {service.description}
-                    </p>
-                    <div className="mb-4">
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Features:</h4>
-                      <ul className="space-y-1">
-                        {service.features.slice(0, 4).map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                            <Check className="w-4 h-4 text-success-500 mr-2 flex-shrink-0" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">
-                      <strong>Technologies:</strong> {service.technologies.join(', ')}
-                    </div>
-                  </CardContent>
-                </Card>
+                <Link href={`/services/${service.id}`}>
+                  <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group relative overflow-hidden">
+                    {/* Gradient overlay on hover */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+                    
+                    <CardContent className="p-6 relative z-10">
+                      <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                        <service.icon className="w-6 h-6 text-white" />
+                      </div>
+                      
+                      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors duration-300">
+                        {service.title}
+                      </h3>
+                      
+                      <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                        {service.description}
+                      </p>
+                      
+                      <div className="mb-4">
+                        <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Key Features:</h4>
+                        <ul className="space-y-1">
+                          {service.features.slice(0, 4).map((feature, featureIndex) => (
+                            <li key={featureIndex} className="flex items-center text-sm text-gray-600 dark:text-gray-400">
+                              <Check className="w-4 h-4 text-success-500 mr-2 flex-shrink-0" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      
+                      <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                        <strong>Technologies:</strong> {service.technologies.join(', ')}
+                      </div>
+                      
+                      {/* Learn More Button */}
+                      <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <span className="text-sm font-medium text-primary-600 dark:text-primary-400 group-hover:text-primary-700 transition-colors duration-300">
+                          Learn More
+                        </span>
+                        <ArrowRight className="w-4 h-4 text-primary-600 dark:text-primary-400 group-hover:text-primary-700 group-hover:translate-x-1 transition-all duration-300" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -278,7 +311,7 @@ export function ServicesPage() {
                   className={`flex items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                 >
                   <div className={`w-full md:w-1/2 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
-                    <Card>
+                    <Card className="hover:shadow-lg transition-shadow duration-300">
                       <CardContent className="p-6">
                         <div className="text-primary-600 dark:text-primary-400 font-bold text-lg mb-2">
                           {step.step}
@@ -292,7 +325,7 @@ export function ServicesPage() {
                       </CardContent>
                     </Card>
                   </div>
-                  <div className="hidden md:flex w-12 h-12 bg-primary-600 rounded-full items-center justify-center text-white font-bold absolute left-1/2 transform -translate-x-1/2">
+                  <div className="hidden md:flex w-12 h-12 bg-primary-600 rounded-full items-center justify-center text-white font-bold absolute left-1/2 transform -translate-x-1/2 shadow-lg">
                     {step.step}
                   </div>
                 </motion.div>
