@@ -23,7 +23,9 @@ const services = [
     ],
     technologies: ['React', 'Next.js', 'Node.js', 'Python', 'PHP'],
     color: 'text-blue-600',
-    gradient: 'from-blue-500 to-blue-600'
+    gradient: 'from-blue-500 to-blue-600',
+    iconBg: 'bg-blue-100 dark:bg-blue-900',
+    iconColor: 'text-blue-600 dark:text-blue-300'
   },
   {
     id: 'seo-services',
@@ -40,7 +42,9 @@ const services = [
     ],
     technologies: ['Google Analytics', 'SEMrush', 'Ahrefs', 'Screaming Frog'],
     color: 'text-green-600',
-    gradient: 'from-green-500 to-green-600'
+    gradient: 'from-green-500 to-green-600',
+    iconBg: 'bg-green-100 dark:bg-green-900',
+    iconColor: 'text-green-600 dark:text-green-300'
   },
   {
     id: 'digital-marketing',
@@ -57,7 +61,9 @@ const services = [
     ],
     technologies: ['Google Ads', 'Facebook Ads', 'HubSpot', 'Mailchimp'],
     color: 'text-purple-600',
-    gradient: 'from-purple-500 to-purple-600'
+    gradient: 'from-purple-500 to-purple-600',
+    iconBg: 'bg-purple-100 dark:bg-purple-900',
+    iconColor: 'text-purple-600 dark:text-purple-300'
   },
   {
     id: 'branding',
@@ -74,7 +80,9 @@ const services = [
     ],
     technologies: ['Adobe Creative Suite', 'Figma', 'Sketch', 'InDesign'],
     color: 'text-pink-600',
-    gradient: 'from-pink-500 to-pink-600'
+    gradient: 'from-pink-500 to-pink-600',
+    iconBg: 'bg-pink-100 dark:bg-pink-900',
+    iconColor: 'text-pink-600 dark:text-pink-300'
   },
   {
     id: 'ui-ux-design',
@@ -91,7 +99,9 @@ const services = [
     ],
     technologies: ['Figma', 'Adobe XD', 'Sketch', 'InVision'],
     color: 'text-indigo-600',
-    gradient: 'from-indigo-500 to-indigo-600'
+    gradient: 'from-indigo-500 to-indigo-600',
+    iconBg: 'bg-indigo-100 dark:bg-indigo-900',
+    iconColor: 'text-indigo-600 dark:text-indigo-300'
   },
   {
     id: 'mobile-development',
@@ -108,7 +118,9 @@ const services = [
     ],
     technologies: ['React Native', 'Flutter', 'Swift', 'Kotlin'],
     color: 'text-orange-600',
-    gradient: 'from-orange-500 to-orange-600'
+    gradient: 'from-orange-500 to-orange-600',
+    iconBg: 'bg-orange-100 dark:bg-orange-900',
+    iconColor: 'text-orange-600 dark:text-orange-300'
   },
   {
     id: 'ecommerce-solutions',
@@ -125,7 +137,9 @@ const services = [
     ],
     technologies: ['Shopify', 'WooCommerce', 'Magento', 'BigCommerce'],
     color: 'text-red-600',
-    gradient: 'from-red-500 to-red-600'
+    gradient: 'from-red-500 to-red-600',
+    iconBg: 'bg-red-100 dark:bg-red-900',
+    iconColor: 'text-red-600 dark:text-red-300'
   },
   {
     id: 'analytics-reporting',
@@ -142,7 +156,9 @@ const services = [
     ],
     technologies: ['Google Analytics', 'Google Tag Manager', 'Hotjar', 'Mixpanel'],
     color: 'text-emerald-600',
-    gradient: 'from-emerald-500 to-emerald-600'
+    gradient: 'from-emerald-500 to-emerald-600',
+    iconBg: 'bg-emerald-100 dark:bg-emerald-900',
+    iconColor: 'text-emerald-600 dark:text-emerald-300'
   }
 ];
 
@@ -221,60 +237,72 @@ export function ServicesPage() {
             </p>
           </motion.div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-6">
             {services.map((service, index) => (
-              <motion.div
-                key={service.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Link href={`/services/${service.id}`}>
-                  <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 cursor-pointer group relative overflow-hidden">
-                    {/* Gradient overlay on hover */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-                    
-                    <CardContent className="p-6 relative z-10">
-                      <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                        <service.icon className="w-6 h-6 text-white" />
-                      </div>
-                      
-                      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors duration-300">
-                        {service.title}
-                      </h3>
-                      
-                      <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
-                        {service.description}
-                      </p>
-                      
-                      <div className="mb-4">
-                        <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Key Features:</h4>
-                        <ul className="space-y-1">
-                          {service.features.slice(0, 4).map((feature, featureIndex) => (
-                            <li key={featureIndex} className="flex items-center text-sm text-gray-600 dark:text-gray-400">
-                              <Check className="w-4 h-4 text-success-500 mr-2 flex-shrink-0" />
-                              {feature}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      
-                      <div className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-                        <strong>Technologies:</strong> {service.technologies.join(', ')}
-                      </div>
-                      
-                      {/* Learn More Button */}
-                      <div className="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-gray-700">
-                        <span className="text-sm font-medium text-primary-600 dark:text-primary-400 group-hover:text-primary-700 transition-colors duration-300">
-                          Learn More
+              <Link href={`/services/${service.id}`} key={service.title}>
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: "easeOut"
+                  }}
+                  viewport={{ once: true }}
+                  className="group bg-white dark:bg-gray-800 rounded-xl p-4 md:p-5 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600 cursor-pointer"
+                >
+                  {/* Icon */}
+                  <div className={`inline-flex items-center justify-center p-3 rounded-lg mb-2 ${service.iconBg} ${service.iconColor}`}>
+                    <service.icon className="w-6 h-6" />
+                  </div>
+                  
+                  {/* Title */}
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors duration-300">
+                    {service.title}
+                  </h3>
+                  
+                  {/* Description */}
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed text-sm">
+                    {service.description}
+                  </p>
+                  
+                  {/* Features */}
+                  <ul className="space-y-1 mb-2">
+                    {service.features.slice(0, 4).map((feature, featureIndex) => (
+                      <li 
+                        key={featureIndex} 
+                        className="flex items-center text-sm text-gray-600 dark:text-gray-400"
+                      >
+                        <Check className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Technologies Badges */}
+                  <div className="pt-2 border-t border-gray-100 dark:border-gray-700 mb-4">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">Technologies:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {service.technologies.slice(0, 3).map((tech, techIndex) => (
+                        <span 
+                          key={techIndex}
+                          className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-md text-gray-600 dark:text-gray-300"
+                        >
+                          {tech}
                         </span>
-                        <ArrowRight className="w-4 h-4 text-primary-600 dark:text-primary-400 group-hover:text-primary-700 group-hover:translate-x-1 transition-all duration-300" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </motion.div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Learn More Button */}
+                  <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-gray-700">
+                    <span className="text-sm font-medium text-primary-600 dark:text-primary-400 group-hover:text-primary-700 transition-colors duration-300">
+                      Learn More
+                    </span>
+                    <ArrowRight className="w-4 h-4 text-primary-600 dark:text-primary-400 group-hover:text-primary-700 group-hover:translate-x-1 transition-all duration-300" />
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>

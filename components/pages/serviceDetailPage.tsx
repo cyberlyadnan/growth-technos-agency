@@ -96,7 +96,7 @@ const serviceDetails: ServiceDetails = {
     title: 'Web Development',
     subtitle: 'Custom websites and web applications built for success',
     description: 'We create modern, responsive websites and web applications that deliver exceptional user experiences while driving business growth. Our development process focuses on performance, scalability, and maintainability.',
-    heroImage: '/api/placeholder/800/400',
+    heroImage: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg',
     keyBenefits: [
       'Fast loading times and optimal performance',
       'Mobile-first responsive design',
@@ -392,7 +392,7 @@ export function ServiceDetailPage({ serviceId }: ServiceDetailPageProps) {
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
                 </Button>
-                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary-600">
+                <Button variant="outline" size="lg" className="border-white hover:bg-white text-primary-600 dark:text-white hover:text-primary-800">
                   View Portfolio
                 </Button>
               </div>
@@ -755,7 +755,7 @@ export function ServiceDetailPage({ serviceId }: ServiceDetailPageProps) {
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Link>
               </Button>
-              <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary-600">
+              <Button asChild variant="outline" size="lg" className="border-white dark:text-white hover:bg-gray-800 text-primary-600 hover:text-primary-800">
                 <Link href="tel:+1234567890">
                   <Phone className="w-5 h-5 mr-2" />
                   Call Us Now
