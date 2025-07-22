@@ -225,11 +225,17 @@ export function ProjectsPage() {
                     </div>
                     <div className="flex gap-3">
                       <Button asChild size="sm" className="flex-1">
+  <Link href={`/projects/${project.id}`}>
+    <ExternalLink className="w-4 h-4 mr-2" />
+    View Details
+  </Link>
+</Button>
+                      {/* <Button asChild size="sm" className="flex-1">
                         <Link href={project.liveUrl}>
                           <ExternalLink className="w-4 h-4 mr-2" />
                           Live Demo
                         </Link>
-                      </Button>
+                      </Button> */}
                       {project.githubUrl && (
                         <Button asChild variant="outline" size="sm" className="flex-1">
                           <Link href={project.githubUrl}>
