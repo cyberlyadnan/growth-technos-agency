@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Check, Star, Code, Search, Megaphone, Palette, Globe, Smartphone, ShoppingCart, BarChart } from 'lucide-react';
 import Link from 'next/link';
@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 
 import { Card, CardContent } from '@/components/ui/card';
+import { listAllCollections } from '@/lib/firebase';
 
   const services = [
     {
@@ -191,6 +192,9 @@ const projects = [
 
 export default function HomePage() {
       const displayedServices = services.slice(0, 8);
+      useEffect(() => {
+    listAllCollections();
+  }, []);
 
   return (
     <div className="min-h-screen">
