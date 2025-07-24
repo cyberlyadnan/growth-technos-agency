@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { 
@@ -35,6 +35,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { getServiceById } from '@/hooks/getServiceById';
 
 // Define types for better type safety
 interface Feature {
@@ -89,6 +90,8 @@ interface ServiceDetail {
 interface ServiceDetails {
   [key: string]: ServiceDetail;
 }
+
+
 
 // Service data with detailed information
 const serviceDetails: ServiceDetails = {
@@ -357,6 +360,19 @@ export function ServiceDetailPage({ serviceId }: ServiceDetailPageProps) {
   if (!service) {
     return <div>Service not found</div>;
   }
+
+
+  useEffect(() => {
+    const fetchService = async () => {
+      const data = await getServiceById(serviceId);
+      console.log("This is servive data from firebase",data)
+    };
+
+    fetchService();
+  }, [serviceId]);
+
+  if (!service) return <div>Service not found</div>;
+
 
   return (
     <div className="min-h-screen pt-16">

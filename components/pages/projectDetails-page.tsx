@@ -565,14 +565,14 @@ const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId = 1 }) 
   return (
     <div className="min-h-screen pt-16 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
       {/* Navigation */}
-      <div className="container mx-auto px-2 sm:px-6 lg:px-4 py-4">
+      {/* <div className="container mx-auto px-2 sm:px-6 lg:px-4 py-4">
           <Button asChild variant="ghost" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
             <Link href="/projects">
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Projects
             </Link>
           </Button>
-        </div>
+        </div> */}
 
       {/* Hero Section */}
       <section className="py-12 bg-gradient-to-br from-primary-50 via-secondary-50 to-accent-50 dark:from-primary-900 dark:via-secondary-900 dark:to-accent-900">

@@ -1,4 +1,4 @@
-const servicess = {
+export const servicess = {
   "web-development": {
     title: "Web Development",
     subtitle:
@@ -1308,5 +1308,5 @@ const servicess = {
         },
       },
     },
-  },
+  }
 };
