@@ -629,12 +629,12 @@ const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({ projectId = 1 }) 
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                <Button 
+                {/* <Button 
                   className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm"
                   size="lg"
                 >
                   <Play className="w-6 h-6" />
-                </Button>
+                </Button> */}
               </div>
             </div>
             <div className="grid grid-cols-4 gap-4">
