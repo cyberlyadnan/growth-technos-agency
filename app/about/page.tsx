@@ -1,11 +1,24 @@
 import { Metadata } from 'next';
-import { AboutPage } from '@/components/pages/about-page';
-
+import { AboutHero } from '@/components/pages/about/_components/AboutHero';
+import { MissionVision } from '@/components/pages/about/_components/MissionVission';
+import { StorySection } from '@/components/pages/about/_components/StorySection';
+import { ValuesSection } from '@/components/pages/about/_components/ValuesSection';
+import { TeamSection } from '@/components/pages/about/_components/TeamSection';
 export const metadata: Metadata = {
   title: 'About Us - Growth Technos',
   description: 'Learn about Growth Technos, our mission, vision, and the passionate team behind our digital solutions.',
 };
 
-export default function About() {
-  return <AboutPage />;
+export default function AboutPage() {
+  return (
+    <>
+      <div className="min-h-screen pt-16">
+        <AboutHero />
+        <MissionVision />
+        <StorySection />
+        <ValuesSection />
+        <TeamSection />
+      </div>
+    </>
+  );
 }
