@@ -1,5 +1,5 @@
 // app/services/[serviceId]/page.tsx
-import { ServiceDetailPage } from "@/components/pages/serviceDetailPage";
+import { ServiceDetailPage } from "@/components/pages/servicedetails/serviceDetailPage";
 import { Metadata } from "next";
 
 // Define the params type

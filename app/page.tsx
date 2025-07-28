@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { Hero } from './_components/home/Hero';
-import { StatsSection } from './_components/home/StatsSection';
-import { AboutSection } from './_components/home/AboutSection';
-import { ServicesSection } from './_components/home/ServicesSection';
-import { ProjectsSection } from './_components/home/ProjectSection';
-import { TestimonialsSection } from './_components/home/TestimonialsSection';
-import { Newsletter } from './_components/home/Newsletter';
+import { Hero } from '../components/pages/home/components/Hero';
+import { StatsSection } from '../components/pages/home/components/StatsSection';
+import { ServicesSection } from '../components/pages/home/components/ServicesSection';
+import { ProjectsSection } from '../components/pages/home/components/ProjectSection';
+import { TestimonialsSection } from '../components/pages/home/components/TestimonialsSection';
+import { Newsletter } from '../components/pages/home/components/Newsletter';
+import { AboutSection } from '@/components/pages/home/components/AboutSection';
 // import { listAllCollections } from '@/lib/firebase';
 
 export default function HomePage() {

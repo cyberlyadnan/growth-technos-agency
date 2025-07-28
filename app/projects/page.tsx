@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { ProjectsPage } from '@/components/pages/projects-page';
+import { ProjectsPage } from '@/components/pages/project/projects-page';
 
 export const metadata: Metadata = {
   title: 'Projects - Growth Technos',

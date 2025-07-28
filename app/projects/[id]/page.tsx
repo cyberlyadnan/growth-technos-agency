@@ -1,5 +1,5 @@
 // app/projects/[id]/page.tsx
-import { ProjectDetailPage } from "@/components/pages/projectDetails-page";
+import { ProjectDetailPage } from "@/components/pages/productdetailspage/projectDetailsPage";
 import { Metadata } from "next";
 
 // Define the params type
