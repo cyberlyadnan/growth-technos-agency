@@ -10,6 +10,7 @@ import {
 } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { servicess } from "./data";
+import {projectsss} from "./projects"
 
 // // Firebase config
 const firebaseConfig = {
@@ -65,21 +66,21 @@ export const listAllCollections = async () => {
 
 
 
-export const resetAndPushServices = async (servicess:any) => {
-  const servicesCol = collection(db, 'services');
+export const resetAndPushServices = async (projectsss:any) => {
+  const servicesCol = collection(db, 'projects');
 
   try {
     // Step 1: Delete all existing documents
     const snapshot = await getDocs(servicesCol);
     const deletePromises = snapshot.docs.map((docSnap) =>
-      deleteDoc(doc(db, 'services', docSnap.id))
+      deleteDoc(doc(db, 'projects', docSnap.id))
     );
     await Promise.all(deletePromises);
     console.log('All existing documents deleted from "services" collection.');
 
     // Step 2: Add new services
-    const addPromises = Object.entries(servicess).map(([key, value]) =>
-      setDoc(doc(db, 'services', key), value)
+    const addPromises = Object.entries(projectsss).map(([key, value]) =>
+      setDoc(doc(db, 'projects', key), value)
     );
     await Promise.all(addPromises);
     console.log('New services added successfully.');
@@ -88,4 +89,3 @@ export const resetAndPushServices = async (servicess:any) => {
   }
 };
 
-// resetAndPushServices(servicess)

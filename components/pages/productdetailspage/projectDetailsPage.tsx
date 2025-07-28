@@ -7,6 +7,8 @@ import Link from 'next/link';
 import { ArrowLeft, ExternalLink, Github, Calendar, User, Tag, CheckCircle, Star, Play, Sun, Moon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { resetAndPushServices } from '@/lib/firebase';
+import { projectsss } from '@/lib/projects';
 
 // Technology logos mapping with CDN URLs
 const technologyLogos: Record<string, string> = {
@@ -39,7 +41,6 @@ const technologyLogos: Record<string, string> = {
   'Google Analytics': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg',
   'Search Console': 'https://www.google.com/images/icons/product/search_console-64.png',
   'React Native': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
-  // 'Firebase': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
   'WordPress': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg',
   'PHP': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg',
   'Bootstrap': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-plain.svg',
