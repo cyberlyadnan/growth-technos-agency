@@ -1,5 +1,5 @@
+import ContactPage from '@/components/pages/contact/contactPage';
 import { Metadata } from 'next';
-import { ContactPage } from '@/components/pages/contact/contact-page';
 
 export const metadata: Metadata = {
   title: 'Contact Us - Growth Technos',
