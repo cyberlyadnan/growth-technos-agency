@@ -1310,3 +1310,109 @@ export const servicess = {
     },
   }
 };
+
+
+
+
+
+export const blogPosts = [
+  {
+    id: 1,
+    title: 'The Future of Web Development: Trends to Watch in 2024',
+    excerpt: 'Explore the latest trends shaping the future of web development, from AI integration to progressive web apps.',
+    image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Web Development',
+    author: 'John Smith',
+    date: '2024-01-15',
+    readTime: '5 min read',
+    tags: ['React', 'Next.js', 'AI', 'PWA']
+  },
+  {
+    id: 2,
+    title: 'SEO Best Practices for 2024: A Complete Guide',
+    excerpt: 'Learn the latest SEO strategies and techniques to improve your website\'s search engine rankings.',
+    image: 'https://images.pexels.com/photos/270408/pexels-photo-270408.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'SEO',
+    author: 'Sarah Johnson',
+    date: '2024-01-10',
+    readTime: '8 min read',
+    tags: ['SEO', 'Google', 'Keywords', 'Rankings']
+  },
+  {
+    id: 3,
+    title: 'Social Media Marketing Strategies That Actually Work',
+    excerpt: 'Discover proven social media marketing strategies that drive engagement and convert followers into customers.',
+    image: 'https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Digital Marketing',
+    author: 'Emily Rodriguez',
+    date: '2024-01-05',
+    readTime: '6 min read',
+    tags: ['Social Media', 'Marketing', 'Engagement', 'ROI']
+  },
+  {
+    id: 4,
+    title: 'Building a Strong Brand Identity: A Designer\'s Perspective',
+    excerpt: 'Learn how to create a memorable brand identity that resonates with your target audience.',
+    image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Branding',
+    author: 'Michael Chen',
+    date: '2024-01-01',
+    readTime: '7 min read',
+    tags: ['Branding', 'Design', 'Identity', 'Logo']
+  },
+  {
+    id: 5,
+    title: 'Mobile-First Design: Why It Matters More Than Ever',
+    excerpt: 'Understand the importance of mobile-first design and how to implement it effectively.',
+    image: 'https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'UI/UX Design',
+    author: 'Lisa Thompson',
+    date: '2023-12-28',
+    readTime: '5 min read',
+    tags: ['Mobile', 'Design', 'UX', 'Responsive']
+  },
+  {
+    id: 6,
+    title: 'The Power of Data Analytics in Digital Marketing',
+    excerpt: 'Harness the power of data analytics to make informed marketing decisions and improve ROI.',
+    image: 'https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Analytics',
+    author: 'David Wilson',
+    date: '2023-12-25',
+    readTime: '9 min read',
+    tags: ['Analytics', 'Data', 'Marketing', 'ROI']
+  },
+  {
+    id: 7,
+    title: 'E-commerce Optimization: Converting Visitors to Customers',
+    excerpt: 'Learn proven techniques to optimize your e-commerce store and increase conversion rates.',
+    image: 'https://images.pexels.com/photos/4348401/pexels-photo-4348401.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'E-commerce',
+    author: 'John Smith',
+    date: '2023-12-20',
+    readTime: '6 min read',
+    tags: ['E-commerce', 'Conversion', 'Optimization', 'Sales']
+  },
+  {
+    id: 8,
+    title: 'Content Marketing Strategies for B2B Success',
+    excerpt: 'Discover effective content marketing strategies specifically designed for B2B businesses.',
+    image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'Content Marketing',
+    author: 'Sarah Johnson',
+    date: '2023-12-15',
+    readTime: '7 min read',
+    tags: ['Content', 'B2B', 'Marketing', 'Strategy']
+  },
+  {
+    id: 9,
+    title: 'The Rise of Voice Search: Optimizing for the Future',
+    excerpt: 'Prepare your website for voice search optimization and stay ahead of the competition.',
+    image: 'https://images.pexels.com/photos/4545193/pexels-photo-4545193.jpeg?auto=compress&cs=tinysrgb&w=800',
+    category: 'SEO',
+    author: 'Emily Rodriguez',
+    date: '2023-12-10',
+    readTime: '5 min read',
+    tags: ['Voice Search', 'SEO', 'Future', 'Optimization']
+  }
+];

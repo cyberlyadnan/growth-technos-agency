@@ -1,5 +1,5 @@
+import BlogPage from '@/components/pages/blog/blog-page';
 import { Metadata } from 'next';
-import { BlogPage } from '@/components/pages/blog/blog-page';
 
 export const metadata: Metadata = {
   title: 'Blog - Growth Technos',
