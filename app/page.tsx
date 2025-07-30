@@ -5,18 +5,24 @@ import { ProjectsSection } from "../components/pages/home/components/ProjectSect
 import { TestimonialsSection } from "../components/pages/home/components/TestimonialsSection";
 import { Newsletter } from "../components/pages/home/components/Newsletter";
 import { AboutSection } from "@/components/pages/home/components/AboutSection";
+import { useServices } from "@/hooks/useServices";
 
 
-export default function HomePage() {
+const HomePage = async () => {
+  const services = await useServices();
+  console.log(services)
   return (
     <div className="min-h-screen">
       <Hero />
       <StatsSection />
       <AboutSection />
-      <ServicesSection />
+      <ServicesSection hideViewAllSection={true} title={"Our Services"} desc={"We offer comprehensive digital solutions to help your business grow and succeed online."} services={services.slice(0,6)} />
       <ProjectsSection />
       <TestimonialsSection />
       <Newsletter />
     </div>
   );
 }
+
+
+export default HomePage;
