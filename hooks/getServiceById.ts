@@ -5,6 +5,7 @@ export const getServiceById = async (serviceId: string) => {
   try {
     const serviceRef = doc(db, 'services', serviceId);
     const docSnap = await getDoc(serviceRef);
+    console.log("docSnap",docSnap)
 
     if (docSnap.exists()) {
       return { id: docSnap.id, ...docSnap.data() };
