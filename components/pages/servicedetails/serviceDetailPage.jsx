@@ -12,10 +12,10 @@ import { FAQSection } from './components/FAQSection';
 import { CTASection } from './components/CTASection';
 import { ServiceDetailParams } from '@/types/service-types';
 
-export function ServiceDetailPage({ serviceId }: { serviceId: string }) {
-  const [service, setService] = useState<ServiceDetailParams | null>(null);
+export function ServiceDetailPage({ serviceId }) {
+  const [service, setService] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchService = async () => {

@@ -10,7 +10,6 @@ import { useServices } from "@/hooks/useServices";
 
 const HomePage = async () => {
   const services = await useServices();
-  console.log(services)
   return (
     <div className="min-h-screen">
       <Hero />

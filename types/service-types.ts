@@ -3,7 +3,7 @@ import { LucideIcon } from "lucide-react";
 export interface Feature {
   title: string;
   description: string;
-  icon: LucideIcon;
+  iconImage: string; // ← Add this line
 }
 
 export interface Technology {

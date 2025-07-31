@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "lib/firebase.js", "lib/firebase.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "lib/firebase.js", "lib/firebase.js", "hooks/useServices.js", "components/pages/servicedetails/serviceDetailPage.jsx", "components/pages/home/components/ServicesSection.jsx"],
   "exclude": ["node_modules"]
 }

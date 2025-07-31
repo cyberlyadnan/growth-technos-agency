@@ -8,7 +8,11 @@ export type Service = {
   iconName: string;
 };
 
-export const useServices = async (): Promise<Service[]> => {
+export const useServices = async () => {
+  if (!adminDb) {
+    throw new Error("❌ Firebase Admin SDK is not initialized.");
+  }
+
   const snapshot = await adminDb.collection("services").get();
 
   const services: Service[] = snapshot.docs.map((doc) => ({
@@ -18,3 +22,4 @@ export const useServices = async (): Promise<Service[]> => {
 
   return services;
 };
+

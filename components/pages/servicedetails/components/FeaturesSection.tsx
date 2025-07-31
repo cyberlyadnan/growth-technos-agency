@@ -39,7 +39,7 @@ const FeaturesSection = ({ service }: FeaturesSectionProps) => {
                   <div className="mb-4">
                     {feature?.iconImage && (
                       <img
-                        src={feature.iconImage}
+                        src={feature?.iconImage}
                         alt={feature.title}
                         className="w-10 h-10 mx-auto object-contain"
                       />

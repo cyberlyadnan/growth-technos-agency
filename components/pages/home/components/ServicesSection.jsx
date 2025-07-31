@@ -3,8 +3,21 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { ServiceCard } from '../../services/components/ServiceCard';
+import { ServiceDetail } from '@/types/service-types';
 
-export const ServicesSection = ({ services, title, desc, hideViewAllSection=true }) => {
+// interface ServicesSectionProps {
+//   services: ServiceDetail[];
+//   title: string;
+//   desc: string;
+//   hideViewAllSection?: boolean;
+// }
+
+export const ServicesSection = ({
+  services,
+  title,
+  desc,
+  hideViewAllSection = true,
+}) => {
   return (
     <section className="py-20 px-4 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
