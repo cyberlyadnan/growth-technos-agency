@@ -1,20 +1,15 @@
-import { db } from '@/lib/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+// hooks/server/getServiceById.ts
+import { adminDb } from "@/lib/firebase-admin";
+import { Service } from "./useServices";
 
-export const getServiceById = async (serviceId: string) => {
-  try {
-    const serviceRef = doc(db, 'services', serviceId);
-    const docSnap = await getDoc(serviceRef);
-    console.log("docSnap",docSnap)
-
-    if (docSnap.exists()) {
-      return { id: docSnap.id, ...docSnap.data() };
-    } else {
-      console.warn(`No service found for ID: ${serviceId}`);
-      return null;
-    }
-  } catch (error) {
-    console.error('Error fetching service:', error);
-    return null;
+export async function getServiceById(serviceId: string): Promise<Service | null> {
+  if (!adminDb) {
+    throw new Error("Firebase Admin SDK is not initialized");
   }
-};
+
+  const doc = await adminDb.collection("services").doc(serviceId).get();
+
+  if (!doc.exists) return null;
+
+  return { id: doc.id, ...(doc.data() as Omit<Service, "id">) };
+}
