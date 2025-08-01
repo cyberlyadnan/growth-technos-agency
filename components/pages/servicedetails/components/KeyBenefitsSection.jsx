@@ -14,7 +14,7 @@ export function KeyBenefitsSection({ service }) {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-8 md:px-12 lg:px-20">
           {service.keyBenefits.map((benefit, index) => (
             <div
               key={index}
