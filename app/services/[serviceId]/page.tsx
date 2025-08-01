@@ -1,13 +1,12 @@
 // app/services/[serviceId]/page.tsx
-import  ServiceDetailPage  from "@/components/pages/servicedetails/serviceDetailPage";
+import ServiceDetailPage from "@/components/pages/servicedetails/serviceDetailPage";
 import { Metadata } from "next";
+import { db } from "@/lib/firebase-admin";
 
-// Define the params type
 interface ServiceDetailParams {
   serviceId: string;
 }
 
-// Define the page props type
 interface ServiceDetailPageProps {
   params: ServiceDetailParams;
 }
@@ -16,37 +15,33 @@ export default function ServiceDetail({ params }: ServiceDetailPageProps) {
   return <ServiceDetailPage serviceId={params.serviceId} />;
 }
 
-// Generate static params for better SEO
+// 🧠 Dynamically generate paths at build time
 export async function generateStaticParams(): Promise<ServiceDetailParams[]> {
-  return [
-    { serviceId: 'web-development' },
-    { serviceId: 'seo-services' },
-    { serviceId: 'digital-marketing' },
-    { serviceId: 'branding' },
-    { serviceId: 'ui-ux-design' },
-    { serviceId: 'mobile-development' },
-    { serviceId: 'ecommerce-solutions' },
-    { serviceId: 'analytics-reporting' }
-  ];
+  const snapshot = await db.collection("services").get();
+  return snapshot.docs.map(doc => ({
+    serviceId: doc.data().slug, // assuming slug is used as dynamic path
+  }));
 }
 
-// Generate metadata for each service
+// 🧠 Generate SEO metadata per page
 export async function generateMetadata({ params }: ServiceDetailPageProps): Promise<Metadata> {
-  const serviceId = params.serviceId;
-  
-  const serviceTitles: Record<string, string> = {
-    'web-development': 'Web Development Services',
-    'seo-services': 'SEO Services',
-    'digital-marketing': 'Digital Marketing Services',
-    'branding': 'Branding Services',
-    'ui-ux-design': 'UI/UX Design Services',
-    'mobile-development': 'Mobile Development Services',
-    'ecommerce-solutions': 'E-commerce Solutions',
-    'analytics-reporting': 'Analytics & Reporting Services'
-  };
-  
+  const snapshot = await db
+    .collection("services")
+    .where("slug", "==", params.serviceId)
+    .limit(1)
+    .get();
+
+  if (snapshot.empty) {
+    return {
+      title: "Service Not Found",
+      description: "Requested service was not found in our database.",
+    };
+  }
+
+  const service = snapshot.docs[0].data();
+
   return {
-    title: serviceTitles[serviceId] || 'Service Details',
-    description: 'Professional digital services to help your business grow and succeed online.'
+    title: service.metaTitle || service.title || "Service Details",
+    description: service.metaDescription || "Explore our professional services.",
   };
 }
