@@ -6,6 +6,8 @@ import { TestimonialsSection } from "../components/pages/home/components/Testimo
 import { Newsletter } from "../components/pages/home/components/Newsletter";
 import { AboutSection } from "@/components/pages/home/components/AboutSection";
 import { useServices } from "@/hooks/useServices";
+import { resetAndPushServices } from "@/lib/firebase";
+import { servicess } from "@/lib/data";
 
 
 const HomePage = async () => {

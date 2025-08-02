@@ -1,10 +1,11 @@
 import { adminDb } from "@/lib/firebase-admin";
 
-/**
- * Fetches all projects from Firestore
- * @returns {Promise<Array>} List of project objects
- */
-export async function getAllProjects() {
+// Function to fetch all projects from Firebase
+export const getAllProjects = async () => {
+  if (!adminDb) {
+    throw new Error("❌ Firebase Admin SDK is not initialized.");
+  }
+
   const snapshot = await adminDb.collection("projects").get();
 
   const projects = snapshot.docs.map((doc) => ({
@@ -13,4 +14,4 @@ export async function getAllProjects() {
   }));
 
   return projects;
-}
+};
