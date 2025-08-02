@@ -8,10 +8,12 @@ import { AboutSection } from "@/components/pages/home/components/AboutSection";
 import { useServices } from "@/hooks/useServices";
 import { resetAndPushServices } from "@/lib/firebase";
 import { servicess } from "@/lib/data";
+import { projectsss } from "@/lib/projects";
 
 
 const HomePage = async () => {
   const services = await useServices();
+  // resetAndPushServices(projectsss)
   return (
     <div className="min-h-screen">
       <Hero />
