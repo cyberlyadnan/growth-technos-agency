@@ -1,10 +1,8 @@
-"use client"
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, Github } from "lucide-react";
 
 export const ProjectCard = ({ project }) => {
-    console.log("project",project)
   return (
     <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700">
       {/* Top Image */}
@@ -17,7 +15,7 @@ export const ProjectCard = ({ project }) => {
         />
         <div className="absolute top-3 left-3">
           <span className="bg-blue-600 text-white text-xs font-medium px-3 py-1 rounded-full shadow">
-            {project.category}
+            {/* {project.category} */}
           </span>
         </div>
       </div>
@@ -25,7 +23,7 @@ export const ProjectCard = ({ project }) => {
       {/* Content */}
       <div className="p-6">
         <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-          {project.title}
+          {/* {project.title} */}
         </h3>
         <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm">
           {project.description}
@@ -39,11 +37,11 @@ export const ProjectCard = ({ project }) => {
           {project.client}
         </p>
         <p className="text-sm mb-4">
-  <span className="font-semibold text-gray-700 dark:text-gray-300">
-    Technologies:
-  </span>{" "}
-  {project.technologies?.map((tech) => tech.name).join(", ")}
-</p>
+          <span className="font-semibold text-gray-700 dark:text-gray-300">
+            Technologies:
+          </span>{" "}
+          {project.technologies?.map((tech) => tech.name).join(", ")}
+        </p>
 
         {/* Key Features */}
         {project.features?.length > 0 && (
@@ -57,7 +55,7 @@ export const ProjectCard = ({ project }) => {
                   key={idx}
                   className="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-100 text-xs font-medium px-3 py-1 rounded-full"
                 >
-                  {feature}
+                  {feature.title}
                 </span>
               ))}
             </div>

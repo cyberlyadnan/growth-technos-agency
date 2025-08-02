@@ -16,7 +16,6 @@ interface ServiceCardProps {
 }
 
 export const ServiceCard = ({ service, index }: ServiceCardProps) => {
-    // console.log('Service data:', service);
 
   return (
     <div
