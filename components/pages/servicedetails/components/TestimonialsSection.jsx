@@ -1,41 +1,27 @@
-import { motion } from 'framer-motion';
 import { Card, CardContent } from '@/components/ui/card';
 import { Star } from 'lucide-react';
-import { ServiceDetail } from '@/types/service-types';
 
-interface TestimonialsSectionProps {
-  service: ServiceDetail;
-}
-
-export function TestimonialsSection({ service }: TestimonialsSectionProps) {
+export function TestimonialsSection({ service }) {
   if (!service.testimonials) return null;
 
   return (
     <section className="py-20 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16 animate-slide-up">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
             What Our Clients Say
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Don't just take our word for it - hear from our satisfied clients
           </p>
-        </motion.div>
-        
+        </div>
+
         <div className="grid md:grid-cols-2 gap-8">
           {service.testimonials.map((testimonial, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
+              className="animate-slide-up"
+              style={{ animationDelay: `${index * 200}ms`, animationFillMode: 'both' }}
             >
               <Card className="h-full">
                 <CardContent className="p-6">
@@ -57,7 +43,7 @@ export function TestimonialsSection({ service }: TestimonialsSectionProps) {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

@@ -16,14 +16,15 @@ interface ServiceCardProps {
 }
 
 export const ServiceCard = ({ service, index }: ServiceCardProps) => {
+
   return (
     <div
-      className="opacity-0 animate-slide-up [animation-fill-mode:forwards]"
+      className="opacity-0 animate-slide-up [animation-fill-mode:forwards] h-full"
       style={{ animationDelay: `${index * 100}ms` }}
     >
       <Link
         href={`/services/${service.id}`}
-        className="block group rounded-xl bg-white dark:bg-gray-800 p-5 border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600 hover:shadow-xl transition-all duration-300"
+        className="group rounded-xl bg-white dark:bg-gray-800 p-5 border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
       >
         <div
           className={`inline-flex items-center justify-center p-3 rounded-lg mb-4 ${service.iconBg} ${service.iconColor}`}
@@ -39,7 +40,7 @@ export const ServiceCard = ({ service, index }: ServiceCardProps) => {
           {service.description.split(".")[0]}
         </p>
 
-        <ul className="space-y-1 mb-4">
+        <ul className="space-y-1 mb-4 flex-grow">
           {service.features.slice(0, 4).map((feature, featureIndex) => (
             <li
               key={featureIndex}
@@ -67,7 +68,7 @@ export const ServiceCard = ({ service, index }: ServiceCardProps) => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-gray-700">
+        <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-gray-700 mt-auto">
           <span className="text-sm font-medium text-primary-600 dark:text-primary-400 group-hover:text-primary-700 transition-colors duration-300">
             Learn More
           </span>
