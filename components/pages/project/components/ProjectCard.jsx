@@ -1,10 +1,8 @@
-"use client"
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, Github } from "lucide-react";
 
 export const ProjectCard = ({ project }) => {
-  console.log("project",project)
   return (
     <div className="bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden border border-gray-200 dark:border-gray-700">
       {/* Top Image */}

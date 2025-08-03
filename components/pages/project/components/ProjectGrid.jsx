@@ -1,8 +1,6 @@
-"use client"
 import { ProjectCard } from "./ProjectCard";
 
 export function ProjectGrid({ projects }) {
-  console.log("projects",projects)
      if (!projects.length) {
     return (
       <div className="text-center text-gray-500 py-12">

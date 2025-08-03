@@ -13,7 +13,6 @@ import { projectsss } from "@/lib/projects";
 
 const HomePage = async () => {
   const services = await useServices();
-  // resetAndPushServices(projectsss)
   return (
     <div className="min-h-screen">
       <Hero />
