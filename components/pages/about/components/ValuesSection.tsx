@@ -45,7 +45,7 @@ const values = [
 
 export const ValuesSection = () => {
   return (
-    <section className="py-20 px-4 md:px-[10%] relative overflow-hidden">
+    <section className="py-20 px-4 md:px-[10%] relative overflow-hidden dark:bg-gray-900">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-emerald-200/30 to-cyan-200/30 dark:from-emerald-900/20 dark:to-cyan-900/20 rounded-full blur-3xl"></div>

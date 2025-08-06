@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export const AboutHero = () => {
   return (
-    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden dark:bg-gray-900">
       {/* Background Image with Overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -100,18 +100,19 @@ export const AboutHero = () => {
       </div>
 
       {/* Bottom wave decoration */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg
-          viewBox="0 0 1440 120"
-          className="w-full h-auto text-white"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120 Z"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
+     <div className="absolute bottom-0 left-0 right-0">
+  <svg
+    viewBox="0 0 1440 120"
+    className="w-full h-auto text-white"
+    preserveAspectRatio="none"
+  >
+    <path
+      d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120 Z"
+      fill="currentColor"
+    />
+  </svg>
+</div>
+
     </section>
   );
 };
