@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
-export const ProjectsSection = ({ projects }) => {
+export const ProjectsSection = ({ projects  }) => {
   return (
     <section className="py-20 px-4 md:px-[10%] bg-white dark:bg-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
