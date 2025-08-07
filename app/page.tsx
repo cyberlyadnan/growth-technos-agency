@@ -9,7 +9,8 @@ import { useServices } from "@/hooks/useServices";
 import { resetAndPushServices } from "@/lib/firebase";
 import { servicess } from "@/lib/data";
 import { projectsss } from "@/lib/projects";
-
+import { portfolioProjects } from "@/lib/mainData";
+import PortfolioSection from "@/components/pages/portfolio/components/PortfolioSection"
 
 const HomePage = async () => {
   const services = await useServices();
@@ -20,6 +21,7 @@ const HomePage = async () => {
       <AboutSection />
       <ServicesSection hideViewAllSection={true} title={"Our Services"} desc={"We offer comprehensive digital solutions to help your business grow and succeed online."} services={services.slice(0,6)} />
       <ProjectsSection />
+      <PortfolioSection projects={portfolioProjects.slice(0,6)}/>
       <TestimonialsSection />
       <Newsletter />
     </div>

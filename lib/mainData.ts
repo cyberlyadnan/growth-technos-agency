@@ -72,3 +72,56 @@ export const technologyLogos: Record<string, string> = {
   'Zeplin': 'https://cdn.worldvectorlogo.com/logos/zeplin.svg',
   'Sanity CMS': 'https://cdn.sanity.io/images/599r6htc/localized/46a76c802176eb17b04e12108de7e7e0f3736dc6-1024x1024.png?w=804&h=804&q=75&fit=max&auto=format'
 };
+
+
+
+export const portfolioProjects = [
+  {
+    title: "Interior Design",
+    description: "A modern portfolio for an interior design firm.",
+    image: "https://interior-design-growthtechnos.pages.dev/img/carousel-1.jpg", // replace with actual image path
+    link: "https://interior-design-growthtechnos.pages.dev"
+  },
+  {
+    title: "Architecture Studio",
+    description: "Website for a professional architecture company.",
+    image: "https://architecture-growthtechnos.pages.dev/img/carousel-1.jpg",
+    link: "https://architecture-growthtechnos.pages.dev"
+  },
+  {
+    title: "Welding Services",
+    description: "A business site for professional welding services.",
+    image: "https://welding-growthtechnos.pages.dev/img/carousel-1.jpg",
+    link: "https://welding-growthtechnos.pages.dev"
+  },
+  {
+    title: "Private Chef",
+    description: "A landing page for a personal chef service.",
+    image: "https://chef-growthtechnos.pages.dev/img/hero-2.jpg",
+    link: "https://chef-growthtechnos.pages.dev"
+  },
+  {
+    title: "Construction Company",
+    description: "A showcase site for a construction business.",
+    image: "https://construction-growthtechnos.pages.dev/img/carousel-1.jpg",
+    link: "https://construction-growthtechnos.pages.dev"
+  },
+  {
+    title: "Family Doctor",
+    description: "Professional profile site for a family doctor clinic.",
+    image: "https://family-doctor-growthtechnos.pages.dev/img/team-3.jpg",
+    link: "https://family-doctor-growthtechnos.pages.dev"
+  },
+  {
+    title: "Painting Services",
+    description: "Service website for a painting contractor.",
+    image: "https://painting-growthtechnos.pages.dev/img/about-1.jpg",
+    link: "https://painting-growthtechnos.pages.dev"
+  },
+  {
+    title: "Physical Therapy",
+    description: "A website for a physical therapy clinic.",
+    image: "https://physical-theripy-growthtechnos.pages.dev/img/carousel-1.jpg",
+    link: "https://physical-theripy-growthtechnos.pages.dev"
+  }
+];
