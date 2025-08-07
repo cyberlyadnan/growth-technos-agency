@@ -1,6 +1,4 @@
-"use client";
 
-import { motion } from 'framer-motion';
 import { ArrowRight, Check } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,12 +9,7 @@ export const AboutSection = () => {
     <section className="py-20 px-4 md:px-[10%] bg-white dark:bg-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          <div className="fade-in-left">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 dark:text-white">
               About Growth Technos
             </h2>
@@ -46,15 +39,9 @@ export const AboutSection = () => {
                 </Link>
               </Button>
             </div>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
+          </div>
+
+          <div className="relative fade-in-right">
             <div className="aspect-w-16 aspect-h-12 rounded-2xl overflow-hidden">
               <Image
                 src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800"
@@ -64,11 +51,11 @@ export const AboutSection = () => {
                 className="object-cover rounded-2xl"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 bg-accent-500 text-white p-6 rounded-2xl">
+            <div className="absolute -bottom-6 -right-6 bg-accent-500 text-white p-6 rounded-2xl shadow-lg">
               <div className="text-2xl font-bold">500+</div>
               <div className="text-sm opacity-90">Projects Completed</div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

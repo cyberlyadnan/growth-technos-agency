@@ -11,16 +11,18 @@ import { servicess } from "@/lib/data";
 import { projectsss } from "@/lib/projects";
 import { portfolioProjects } from "@/lib/mainData";
 import PortfolioSection from "@/components/pages/portfolio/components/PortfolioSection"
+import { getAllProjects } from "@/hooks/getAllProjects";
 
 const HomePage = async () => {
   const services = await useServices();
+  const projects = await getAllProjects()
   return (
     <div className="min-h-screen">
       <Hero />
       <StatsSection />
       <AboutSection />
       <ServicesSection hideViewAllSection={true} title={"Our Services"} desc={"We offer comprehensive digital solutions to help your business grow and succeed online."} services={services.slice(0,6)} />
-      <ProjectsSection />
+      <ProjectsSection projects={projects.slice(0,6)}/>
       <PortfolioSection projects={portfolioProjects.slice(0,6)}/>
       <TestimonialsSection />
       <Newsletter />

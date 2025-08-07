@@ -125,3 +125,26 @@ export const portfolioProjects = [
     link: "https://physical-theripy-growthtechnos.pages.dev"
   }
 ];
+
+
+
+export const testimonials = [
+  {
+    name: 'Sarah Johnson',
+    role: 'CEO, TechStart Inc.',
+    content: 'Growth Technos transformed our online presence completely. Their expertise in web development and digital marketing helped us increase our revenue by 200%.',
+    rating: 5
+  },
+  {
+    name: 'Michael Chen',
+    role: 'Marketing Director, Global Corp',
+    content: 'The team\'s SEO strategies brought our website from page 10 to the top 3 results. Outstanding work and great communication throughout the project.',
+    rating: 5
+  },
+  {
+    name: 'Emily Rodriguez',
+    role: 'Founder, Creative Studio',
+    content: 'Professional, creative, and results-driven. Growth Technos delivered exactly what we needed to establish our brand in the market.',
+    rating: 5
+  }
+];

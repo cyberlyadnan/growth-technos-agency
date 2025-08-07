@@ -1,9 +1,8 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export const Newsletter = () => {
   return (
@@ -11,43 +10,34 @@ export const Newsletter = () => {
       {/* Newsletter Section */}
       <section className="py-20 bg-primary-600 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center max-w-2xl mx-auto"
-          >
+          <div className="text-center max-w-2xl mx-auto animate-slide-up">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Stay Updated with Our Newsletter
             </h2>
             <p className="text-lg text-primary-100 mb-8">
               Get the latest insights, tips, and updates from our team delivered straight to your inbox.
             </p>
-            <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto" onSubmit={(e) => e.preventDefault()}>
+              <label htmlFor="email" className="sr-only">Email address</label>
               <input
+                id="email"
                 type="email"
                 placeholder="Enter your email"
+                required
                 className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-accent-500"
               />
               <Button type="submit" className="bg-accent-500 hover:bg-accent-600 px-6 py-3">
                 Subscribe
               </Button>
             </form>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center max-w-3xl mx-auto"
-          >
+          <div className="text-center max-w-3xl mx-auto animate-slide-up">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
               Ready to Grow Your Business?
             </h2>
@@ -63,12 +53,12 @@ export const Newsletter = () => {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <Link href="/projects">
+                <Link href="/portfolio">
                   View Our Portfolio
                 </Link>
               </Button>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </>
