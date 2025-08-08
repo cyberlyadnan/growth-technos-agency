@@ -9,6 +9,7 @@ import { useServices } from "@/hooks/useServices";
 import { resetAndPushServices } from "@/lib/firebase";
 import { servicess } from "@/lib/data";
 import { projectsss } from "@/lib/projects";
+import OurClients from "@/components/pages/home/components/OurClients";
 
 
 const HomePage = async () => {
@@ -22,6 +23,7 @@ const HomePage = async () => {
       <ServicesSection hideViewAllSection={true} title={"Our Services"} desc={"We offer comprehensive digital solutions to help your business grow and succeed online."} services={services.slice(0,6)} />
       <ProjectsSection />
       <TestimonialsSection />
+      <OurClients />
       <Newsletter />
     </div>
   );

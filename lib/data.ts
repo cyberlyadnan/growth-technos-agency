@@ -1,6 +1,10 @@
 export const servicess = {
   "web-development": {
     title: "Web Development",
+    icon: "Monitor",
+    iconBg: "bg-blue-100 dark:bg-blue-900",
+    iconColor: "text-blue-600 dark:text-blue-300",
+
     subtitle:
       "Custom websites tailored to elevate your brand and grow your business",
     description:
@@ -175,6 +179,9 @@ export const servicess = {
 
   "mobile-app-development": {
     title: "Mobile App Development",
+    icon: "Smartphone",
+    iconBg: "bg-purple-100 dark:bg-purple-900",
+    iconColor: "text-purple-600 dark:text-purple-700",
     subtitle: "High-performance mobile apps that transform your business",
     description:
       "We build robust, scalable, and user-centric mobile applications tailored to your business needs. Whether you're launching a startup or scaling an enterprise, our expert team designs native and cross-platform mobile solutions that engage users, improve operational efficiency, and drive growth. From UI/UX to backend architecture, we ensure every app we deliver is production-ready, secure, and built for scale.",
@@ -320,6 +327,9 @@ export const servicess = {
 
   "ecommerce-solutions": {
     title: "E-Commerce Solutions",
+    icon: "ShoppingCart",
+    iconBg: "bg-green-100 dark:bg-green-900",
+    iconColor: "text-green-600 dark:text-green-300",
     subtitle:
       "Scalable e-commerce platforms that convert and grow with your brand",
     description:
@@ -467,6 +477,9 @@ export const servicess = {
 
   "digital-marketing": {
     title: "Digital Marketing",
+    icon: "BarChart2",
+    iconBg: "bg-orange-100 dark:bg-orange-900",
+    iconColor: "text-orange-600 dark:text-orange-300",
     subtitle: "Strategic campaigns that drive traffic, leads, and growth",
     description:
       "We design and execute digital marketing campaigns that align with your business goals and audience behavior. From SEO and paid ads to social media and email, we help you generate targeted traffic, convert leads, and scale your brand with data-driven precision. Whether you're building awareness or optimizing your sales funnel, we tailor every channel to maximize your return on investment.",
@@ -641,6 +654,9 @@ export const servicess = {
 
   "it-support-consulting": {
     title: "IT Support & Consulting",
+     icon: "Headphones",
+    iconBg: "bg-red-100 dark:bg-red-900",
+    iconColor: "text-red-600 dark:text-red-700",
     subtitle: "Expert guidance and technical support to scale with confidence",
     description:
       "We provide strategic IT consulting and hands-on technical support to ensure your digital operations run smoothly and securely. Whether you need a dedicated developer team, architecture guidance, or reliable maintenance, our flexible, scalable IT solutions are designed to fit startups, enterprises, and everything in between. Think of us as your extended tech department—always available, always reliable.",
@@ -787,6 +803,9 @@ export const servicess = {
 
   "cloud-devops": {
     title: "Cloud & DevOps",
+    icon: "Cloud",
+    iconBg: "bg-indigo-100 dark:bg-indigo-900",
+    iconColor: "text-indigo-600 dark:text-indigo-300",
     subtitle: "Secure, scalable cloud solutions with seamless automation",
     description:
       "We offer end-to-end cloud and DevOps services to help your business deploy, scale, and maintain digital products with maximum efficiency. From launching websites to setting up CI/CD pipelines, our team ensures that your infrastructure is secure, fast, and cost-optimized. Whether you're using AWS, Firebase, or Google Cloud, we automate deployment, monitoring, and scaling to let you focus on building—while we take care of shipping.",
@@ -962,6 +981,9 @@ export const servicess = {
 
   "software-saas-development": {
     title: "Software & SaaS Development",
+     icon: "Code",
+    iconBg: "bg-cyan-100 dark:bg-cyan-900",
+    iconColor: "text-cyan-600 dark:text-cyan-300",
     subtitle: "Scalable software solutions tailored to your business vision",
     description:
       "We build powerful, user-friendly software and SaaS platforms that solve real-world business problems. From idea to launch, we deliver full-stack development, UI/UX design, robust backend systems, and API integrations that bring your vision to life. Whether you’re building an internal tool, a public-facing SaaS product, or automating complex workflows — we’re your technology partner from concept to scale.",
@@ -1109,6 +1131,9 @@ export const servicess = {
 
   "design-branding": {
     title: "Design & Branding",
+    icon: "Palette",
+    iconBg: "bg-pink-100 dark:bg-pink-900",
+    iconColor: "text-pink-600 dark:text-pink-300",
     subtitle: "Visual storytelling that builds trust and defines your identity",
     description:
       "We help businesses craft unforgettable visual experiences that build recognition, attract attention, and evoke emotion. From brand identity design to immersive digital visuals, we turn your ideas into impactful designs across print, screen, and motion. Our multidisciplinary team combines aesthetics with purpose to create consistent, compelling brand visuals across all platforms.",
