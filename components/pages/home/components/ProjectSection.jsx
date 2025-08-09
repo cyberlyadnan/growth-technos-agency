@@ -20,7 +20,7 @@ export const ProjectsSection = ({ projects  }) => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <Link
-              href={`/projects/${project.id === 0 ? project.id : project.id - 1}`}
+              href={`/projects/${project.id}`}
               key={project.title}
               className="group block opacity-1 animate-slide-up animation-delay-[index * 75] transition duration-300"
             >

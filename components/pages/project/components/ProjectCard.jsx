@@ -65,7 +65,7 @@ export const ProjectCard = ({ project }) => {
         {/* Action Buttons */}
         <div className="flex items-center justify-between gap-4 border-t pt-4">
           <Link
-            href={`/projects/${project.id == 0 ? project.id : project.id -1}`}
+            href={`/projects/${project.id}`}
             className="text-sm flex items-center px-8 gap-1 text-blue-600 hover:underline"
           >
             <ExternalLink size={16} />

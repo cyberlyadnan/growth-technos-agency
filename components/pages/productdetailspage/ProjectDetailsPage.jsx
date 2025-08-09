@@ -11,10 +11,10 @@ import { getProjectById } from '@/hooks/getProjectById';
 
 
 
-const ProjectDetailPage = async ({ projectId }) => {
-  const project = await getProjectById(projectId)
+const ProjectDetailPage = ({ project }) => {
+  // const project = await getProjectById(projectId)
   // const project = projectDetails[projectId];
-  console.log("projectprojectprojectproject,",project)
+  console.log("projectprojectprojectproject",project)
 
   if (project?.status === "rejected") {
     return (

@@ -6,7 +6,6 @@ import ProjectCTA from "@/components/pages/project/components/ProjectCTA"
 
 export default async function ProjectsPage() {
   const projects = await getAllProjects(); // You can make it dynamic later if needed
-  console.log("projectslenght",projects.length)
   
   return (
     <div className="min-h-screen pt-16">
