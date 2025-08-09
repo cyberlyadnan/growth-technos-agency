@@ -1,29 +1,30 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react';
-import { useTheme } from 'next-themes';
-import { Button } from '@/components/ui/button';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, ChevronDown, Sun, Moon } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'About', href: '/about' },
-  { 
-    name: 'Services', 
-    href: '/services',
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  {
+    name: "Services",
+    href: "/services",
     dropdown: [
-      { name: 'Web Development', href: '/services/web-development' },
-      { name: 'SEO Services', href: '/services/seo' },
-      { name: 'Digital Marketing', href: '/services/digital-marketing' },
-      { name: 'Branding', href: '/services/branding' },
-    ]
+      { name: "Web Development", href: "/services/web-development" },
+      { name: "SEO Services", href: "/services/seo" },
+      { name: "Digital Marketing", href: "/services/digital-marketing" },
+      { name: "Branding", href: "/services/branding" },
+    ],
   },
-  { name: 'Projects', href: '/projects' },
-  { name: 'Portfolio', href: '/portfolio' },
-  { name: 'Contact', href: '/contact' },
+  { name: "Projects", href: "/projects" },
+  { name: "Portfolio", href: "/portfolio" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export function Navigation() {
@@ -37,24 +38,24 @@ export function Navigation() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleDropdown = (name: string) => {
     setActiveDropdown(activeDropdown === name ? null : name);
   };
 
-  const isHomeTransparent = pathname === '/' && !isScrolled;
+  const isHomeTransparent = pathname === "/" && !isScrolled;
 
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg' 
-          : 'bg-transparent'
+        isScrolled
+          ? "bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-lg"
+          : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -64,10 +65,21 @@ export function Navigation() {
             <motion.div
               whileHover={{ scale: 1.05 }}
               className={`text-2xl font-bold ${
-                isHomeTransparent ? 'text-white' : 'text-primary-600 dark:text-primary-400'
+                isHomeTransparent
+                  ? "text-white"
+                  : "text-primary-600 dark:text-primary-400"
               }`}
             >
-              Growth<span className="text-accent-500">Technos</span>
+              {/* Logo */}
+              <Link href="/" className="flex items-center space-x-2">
+                <Image
+                  src="./growth-technos-logo.png"
+                  alt="Growth Technos"
+                  width={160} // adjust
+                  height={40} // adjust
+                  priority
+                />
+              </Link>
             </motion.div>
           </Link>
 
@@ -84,16 +96,16 @@ export function Navigation() {
                     <button
                       className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                         pathname.startsWith(item.href)
-                          ? 'text-[#4169e1]' // Royal blue for active
-                          : isHomeTransparent 
-                            ? 'text-white hover:text-[#4169e1]' 
-                            : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400'
+                          ? "text-[#4169e1]" // Royal blue for active
+                          : isHomeTransparent
+                          ? "text-white hover:text-[#4169e1]"
+                          : "text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
                       }`}
                     >
                       <span>{item.name}</span>
                       <ChevronDown className="w-4 h-4" />
                     </button>
-                    
+
                     <AnimatePresence>
                       {activeDropdown === item.name && (
                         <motion.div
@@ -120,10 +132,10 @@ export function Navigation() {
                     href={item.href}
                     className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                       pathname === item.href
-                        ? 'text-blue-300' // Royal blue active
-                        : isHomeTransparent 
-                          ? 'text-white hover:text-[#4169e1]' 
-                          : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400'
+                        ? "text-blue-300" // Royal blue active
+                        : isHomeTransparent
+                        ? "text-white hover:text-[#4169e1]"
+                        : "text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400"
                     }`}
                   >
                     {item.name}
@@ -138,14 +150,17 @@ export function Navigation() {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="w-9 h-9 p-0"
             >
               <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
               <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               <span className="sr-only">Toggle theme</span>
             </Button>
-            <Button asChild className="bg-primary-600 text-white hover:bg-primary-700">
+            <Button
+              asChild
+              className="bg-primary-600 text-white hover:bg-primary-700"
+            >
               <Link href="/contact">Get Started</Link>
             </Button>
           </div>
@@ -158,7 +173,11 @@ export function Navigation() {
               onClick={() => setIsOpen(!isOpen)}
               className="w-9 h-9 p-0"
             >
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
               <span className="sr-only">Toggle menu</span>
             </Button>
           </div>
@@ -170,7 +189,7 @@ export function Navigation() {
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-white dark:bg-gray-900 border-t dark:border-gray-800"
           >
@@ -183,20 +202,22 @@ export function Navigation() {
                         onClick={() => toggleDropdown(item.name)}
                         className={`flex items-center justify-between w-full px-3 py-2 rounded-md text-base font-medium ${
                           pathname.startsWith(item.href)
-                            ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20'
-                            : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                            ? "text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20"
+                            : "text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800"
                         }`}
                       >
                         <span>{item.name}</span>
-                        <ChevronDown className={`w-4 h-4 transition-transform ${
-                          activeDropdown === item.name ? 'rotate-180' : ''
-                        }`} />
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform ${
+                            activeDropdown === item.name ? "rotate-180" : ""
+                          }`}
+                        />
                       </button>
                       <AnimatePresence>
                         {activeDropdown === item.name && (
                           <motion.div
                             initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
+                            animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
                             className="pl-6 space-y-1"
                           >
@@ -220,8 +241,8 @@ export function Navigation() {
                       onClick={() => setIsOpen(false)}
                       className={`block px-3 py-2 rounded-md text-base font-medium ${
                         pathname === item.href
-                          ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20'
-                          : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800'
+                          ? "text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20"
+                          : "text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-gray-800"
                       }`}
                     >
                       {item.name}
@@ -233,7 +254,7 @@ export function Navigation() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                   className="w-9 h-9 p-0"
                 >
                   <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />

@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import Image from 'next/image';
 
 const footerLinks = {
   services: [
@@ -50,10 +51,14 @@ export function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Company Info */}
             <div className="lg:col-span-1 animate-slide-up">
-              <Link href="/" className="flex items-center space-x-2 mb-4">
-                <span className="text-2xl font-bold text-primary-400">
-                  Growth<span className="text-accent-500">Technos</span>
-                </span>
+              <Link href="/" className="flex items-center pb-2 space-x-2">
+                <Image
+                  src="./growth-technos-logo.png"
+                  alt="Growth Technos"
+                  width={160} // adjust
+                  height={40} // adjust
+                  priority
+                />
               </Link>
               <p className="text-gray-400 mb-6 max-w-md">
                 We help businesses grow through innovative digital solutions. 

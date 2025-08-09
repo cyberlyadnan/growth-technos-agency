@@ -46,7 +46,7 @@ export const Newsletter = () => {
               and let's discuss how we can help you achieve your digital goals.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-primary-600 hover:bg-primary-700">
+              <Button asChild size="lg" className="bg-primary-600 text-white hover:bg-primary-700">
                 <Link href="/contact">
                   Get Started Now
                   <ArrowRight className="w-5 h-5 ml-2" />

@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-import colors from 'tailwindcss/colors';
+import colors from "tailwindcss/colors";
 
 const config: Config = {
   darkMode: ["class"],
@@ -10,34 +10,58 @@ const config: Config = {
   ],
   safelist: [
     // Background colors (light/dark)
-    { pattern: /^bg-(blue|indigo|cyan|pink|purple|green|orange|red|yellow|gray)-(50|100|200|300|400|500|600|700|800|900)$/ },
-    { pattern: /^dark:bg-(blue|indigo|cyan|pink|purple|green|orange|red|yellow|gray)-(50|100|200|300|400|500|600|700|800|900)$/ },
-    
+    {
+      pattern:
+        /^bg-(blue|indigo|cyan|pink|purple|green|orange|red|yellow|gray)-(50|100|200|300|400|500|600|700|800|900)$/,
+    },
+    {
+      pattern:
+        /^dark:bg-(blue|indigo|cyan|pink|purple|green|orange|red|yellow|gray)-(50|100|200|300|400|500|600|700|800|900)$/,
+    },
+
     // Text colors (light/dark)
-    { pattern: /^text-(blue|indigo|cyan|pink|purple|green|orange|red|yellow|gray)-(50|100|200|300|400|500|600|700|800|900)$/ },
-    { pattern: /^dark:text-(blue|indigo|cyan|pink|purple|green|orange|red|yellow|gray)-(50|100|200|300|400|500|600|700|800|900)$/ },
-    
+    {
+      pattern:
+        /^text-(blue|indigo|cyan|pink|purple|green|orange|red|yellow|gray)-(50|100|200|300|400|500|600|700|800|900)$/,
+    },
+    {
+      pattern:
+        /^dark:text-(blue|indigo|cyan|pink|purple|green|orange|red|yellow|gray)-(50|100|200|300|400|500|600|700|800|900)$/,
+    },
+
     // For icons specifically
-    'bg-blue-100', 'dark:bg-blue-900', 'text-blue-600', 'dark:text-blue-300',
-    'bg-indigo-100', 'dark:bg-indigo-900', 'text-indigo-600', 'dark:text-indigo-300',
-    'bg-cyan-100', 'dark:bg-cyan-900', 'text-cyan-600', 'dark:text-cyan-300',
-    'bg-pink-100', 'dark:bg-pink-900', 'text-pink-600', 'dark:text-pink-300',
+    "bg-blue-100",
+    "dark:bg-blue-900",
+    "text-blue-600",
+    "dark:text-blue-300",
+    "bg-indigo-100",
+    "dark:bg-indigo-900",
+    "text-indigo-600",
+    "dark:text-indigo-300",
+    "bg-cyan-100",
+    "dark:bg-cyan-900",
+    "text-cyan-600",
+    "dark:text-cyan-300",
+    "bg-pink-100",
+    "dark:bg-pink-900",
+    "text-pink-600",
+    "dark:text-pink-300",
   ],
   theme: {
     extend: {
       colors: {
         // Your custom color palette
         primary: {
-          50: "#eff6ff",
-          100: "#dbeafe",
-          200: "#bfdbfe",
-          300: "#93c5fd",
-          400: "#60a5fa",
-          500: "#3b82f6",
-          600: "#2563eb",
-          700: "#1d4ed8",
-          800: "#1e40af",
-          900: "#1e3a8a",
+          50: "#f2f9fc",
+          100: "#d9edf7",
+          200: "#b3dbef",
+          300: "#85c6e4",
+          400: "#4ea9d3",
+          500: "#1B84B4", // main brand blue
+          600: "#176d93",
+          700: "#135876",
+          800: "#0f445b",
+          900: "#0c3548",
         },
         secondary: {
           50: "#faf5ff",
@@ -52,16 +76,16 @@ const config: Config = {
           900: "#581c87",
         },
         accent: {
-          50: "#fff7ed",
-          100: "#ffedd5",
-          200: "#fed7aa",
-          300: "#fdba74",
-          400: "#fb923c",
-          500: "#f97316",
-          600: "#ea580c",
-          700: "#c2410c",
-          800: "#9a3412",
-          900: "#7c2d12",
+          50: "#fff8f3",
+          100: "#ffe9d9",
+          200: "#ffd1ad",
+          300: "#ffb178",
+          400: "#f98d45",
+          500: "#ED7224", // main brand orange
+          600: "#c85b1d",
+          700: "#a04918",
+          800: "#7a3914",
+          900: "#5f2d10",
         },
         success: {
           50: "#f0fdf4",
@@ -113,8 +137,8 @@ const config: Config = {
         gray: colors.gray,
 
         // Shadcn/ui colors
-        background: 'var(--background)',
-        foreground: 'var(--foreground)',
+        background: "var(--background)",
+        foreground: "var(--foreground)",
         card: {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
@@ -135,18 +159,17 @@ const config: Config = {
         sans: ["Inter", "system-ui", "sans-serif"],
       },
       animation: {
-        'fade-in': 'fadeIn 0.6s ease-in-out',
-        'slide-up': 'slideUp 0.6s ease-out',
-        'slide-down': 'slideDown 0.6s ease-out',
-        'scale-in': 'scaleIn 0.3s ease-out',
-        'float': 'float 6s ease-in-out infinite',
+        "fade-in": "fadeIn 0.6s ease-in-out",
+        "slide-up": "slideUp 0.6s ease-out",
+        "slide-down": "slideDown 0.6s ease-out",
+        "scale-in": "scaleIn 0.3s ease-out",
+        float: "float 6s ease-in-out infinite",
 
-          // Marquee animations
-        'marquee-right': 'marqueeRight 30s linear infinite',
-        'marquee-left': 'marqueeLeft 30s linear infinite',
+        // Marquee animations
+        "marquee-right": "marqueeRight 30s linear infinite",
+        "marquee-left": "marqueeLeft 30s linear infinite",
       },
 
-      
       keyframes: {
         "slide-up": {
           "0%": { opacity: "0", transform: "translateY(30px)" },
@@ -173,16 +196,15 @@ const config: Config = {
           "50%": { transform: "translateY(-10px)" },
         },
 
-          // New marquee keyframes
+        // New marquee keyframes
         marqueeRight: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-50%)' },
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
         },
         marqueeLeft: {
-          '0%': { transform: 'translateX(-50%)' },
-          '100%': { transform: 'translateX(0%)' },
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0%)" },
         },
-        
       },
     },
   },
