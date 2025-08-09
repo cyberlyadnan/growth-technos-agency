@@ -24,7 +24,7 @@ export const MissionVision = () => {
   return (
     <section 
       ref={sectionRef} 
-      className="relative h-screen flex items-center justify-center overflow-hidden"
+      className="relative h-screen flex items-center justify-center overflow-hidden dark:bg-gray-900"
     >
       {/* Animated Background Elements */}
       <motion.div 

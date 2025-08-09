@@ -73,9 +73,10 @@
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+ .text-balance {
+  /* postcss-ignore */
+  text-wrap: balance;
+}
 }
 
 /* Custom scrollbar */

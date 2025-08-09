@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { Check, ArrowRight } from "lucide-react";
+import { Monitor, Check, ArrowRight, Smartphone, ShoppingCart, BarChart2, Headphones, Cloud, Code, Palette, Layout } from "lucide-react";
 
 interface ServiceCardProps {
   service: {
     id: string;
-    icon: React.ReactNode;
+    // icon: React.ReactNode;
+    icon:string;
     title: string;
     description: string;
     features: { title: string }[];
@@ -15,10 +16,23 @@ interface ServiceCardProps {
   index: number;
 }
 
+const iconComponents = {
+ Monitor: Monitor,
+  Smartphone: Smartphone,
+  ShoppingCart: ShoppingCart,
+  BarChart2: BarChart2,
+  Headphones: Headphones,
+  Cloud: Cloud,
+  Code: Code,
+  Palette: Palette,
+};
+
 export const ServiceCard = ({ service, index }: ServiceCardProps) => {
+const IconComponent = iconComponents[service.icon as keyof typeof iconComponents] || Monitor;
+
 
   return (
-    <div
+     <div
       className="opacity-0 animate-slide-up [animation-fill-mode:forwards] h-full"
       style={{ animationDelay: `${index * 100}ms` }}
     >
@@ -26,10 +40,11 @@ export const ServiceCard = ({ service, index }: ServiceCardProps) => {
         href={`/services/${service.id}`}
         className="group rounded-xl bg-white dark:bg-gray-800 p-5 border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
       >
+        {/* Icon container with dynamic classes */}
         <div
-          className={`inline-flex items-center justify-center p-3 rounded-lg mb-4 ${service.iconBg} ${service.iconColor}`}
+          className={`inline-flex items-start justify-start p-3 rounded-lg mb-4 w-fit ${service.iconBg} ${service.iconColor}`}
         >
-          {service.icon}
+          <IconComponent className="w-6 h-6" />
         </div>
 
         <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">

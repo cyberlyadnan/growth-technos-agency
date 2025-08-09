@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import colors from 'tailwindcss/colors';
 
 const config: Config = {
   darkMode: ["class"],
@@ -7,9 +8,25 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    // Background colors (light/dark)
+    { pattern: /^bg-(blue|indigo|cyan|pink|purple|green|orange|red|yellow|gray)-(50|100|200|300|400|500|600|700|800|900)$/ },
+    { pattern: /^dark:bg-(blue|indigo|cyan|pink|purple|green|orange|red|yellow|gray)-(50|100|200|300|400|500|600|700|800|900)$/ },
+    
+    // Text colors (light/dark)
+    { pattern: /^text-(blue|indigo|cyan|pink|purple|green|orange|red|yellow|gray)-(50|100|200|300|400|500|600|700|800|900)$/ },
+    { pattern: /^dark:text-(blue|indigo|cyan|pink|purple|green|orange|red|yellow|gray)-(50|100|200|300|400|500|600|700|800|900)$/ },
+    
+    // For icons specifically
+    'bg-blue-100', 'dark:bg-blue-900', 'text-blue-600', 'dark:text-blue-300',
+    'bg-indigo-100', 'dark:bg-indigo-900', 'text-indigo-600', 'dark:text-indigo-300',
+    'bg-cyan-100', 'dark:bg-cyan-900', 'text-cyan-600', 'dark:text-cyan-300',
+    'bg-pink-100', 'dark:bg-pink-900', 'text-pink-600', 'dark:text-pink-300',
+  ],
   theme: {
     extend: {
       colors: {
+        // Your custom color palette
         primary: {
           50: "#eff6ff",
           100: "#dbeafe",
@@ -82,8 +99,22 @@ const config: Config = {
           800: "#991b1b",
           900: "#7f1d1d",
         },
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+
+        // Standard Tailwind colors (for icon backgrounds)
+        blue: colors.blue,
+        indigo: colors.indigo,
+        cyan: colors.cyan,
+        pink: colors.pink,
+        purple: colors.purple,
+        green: colors.green,
+        orange: colors.orange,
+        red: colors.red,
+        yellow: colors.yellow,
+        gray: colors.gray,
+
+        // Shadcn/ui colors
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
         card: {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
@@ -104,13 +135,18 @@ const config: Config = {
         sans: ["Inter", "system-ui", "sans-serif"],
       },
       animation: {
-        "fade-in": "fadeIn 0.6s ease-in-out",
-        // "slide-up": "slideUp 0.6s ease-out",
-        "slide-down": "slideDown 0.6s ease-out",
-        "scale-in": "scaleIn 0.3s ease-out",
-        float: "float 6s ease-in-out infinite",
-        "slide-up": "slide-up 0.8s ease-out forwards",
+        'fade-in': 'fadeIn 0.6s ease-in-out',
+        'slide-up': 'slideUp 0.6s ease-out',
+        'slide-down': 'slideDown 0.6s ease-out',
+        'scale-in': 'scaleIn 0.3s ease-out',
+        'float': 'float 6s ease-in-out infinite',
+
+          // Marquee animations
+        'marquee-right': 'marqueeRight 30s linear infinite',
+        'marquee-left': 'marqueeLeft 30s linear infinite',
       },
+
+      
       keyframes: {
         "slide-up": {
           "0%": { opacity: "0", transform: "translateY(30px)" },
@@ -136,6 +172,17 @@ const config: Config = {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-10px)" },
         },
+
+          // New marquee keyframes
+        marqueeRight: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        marqueeLeft: {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
+        
       },
     },
   },

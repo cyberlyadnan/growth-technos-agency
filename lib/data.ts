@@ -1,11 +1,15 @@
 export const servicess = {
   "web-development": {
     title: "Web Development",
+    icon: "Monitor",
+    iconBg: "bg-blue-100 dark:bg-blue-900",
+    iconColor: "text-blue-600 dark:text-blue-300",
+
     subtitle:
       "Custom websites tailored to elevate your brand and grow your business",
     description:
       "We specialize in creating visually appealing, high-performance websites that engage your audience and deliver real business results. From custom-coded platforms to flexible CMS solutions, our web development services are crafted to meet your business objectives and user expectations.",
-    heroImage: "/api/placeholder/800/400",
+    heroImage: "https://t3.ftcdn.net/jpg/07/24/55/92/240_F_724559210_NFveAnVe0MJCZAaXNcNZ8G4Y9KXWmNJu.jpg",
     keyBenefits: [
       "Custom, scalable website architecture",
       "Faster loading and responsive design",
@@ -175,10 +179,13 @@ export const servicess = {
 
   "mobile-app-development": {
     title: "Mobile App Development",
+    icon: "Smartphone",
+    iconBg: "bg-purple-100 dark:bg-purple-900",
+    iconColor: "text-purple-600 dark:text-purple-700",
     subtitle: "High-performance mobile apps that transform your business",
     description:
       "We build robust, scalable, and user-centric mobile applications tailored to your business needs. Whether you're launching a startup or scaling an enterprise, our expert team designs native and cross-platform mobile solutions that engage users, improve operational efficiency, and drive growth. From UI/UX to backend architecture, we ensure every app we deliver is production-ready, secure, and built for scale.",
-    heroImage: "/api/placeholder/800/400",
+    heroImage: "https://media.istockphoto.com/id/1173805365/photo/software-developer-freelancer-working-with-program-code.webp?a=1&b=1&s=612x612&w=0&k=20&c=M2pFKraUfUgx0jgfWWTRojjdWrdo3n_48TrKKiMa6dA=",
     keyBenefits: [
       "High-performance native & cross-platform apps",
       "Custom features tailored to business workflows",
@@ -320,11 +327,14 @@ export const servicess = {
 
   "ecommerce-solutions": {
     title: "E-Commerce Solutions",
+    icon: "ShoppingCart",
+    iconBg: "bg-green-100 dark:bg-green-900",
+    iconColor: "text-green-600 dark:text-green-300",
     subtitle:
       "Scalable e-commerce platforms that convert and grow with your brand",
     description:
       "We build powerful e-commerce solutions that help you sell smarter, scale faster, and stand out in a competitive digital marketplace. Whether you're launching a single-product store or building a multi-vendor marketplace, our team delivers end-to-end solutions—design, development, integrations, and automation—tailored to your brand and customers. From Shopify to custom platforms, we cover everything from design to checkout.",
-    heroImage: "/api/placeholder/800/400",
+    heroImage: "https://media.istockphoto.com/id/1295900101/photo/data-scientists-programmer-team-using-laptop-analyzing-and-developing-in-various-information.webp?a=1&b=1&s=612x612&w=0&k=20&c=jxPCnpnubGgomESziLkZPM_qrIZt4glOIsu7hSYSr_k=",
     keyBenefits: [
       "Fully responsive and conversion-optimized storefronts",
       "End-to-end setup from homepage to checkout",
@@ -467,10 +477,13 @@ export const servicess = {
 
   "digital-marketing": {
     title: "Digital Marketing",
+    icon: "BarChart2",
+    iconBg: "bg-orange-100 dark:bg-orange-900",
+    iconColor: "text-orange-600 dark:text-orange-300",
     subtitle: "Strategic campaigns that drive traffic, leads, and growth",
     description:
       "We design and execute digital marketing campaigns that align with your business goals and audience behavior. From SEO and paid ads to social media and email, we help you generate targeted traffic, convert leads, and scale your brand with data-driven precision. Whether you're building awareness or optimizing your sales funnel, we tailor every channel to maximize your return on investment.",
-    heroImage: "/api/placeholder/800/400",
+    heroImage: "https://media.istockphoto.com/id/2008262446/photo/digital-marketing-concept.webp?a=1&b=1&s=612x612&w=0&k=20&c=6AJ2SK3SXqZTaknqkHFKDrSdqOwKc-SZ4QllDk-LdOQ=",
     keyBenefits: [
       "Increased organic and paid traffic",
       "Higher-quality leads and conversions",
@@ -641,10 +654,13 @@ export const servicess = {
 
   "it-support-consulting": {
     title: "IT Support & Consulting",
+     icon: "Headphones",
+    iconBg: "bg-red-100 dark:bg-red-900",
+    iconColor: "text-red-600 dark:text-red-700",
     subtitle: "Expert guidance and technical support to scale with confidence",
     description:
       "We provide strategic IT consulting and hands-on technical support to ensure your digital operations run smoothly and securely. Whether you need a dedicated developer team, architecture guidance, or reliable maintenance, our flexible, scalable IT solutions are designed to fit startups, enterprises, and everything in between. Think of us as your extended tech department—always available, always reliable.",
-    heroImage: "/api/placeholder/800/400",
+    heroImage: "https://plus.unsplash.com/premium_photo-1733353204288-ba5c8ba3ad7d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8aXQlMjBzdXBwb3J0JTIwY29uc3VsdGluZ3xlbnwwfHwwfHx8MA%3D%3D",
     keyBenefits: [
       "On-demand access to experienced tech professionals",
       "Reduced downtime and faster bug resolution",
@@ -787,10 +803,13 @@ export const servicess = {
 
   "cloud-devops": {
     title: "Cloud & DevOps",
+    icon: "Cloud",
+    iconBg: "bg-indigo-100 dark:bg-indigo-900",
+    iconColor: "text-indigo-600 dark:text-indigo-300",
     subtitle: "Secure, scalable cloud solutions with seamless automation",
     description:
       "We offer end-to-end cloud and DevOps services to help your business deploy, scale, and maintain digital products with maximum efficiency. From launching websites to setting up CI/CD pipelines, our team ensures that your infrastructure is secure, fast, and cost-optimized. Whether you're using AWS, Firebase, or Google Cloud, we automate deployment, monitoring, and scaling to let you focus on building—while we take care of shipping.",
-    heroImage: "/api/placeholder/800/400",
+    heroImage: "https://media.gettyimages.com/id/1303169188/photo/devops-concept.jpg?s=612x612&w=0&k=20&c=RzgMNp4TqIzpjZddZ4Lqyun9uXg5P1uF586BBIy1Fu8=",
     keyBenefits: [
       "Faster deployments and reliable uptime",
       "Scalable cloud hosting with performance tuning",
@@ -962,10 +981,13 @@ export const servicess = {
 
   "software-saas-development": {
     title: "Software & SaaS Development",
+     icon: "Code",
+    iconBg: "bg-cyan-100 dark:bg-cyan-900",
+    iconColor: "text-cyan-600 dark:text-cyan-300",
     subtitle: "Scalable software solutions tailored to your business vision",
     description:
       "We build powerful, user-friendly software and SaaS platforms that solve real-world business problems. From idea to launch, we deliver full-stack development, UI/UX design, robust backend systems, and API integrations that bring your vision to life. Whether you’re building an internal tool, a public-facing SaaS product, or automating complex workflows — we’re your technology partner from concept to scale.",
-    heroImage: "/api/placeholder/800/400",
+    heroImage: "https://media.istockphoto.com/id/2207973347/photo/saas-cloud-computing-technology-concept.webp?a=1&b=1&s=612x612&w=0&k=20&c=0MsGxXd5oDo4HDxrRpGOP2R00Id6diL4hS1CIL98uuI=",
     keyBenefits: [
       "Custom workflows and logic tailored to your business",
       "Scalable architecture and cloud-based deployment",
@@ -1109,10 +1131,13 @@ export const servicess = {
 
   "design-branding": {
     title: "Design & Branding",
+    icon: "Palette",
+    iconBg: "bg-pink-100 dark:bg-pink-900",
+    iconColor: "text-pink-600 dark:text-pink-300",
     subtitle: "Visual storytelling that builds trust and defines your identity",
     description:
       "We help businesses craft unforgettable visual experiences that build recognition, attract attention, and evoke emotion. From brand identity design to immersive digital visuals, we turn your ideas into impactful designs across print, screen, and motion. Our multidisciplinary team combines aesthetics with purpose to create consistent, compelling brand visuals across all platforms.",
-    heroImage: "/api/placeholder/800/400",
+    heroImage: "https://media.istockphoto.com/id/1367764248/photo/shot-of-two-young-designers-working-on-a-laptop-and-digital-tablet-in-an-office.webp?a=1&b=1&s=612x612&w=0&k=20&c=FPaT-8UXD-A9xMTmGLBJVhHN4zjzVbHXNfk-X7nCzsM=",
     keyBenefits: [
       "Consistent brand identity across all channels",
       "Visually appealing and purpose-driven designs",

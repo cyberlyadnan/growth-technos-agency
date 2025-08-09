@@ -25,6 +25,7 @@ const HomePage = async () => {
       <ProjectsSection projects={projects.slice(0,6)}/>
       <PortfolioSection projects={portfolioProjects.slice(0,6)}/>
       <TestimonialsSection />
+      <OurClients />
       <Newsletter />
     </div>
   );
