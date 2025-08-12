@@ -43,7 +43,7 @@
   .dark {
     --background: #0a0a0a;               /* hsl(0, 0%, 3.9%) */
     --foreground: #fafafa;               /* hsl(0, 0%, 98%) */
-    --card: #191919;                     /* hsl(0, 0%, 3.9%) */
+    --card: #11171f;                     /* hsl(0, 0%, 3.9%) */
     --card-foreground: #fafafa;          /* hsl(0, 0%, 98%) */
     --popover: #0a0a0a;                  /* hsl(0, 0%, 3.9%) */
     --popover-foreground: #fafafa;       /* hsl(0, 0%, 98%) */
@@ -58,7 +58,7 @@
     --destructive: #66363c;              /* hsl(0, 62.8%, 30.6%) */
     --destructive-foreground: #fafafa;   /* hsl(0, 0%, 98%) */
     --border: #262626;                   /* hsl(0, 0%, 14.9%) */
-    --input: #262626;                    /* hsl(0, 0%, 14.9%) */
+    --input: #151e2b;                    /* hsl(0, 0%, 14.9%) */
     --ring: #d4d4d4;                     /* hsl(0, 0%, 83.1%) */
   }
 }
@@ -111,4 +111,24 @@ html {
 .animate-slide-up-sticky {
   @apply opacity-0 animate-slide-up;
   animation-fill-mode: forwards;
+}
+
+
+
+@keyframes fade-up {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
 }

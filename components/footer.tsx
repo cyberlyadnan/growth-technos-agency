@@ -5,6 +5,7 @@ import {
   Twitter, 
   Instagram, 
   Linkedin, 
+  MessageCircle,
   Mail, 
   Phone, 
   MapPin,
@@ -36,6 +37,7 @@ const footerLinks = {
 };
 
 const socialLinks = [
+  { name: 'WhatsApp', href: '#', icon: MessageCircle },
   { name: 'Facebook', href: '#', icon: Facebook },
   { name: 'Twitter', href: '#', icon: Twitter },
   { name: 'Instagram', href: '#', icon: Instagram },
@@ -67,15 +69,16 @@ export function Footer() {
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-primary-400" />
-                  <span className="text-gray-400">hello@growthtechnos.com</span>
+                  <span className="text-gray-400">info@growthtechnos.com</span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-primary-400" />
-                  <span className="text-gray-400">+1 (555) 123-4567</span>
+                  <Link href={`tel:+919897921038`} className="text-gray-400">+91 9897921038</Link>
+                  <Link href={`tel:+919756896250`} className="text-gray-400">+91 9756896250</Link>
                 </div>
                 <div className="flex items-center space-x-3">
                   <MapPin className="w-5 h-5 text-primary-400" />
-                  <span className="text-gray-400">123 Business St, City, State 12345</span>
+                  <span className="text-gray-400">Noida Sector 62, U.P, India</span>
                 </div>
               </div>
             </div>

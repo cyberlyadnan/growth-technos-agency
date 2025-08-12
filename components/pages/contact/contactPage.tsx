@@ -1,5 +1,3 @@
-"use client";
-
 import ContactForm from "./components/ContactForm";
 import ContactHero from "./components/ContactHero";
 import ContactInfoGrid from "./components/ContactInfoGrid";

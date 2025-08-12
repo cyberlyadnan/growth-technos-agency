@@ -1,20 +1,20 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
 export const AboutHero = () => {
   return (
     <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden dark:bg-gray-900">
       {/* Background Image with Overlay */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`
+          backgroundImage: `url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`,
         }}
       >
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-primary-800/85 to-primary-700/90"></div>
-        
+
         {/* Animated particles/dots overlay */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-20 left-20 w-2 h-2 bg-white rounded-full animate-pulse"></div>
@@ -46,8 +46,8 @@ export const AboutHero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-3xl md:text-5xl lg:text-6xl font-bold mb-8 text-white leading-tight"
           >
-            About{' '}
-            <motion.span 
+            About{" "}
+            <motion.span
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -55,7 +55,7 @@ export const AboutHero = () => {
             >
               Growth
             </motion.span>
-            <motion.span 
+            <motion.span
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 1.0 }}
@@ -72,8 +72,9 @@ export const AboutHero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-lg md:text-xl text-primary-100 mb-12 max-w-4xl mx-auto font-light leading-relaxed"
           >
-            We're a passionate team of digital experts dedicated to helping businesses 
-            thrive in the digital landscape through innovative solutions and strategic thinking.
+            We're a passionate team of digital experts dedicated to helping
+            businesses thrive in the digital landscape through innovative
+            solutions and strategic thinking.
           </motion.p>
 
           {/* Stats or highlights */}
@@ -85,34 +86,39 @@ export const AboutHero = () => {
           >
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
               <div className="text-3xl font-bold text-white mb-2">500+</div>
-              <div className="text-primary-200 text-sm font-medium">Projects Delivered</div>
+              <div className="text-primary-200 text-sm font-medium">
+                Projects Delivered
+              </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
               <div className="text-3xl font-bold text-white mb-2">5+</div>
-              <div className="text-primary-200 text-sm font-medium">Years Experience</div>
+              <div className="text-primary-200 text-sm font-medium">
+                Years Experience
+              </div>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
               <div className="text-3xl font-bold text-white mb-2">99%</div>
-              <div className="text-primary-200 text-sm font-medium">Client Satisfaction</div>
+              <div className="text-primary-200 text-sm font-medium">
+                Client Satisfaction
+              </div>
             </div>
           </motion.div>
         </div>
       </div>
 
       {/* Bottom wave decoration */}
-     <div className="absolute bottom-0 left-0 right-0">
-  <svg
-    viewBox="0 0 1440 120"
-    className="w-full h-auto text-white"
-    preserveAspectRatio="none"
-  >
-    <path
-      d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120 Z"
-      fill="currentColor"
-    />
-  </svg>
-</div>
-
+      <div className="absolute bottom-0 left-0 right-0">
+        <svg
+          viewBox="0 0 1440 120"
+          className="w-full h-auto text-white dark:text-gray-900"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120 Z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
     </section>
   );
 };

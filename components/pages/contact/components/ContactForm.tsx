@@ -91,7 +91,7 @@ export default function ContactForm() {
                   name="service"
                   value={formData.service}
                   onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                  className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 dark:border-input dark:bg-input dark:text-white"
                 >
                   <option value="">Select a service</option>
                   {services.map(service => (
@@ -106,13 +106,13 @@ export default function ContactForm() {
                   name="budget"
                   value={formData.budget}
                   onChange={handleChange}
-                  className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+                  className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 dark:border-input dark:bg-input dark:text-white"
                 >
                   <option value="">Select budget range</option>
-                  <option value="$5,000 - $10,000">$5,000 - $10,000</option>
-                  <option value="$10,000 - $25,000">$10,000 - $25,000</option>
-                  <option value="$25,000 - $50,000">$25,000 - $50,000</option>
-                  <option value="$50,000+">$50,000+</option>
+                  <option value="$5,000 - $10,000">₹5,000 - ₹10,000</option>
+                  <option value="$10,000 - $25,000">₹10,000 - ₹25,000</option>
+                  <option value="$25,000 - $50,000">₹25,000 - ₹50,000</option>
+                  <option value="$50,000+">₹50,000+</option>
                 </select>
               </div>
             </div>
@@ -126,7 +126,7 @@ export default function ContactForm() {
                 onChange={handleChange}
                 required
                 rows={4}
-                className="mt-1"
+                className="mt-1 bg-input"
                 placeholder="Tell us about your project, goals, and any specific requirements..."
               />
             </div>
@@ -134,7 +134,7 @@ export default function ContactForm() {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-primary-600 hover:bg-primary-700"
+              className="w-full bg-primary-600 text-white hover:bg-primary-700"
             >
               {isSubmitting ? (
                 <>

@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import { MapPin } from "lucide-react";
 
 export default function ContactMap() {
@@ -7,34 +6,35 @@ export default function ContactMap() {
     <section className="py-16 bg-white dark:bg-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
+        <div
+          className="
+            text-center mb-12
+            opacity-0 translate-y-6
+            animate-fade-up
+          "
         >
-          <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">Visit Our Office</h2>
+          <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
+            Visit Our Office
+          </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300">
             We'd love to meet you in person. Stop by our office for a coffee and a chat.
           </p>
-        </motion.div>
+        </div>
 
         {/* Map Container */}
         <div className="relative aspect-video rounded-lg overflow-hidden border border-gray-300 dark:border-gray-600 shadow-lg">
-
-          {/* 🔳 Overlay */}
+          {/* Overlay */}
           <div className="absolute inset-0 bg-black bg-opacity-40 z-0" />
 
-          {/* 🧭 Address Card (Original Design Preserved) */}
-          <div className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 bg-primary-600 text-white p-6 rounded-lg shadow-xl max-w-xs text-center">
+          {/* Address Card */}
+          <div className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 bg-primary-600 text-white p-6 rounded-lg shadow-xl max-w-xs text-center animate-fade-in">
             <MapPin className="w-10 h-10 mx-auto mb-4 text-white" />
             <h3 className="text-xl font-semibold mb-2">Our Location</h3>
-            <p>123 Business Street, City, State 12345</p>
+            <p>Noida Sector 62, Uttar Pradesh, India</p>
             <p className="text-sm opacity-80 mt-2">We’re here Mon–Fri, 8am–6pm</p>
           </div>
 
-          {/* 🗺 Map Iframe */}
+          {/* Map Iframe */}
           <iframe
             className="w-full h-full absolute top-0 left-0"
             style={{ border: 0 }}
