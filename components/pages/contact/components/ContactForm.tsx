@@ -33,24 +33,54 @@ export default function ContactForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
 
-    try {
-      await addDoc(collection(db, "inquiries"), {
-        ...formData,
-        createdAt: Timestamp.now()
-      });
-      setIsSubmitted(true);
-      setFormData({ name: "", email: "", company: "", phone: "", service: "", budget: "", message: "" });
-      setTimeout(() => setIsSubmitted(false), 3000);
-    } catch (err) {
-      console.error("Firestore submission failed:", err);
-    }
+  //   try {
+  //     await addDoc(collection(db, "inquiries"), {
+  //       ...formData,
+  //       createdAt: Timestamp.now()
+  //     });
+  //     setIsSubmitted(true);
+  //     setFormData({ name: "", email: "", company: "", phone: "", service: "", budget: "", message: "" });
+  //     setTimeout(() => setIsSubmitted(false), 3000);
+  //   } catch (err) {
+  //     console.error("Firestore submission failed:", err);
+  //   }
 
-    setIsSubmitting(false);
-  };
+  //   setIsSubmitting(false);
+  // };
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+
+  try {
+    // Send to Firestore (optional)
+    await addDoc(collection(db, "inquiries"), {
+      ...formData,
+      createdAt: Timestamp.now(),
+    });
+
+    // Send email
+    await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    setIsSubmitted(true);
+    setFormData({ name: "", email: "", company: "", phone: "", service: "", budget: "", message: "" });
+    setTimeout(() => setIsSubmitted(false), 3000);
+  } catch (err) {
+    console.error("Submission failed:", err);
+  }
+
+  setIsSubmitting(false);
+};
+
+
 
   return (
     <Card>

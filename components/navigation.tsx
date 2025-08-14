@@ -153,7 +153,7 @@ export function Navigation() {
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="w-9 h-9 p-0"
             >
-              <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+              <Sun className={`h-4 w-4 rotate-0  scale-100 transition-all dark:-rotate-90 dark:scale-0 ${!isScrolled ? 'text-white':''}`} />
               <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               <span className="sr-only">Toggle theme</span>
             </Button>
@@ -171,12 +171,12 @@ export function Navigation() {
               variant="ghost"
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
-              className="w-9 h-9 p-0"
+              className={`w-9 h-9 p-0`}
             >
               {isOpen ? (
-                <X className="h-5 w-5" />
+                <X className={`h-5 w-5 ${!isScrolled ? 'text-white':''}`} />
               ) : (
-                <Menu className="h-5 w-5" />
+                <Menu className={`h-5 w-5 ${!isScrolled ? 'text-white':''}`} />
               )}
               <span className="sr-only">Toggle menu</span>
             </Button>
