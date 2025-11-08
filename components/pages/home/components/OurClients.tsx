@@ -3,11 +3,11 @@ import React from "react";
 const OurClients = () => {
 
   const firstRowLogos = [
-    { name: "Alveera Hospitality", logo: "https://alveerahospitality.com/wp-content/uploads/2025/03/logo.webp" },
+    { name: "Alveera Hospitality", logo: "https://alveerahospitality.com/assets/images/logo.png" },
     { name: "TripMagics", logo: "https://tripmagics.com/img/city.png" },
     { name: "Jai Sethi", logo: "https://www.jaisethi.com/wp-content/uploads/2025/06/new.png" },
     { name: "DreamlineWedding", logo: "https://dreamlinewedding.in/public/logo.webp" },
-    { name: "Alveera", logo: "https://www.alveerahospitality.in/assets/img/logo.png" },
+    { name: "Alveera", logo: "https://alveerahospitality.in/assets/images/Alveera.jpg" },
     { name: "UrbanGray", logo: "https://urbangreyfurniture.com/wp-content/uploads/2025/05/logo-1.png" },
     { name: "Mauligi", logo: "https://maulijee.org/wp-content/uploads/2025/04/Moujiya-logo.webp" },
     { name: "Seerah Library", logo: "https://the-seerah-library.vercel.app/_next/image?url=%2Fimages%2Flogo%2Fcompany-logo.webp&w=384&q=75" },
@@ -18,10 +18,10 @@ const OurClients = () => {
     { name: "Woodsy", logo: "https://urbangreyfurniture.com/wp-content/uploads/2025/05/logo-1.png" },
     { name: "HrClicks", logo: "https://hrclicks.com/NewTheme/image/HRLOGO.png" },
     { name: "Seerah Library", logo: "https://the-seerah-library.vercel.app/_next/image?url=%2Fimages%2Flogo%2Fcompany-logo.webp&w=384&q=75" },
-    { name: "Jai Sethi", logo: "https://www.jaisethi.com/wp-content/uploads/2025/06/new.png" },
+    { name: "Litversee", logo: "https://litversee.vercel.app/images/icon.png" },
     { name: "Zeptik", logo: "https://zeptik-sit-v2.vercel.app/icons/zeptik-green-logo.svg" },
-    { name: "TripMagics", logo: "https://tripmagics.com/img/city.png" },
-    { name: "DreamlineWedding", logo: "https://dreamlinewedding.in/public/logo.webp" },
+    { name: "OJas Life", logo: "https://ojaslife.multivisiontechcells.com/assets/images/logo/logo-final.webp" },
+    { name: "Food Protection Global", logo: "https://foodprotectionglobal.multivisiontechcells.com/wp-content/uploads/2025/08/Food-Protection-Global-1-1024x569.png" },
   ];
 
   return (
