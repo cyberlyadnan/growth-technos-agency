@@ -12,45 +12,26 @@ const config: Config = {
     extend: {
       colors: {
         // === Brand Colors ===
+        // Using CSS variables from globals.css for theme consistency
         primary: {
-          DEFAULT: "#F8810D", // main orange
-          foreground: "#ffffff",
-          50: "#fff5eb",
-          100: "#ffe6cc",
-          200: "#ffc899",
-          300: "#ffa566",
-          400: "#ff8c33",
-          500: "#F8810D",
-          600: "#db6d0b",
-          700: "#b85b09",
-          800: "#8f4707",
-          900: "#703805",
+          DEFAULT: "var(--primary)",
+          foreground: "var(--primary-foreground)",
         },
         secondary: {
-          DEFAULT: "#1D91C7", // main blue
-          foreground: "#ffffff",
-          50: "#edf8fc",
-          100: "#d6eef8",
-          200: "#adddf1",
-          300: "#7ec8e8",
-          400: "#4aaedc",
-          500: "#1D91C7",
-          600: "#1775a5",
-          700: "#125c83",
-          800: "#0d4768",
-          900: "#093652",
+          DEFAULT: "var(--secondary)",
+          foreground: "var(--secondary-foreground)",
         },
         accent: {
-          DEFAULT: "#1b82b1",
-          foreground: "#ffffff",
+          DEFAULT: "var(--accent)",
+          foreground: "var(--accent-foreground)",
         },
         muted: {
-          DEFAULT: "#6E6E6E",
-          foreground: "#ffffff",
+          DEFAULT: "var(--muted)",
+          foreground: "var(--muted-foreground)",
         },
         destructive: {
-          DEFAULT: "#b3261e",
-          foreground: "#ffffff",
+          DEFAULT: "var(--destructive)",
+          foreground: "var(--destructive-foreground)",
         },
         border: "var(--border)",
         input: "var(--input)",
