@@ -1,45 +1,45 @@
 import React from 'react';
 import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Github, Calendar, User, Tag, CheckCircle, Star, Play, Sun, Moon } from 'lucide-react';
+import { ArrowLeft, Construction } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import ProjectGallery from '../project/components/ProjectGallery';
-import ProjectDetails from '@/components/pages/productdetailspage/components/ProjectDetails';
-import ProjectHero from '@/components/pages/productdetailspage/components/ProjectHero';
-import {ProjectCTA} from '@/components/pages/productdetailspage/components/ProjectCTA';
-import { getProjectById } from '@/hooks/getProjectById';
-
-
-
+import ProjectDetails from './components/ProjectDetails';
+import ProjectHero from './components/ProjectHero';
+import { ProjectCTA } from './components/ProjectCTA';
 
 const ProjectDetailPage = ({ project }) => {
-  // const project = await getProjectById(projectId)
-  // const project = projectDetails[projectId];
-  console.log("projectprojectprojectproject",project)
-
-  if (project?.status === "rejected") {
+  if (!project || project?.status === "rejected") {
     return (
-      <div className="min-h-screen pt-16 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">Project Not Found</h1>
-          <Button asChild>
-            <Link href="/projects">
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Projects
-            </Link>
-          </Button>
+      <div className="min-h-screen pt-16 flex items-center justify-center bg-gradient-to-br from-background to-background/95">
+        <div className="text-center p-8 max-w-md mx-4">
+          <div className="inline-flex items-center justify-center p-4 bg-red-100 dark:bg-red-900/30 rounded-full mb-4">
+            <Construction className="w-10 h-10 text-red-600 dark:text-red-400" />
+          </div>
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
+            Project Not Found
+          </h1>
+          <p className="text-foreground/70 mb-6">
+            The project you&apos;re looking for doesn&apos;t exist or has been removed.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button asChild>
+              <Link href="/projects">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Projects
+              </Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/">Return Home</Link>
+            </Button>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen pt-16 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
-
-      {/* Hero Section */}
-      <ProjectHero project={project}/>
-
-      {/* Project Gallery */}
-      <ProjectGallery project={project}/>
+    <div className="min-h-screen pt-16 bg-background">
+      {/* Hero Section with Gallery */}
+      <ProjectHero project={project} />
 
       {/* Project Details */}
       <ProjectDetails project={project} />

@@ -1,33 +1,49 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Github, Calendar, User, Tag, CheckCircle, Star } from 'lucide-react';
+import { ExternalLink, Github, CheckCircle, Star, Quote, Sparkles, Target, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { AnimatedDivider } from '@/components/ui/AnimatedDivider';
 
 const ProjectDetails = ({ project }) => {
   return (
-    <section className="py-16 bg-gray-50 dark:bg-gray-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-20 bg-gradient-to-b from-background/95 to-background overflow-hidden">
+      {/* Futuristic Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] dark:bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)]"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-12">
             {/* Overview */}
-            <div className="animate-slide-up opacity-0 [animation-fill-mode:forwards]">
-              <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Project Overview</h2>
-              <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-8">
-                {project.fullDescription}
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Sparkles className="w-5 h-5 text-primary" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent">
+                  Project Overview
+                </h2>
+              </div>
+              <p className="text-lg text-foreground/80 leading-relaxed">
+                {project.fullDescription || project.description}
               </p>
-              <div className="flex gap-4 mb-8">
-                <Button asChild size="lg" className="bg-primary-600 hover:bg-primary-700">
-                  <Link href={project.liveUrl}>
-                    <ExternalLink className="w-5 h-5 mr-2" />
-                    View Live Project
-                  </Link>
-                </Button>
+              <div className="flex flex-wrap gap-4">
+                <div className="group relative">
+                  <Button asChild size="lg" className="relative overflow-hidden bg-gradient-to-r from-primary via-primary to-accent hover:from-primary/90 hover:via-primary/90 hover:to-accent/90 text-white border-0 shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transition-all">
+                    <Link href={project.liveUrl || '#'} className="flex items-center" target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="w-5 h-5 mr-2" />
+                      View Live Project
+                    </Link>
+                  </Button>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 pointer-events-none rounded-md"></div>
+                </div>
                 {project.githubUrl && (
-                  <Button asChild variant="outline" size="lg">
-                    <Link href={project.githubUrl}>
+                  <Button asChild variant="outline" size="lg" className="border-2 border-primary/30 hover:border-primary hover:bg-primary/5">
+                    <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center">
                       <Github className="w-5 h-5 mr-2" />
                       View Code
                     </Link>
@@ -37,148 +53,227 @@ const ProjectDetails = ({ project }) => {
             </div>
 
             {/* Challenges & Solutions */}
-            <div className="grid md:grid-cols-2 gap-8 animate-slide-up opacity-0 [animation-fill-mode:forwards] delay-100">
-              <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-4 text-error-600 dark:text-error-400">Challenges</h3>
-                  <ul className="space-y-3">
-                    {project.challenges.map((challenge, index) => (
-                      <li key={index} className="flex items-start gap-3 text-gray-600 dark:text-gray-300">
-                        <div className="w-2 h-2 bg-error-500 rounded-full mt-2 flex-shrink-0" />
-                        {challenge}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-              <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-4 text-success-600 dark:text-success-400">Solutions</h3>
-                  <ul className="space-y-3">
-                    {project.solutions.map((solution, index) => (
-                      <li key={index} className="flex items-start gap-3 text-gray-600 dark:text-gray-300">
-                        <CheckCircle className="w-5 h-5 text-success-500 mt-0.5 flex-shrink-0" />
-                        {solution}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </div>
+            {(project.challenges || project.solutions) && (
+              <div className="grid md:grid-cols-2 gap-6">
+                {project.challenges && project.challenges.length > 0 && (
+                  <div className="group relative p-6 bg-card/60 backdrop-blur-sm border border-border/50 rounded-2xl hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10">
+                    {/* Corner Indicators */}
+                    <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-red-500/30 group-hover:border-red-500 transition-colors"></div>
+                    <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-red-500/30 group-hover:border-red-500 transition-colors"></div>
+                    <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-red-500/30 group-hover:border-red-500 transition-colors"></div>
+                    <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-red-500/30 group-hover:border-red-500 transition-colors"></div>
+                    
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 bg-red-500/10 rounded-lg">
+                        <Target className="w-5 h-5 text-red-500" />
+                      </div>
+                      <h3 className="text-xl font-bold text-foreground">Challenges</h3>
+                    </div>
+                    <ul className="space-y-3">
+                      {project.challenges.map((challenge, index) => (
+                        <li key={index} className="flex items-start gap-3 text-foreground/80">
+                          <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
+                          <span>{challenge}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {project.solutions && project.solutions.length > 0 && (
+                  <div className="group relative p-6 bg-card/60 backdrop-blur-sm border border-border/50 rounded-2xl hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10">
+                    {/* Corner Indicators */}
+                    <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+                    <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+                    <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+                    <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+                    
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="p-2 bg-primary/10 rounded-lg">
+                        <CheckCircle className="w-5 h-5 text-primary" />
+                      </div>
+                      <h3 className="text-xl font-bold text-foreground">Solutions</h3>
+                    </div>
+                    <ul className="space-y-3">
+                      {project.solutions.map((solution, index) => (
+                        <li key={index} className="flex items-start gap-3 text-foreground/80">
+                          <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                          <span>{solution}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Technologies */}
-            <div className="animate-slide-up opacity-0 [animation-fill-mode:forwards] delay-200">
-              <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Technologies Used</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {project.technologies.map((tech, index) => (
-                  <div
-                    key={index}
-                    className="bg-white dark:bg-gray-800 p-6 rounded-xl text-center border border-gray-200 dark:border-gray-700 hover:border-primary-500 dark:hover:border-primary-400 transition-all duration-300 hover:shadow-lg"
-                  >
-                    <div className="w-12 h-12 mx-auto mb-3 relative">
-                      <Image
-                        src={tech.logo || 'https://via.placeholder.com/48/6B7280/FFFFFF?text=0990'}
-                        alt={`${tech.name} logo`}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-200">{tech.name}</span>
+            {project.technologies && project.technologies.length > 0 && (
+              <div className="space-y-6">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-accent/10 rounded-lg">
+                    <Zap className="w-5 h-5 text-accent" />
                   </div>
-                ))}
+                  <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent">
+                    Technologies Used
+                  </h2>
+                </div>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  {project.technologies.map((tech, index) => (
+                    <div
+                      key={index}
+                      className="group relative p-6 bg-card/60 backdrop-blur-sm border border-border/50 rounded-xl text-center hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1"
+                    >
+                      {/* Corner Indicators */}
+                      <div className="absolute top-2 left-2 w-3 h-3 border-t border-l border-primary/30 group-hover:border-primary transition-colors"></div>
+                      <div className="absolute top-2 right-2 w-3 h-3 border-t border-r border-primary/30 group-hover:border-primary transition-colors"></div>
+                      <div className="absolute bottom-2 left-2 w-3 h-3 border-b border-l border-primary/30 group-hover:border-primary transition-colors"></div>
+                      <div className="absolute bottom-2 right-2 w-3 h-3 border-b border-r border-primary/30 group-hover:border-primary transition-colors"></div>
+                      
+                      {tech.logo && (
+                        <div className="w-12 h-12 mx-auto mb-3 relative">
+                          <Image
+                            src={tech.logo}
+                            alt={`${tech.name || tech} logo`}
+                            fill
+                            className="object-contain"
+                          />
+                        </div>
+                      )}
+                      <span className="text-sm font-medium text-foreground">{tech.name || tech}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Testimonial */}
             {project.testimonial && (
-              <div className="animate-slide-up opacity-0 [animation-fill-mode:forwards] delay-300">
-                <Card className="bg-gradient-to-br from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 border-primary-200 dark:border-primary-500/20">
-                  <CardContent className="p-8">
-                    <div className="flex mb-4">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 text-warning-400 fill-current" />
-                      ))}
-                    </div>
-                    <blockquote className="text-xl text-gray-700 dark:text-gray-200 mb-6 italic">
-                      "{project.testimonial.text}"
-                    </blockquote>
-                    <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-full overflow-hidden relative">
+              <div className="group relative p-8 bg-card/60 backdrop-blur-sm border border-border/50 rounded-2xl hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10">
+                {/* Corner Indicators */}
+                <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+                <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+                <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+                <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+                
+                <div className="relative space-y-6">
+                  <div className="flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full">
+                    <Quote className="w-6 h-6 text-primary" />
+                  </div>
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-5 h-5 text-amber-400 fill-amber-400" />
+                    ))}
+                  </div>
+                  <blockquote className="text-xl text-foreground/90 italic leading-relaxed">
+                    &quot;{project.testimonial.text}&quot;
+                  </blockquote>
+                  <div className="flex items-center gap-4 pt-4 border-t border-border/50">
+                    <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-primary/20">
+                      {project.testimonial.avatar ? (
                         <Image
                           src={project.testimonial.avatar}
                           alt={project.testimonial.author}
                           fill
                           className="object-cover"
                         />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-gray-900 dark:text-white">{project.testimonial.author}</div>
-                        <div className="text-sm text-gray-500 dark:text-gray-400">{project.testimonial.position}</div>
-                      </div>
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold">
+                          {project.testimonial.author.charAt(0)}
+                        </div>
+                      )}
                     </div>
-                  </CardContent>
-                </Card>
+                    <div>
+                      <div className="font-semibold text-foreground">{project.testimonial.author}</div>
+                      <div className="text-sm text-foreground/60">{project.testimonial.position}</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             )}
           </div>
 
           {/* Sidebar */}
-          <div className="space-y-8">
-            <div className="animate-slide-up opacity-0 [animation-fill-mode:forwards] delay-200">
-              <Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 sticky top-32">
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-semibold mb-6 text-gray-900 dark:text-white">Project Details</h3>
+          <div className="space-y-6">
+            <div className="sticky top-32">
+              <div className="group relative p-6 bg-card/60 backdrop-blur-sm border border-border/50 rounded-2xl hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10">
+                {/* Corner Indicators */}
+                <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+                <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+                <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+                <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+                
+                <div className="relative space-y-6">
+                  <h3 className="text-xl font-bold text-foreground">Project Details</h3>
                   <div className="space-y-4">
-                    <div>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">Client</span>
-                      <p className="font-medium text-gray-900 dark:text-white">{project.client}</p>
-                    </div>
-                    <div>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">Duration</span>
-                      <p className="font-medium text-gray-900 dark:text-white">{project.duration}</p>
-                    </div>
-                    <div>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">Team Size</span>
-                      <p className="font-medium text-gray-900 dark:text-white">{project.team}</p>
-                    </div>
-                    <div>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">Budget</span>
-                      <p className="font-medium text-gray-900 dark:text-white">{project.budget}</p>
-                    </div>
-                    <div>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">Completion</span>
-                      <p className="font-medium text-gray-900 dark:text-white">{project.completionDate}</p>
-                    </div>
+                    {project.client && (
+                      <div>
+                        <span className="text-sm text-foreground/60">Client</span>
+                        <p className="font-medium text-foreground mt-1">{project.client}</p>
+                      </div>
+                    )}
+                    {project.duration && (
+                      <div>
+                        <span className="text-sm text-foreground/60">Duration</span>
+                        <p className="font-medium text-foreground mt-1">{project.duration}</p>
+                      </div>
+                    )}
+                    {project.team && (
+                      <div>
+                        <span className="text-sm text-foreground/60">Team Size</span>
+                        <p className="font-medium text-foreground mt-1">{project.team}</p>
+                      </div>
+                    )}
+                    {project.budget && (
+                      <div>
+                        <span className="text-sm text-foreground/60">Budget</span>
+                        <p className="font-medium text-foreground mt-1">{project.budget}</p>
+                      </div>
+                    )}
+                    {project.completionDate && (
+                      <div>
+                        <span className="text-sm text-foreground/60">Completion</span>
+                        <p className="font-medium text-foreground mt-1">{project.completionDate}</p>
+                      </div>
+                    )}
                   </div>
 
-                  <div className="mt-8">
-                    <h4 className="font-semibold mb-4 text-gray-900 dark:text-white">Key Features</h4>
-                    <div className="space-y-2">
-                      {project.features.map((feature, index) => (
-                        <div key={index} className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                          <CheckCircle className="w-4 h-4 text-success-500" />
-                          {feature}
-                        </div>
-                      ))}
+                  {project.features && project.features.length > 0 && (
+                    <div className="pt-6 border-t border-border/50">
+                      <h4 className="font-bold mb-4 text-foreground">Key Features</h4>
+                      <div className="space-y-2">
+                        {project.features.map((feature, index) => (
+                          <div key={index} className="flex items-center gap-2 text-sm text-foreground/80">
+                            <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                            <span>{feature}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
 
-                  <div className="mt-8">
-                    <h4 className="font-semibold mb-4 text-gray-900 dark:text-white">Achievements</h4>
-                    <div className="space-y-3">
-                      {project.achievements.map((achievement, index) => (
-                        <div key={index} className="flex items-start gap-2 text-sm">
-                          <div className="w-2 h-2 bg-primary-500 rounded-full mt-2 flex-shrink-0" />
-                          <span className="text-gray-600 dark:text-gray-300">{achievement}</span>
-                        </div>
-                      ))}
+                  {project.achievements && project.achievements.length > 0 && (
+                    <div className="pt-6 border-t border-border/50">
+                      <h4 className="font-bold mb-4 text-foreground">Achievements</h4>
+                      <div className="space-y-3">
+                        {project.achievements.map((achievement, index) => (
+                          <div key={index} className="flex items-start gap-2 text-sm">
+                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+                            <span className="text-foreground/80">{achievement}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Animated Divider */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <AnimatedDivider />
       </div>
     </section>
   );
