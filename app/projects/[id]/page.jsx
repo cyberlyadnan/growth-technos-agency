@@ -33,7 +33,7 @@ export async function generateStaticParams() {
 /**
  * Dynamic SEO metadata
  */
-export async function generateMetadata({ params }): Promise<Metadata> {
+export async function generateMetadata({ params }) {
   const projectId = params.id; // slug as string
 
   // Fetch project from Firebase

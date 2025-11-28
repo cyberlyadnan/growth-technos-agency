@@ -1,33 +1,64 @@
-import { Check } from 'lucide-react';
-
+import { Check, Sparkles } from 'lucide-react';
+import { AnimatedDivider } from '@/components/ui/AnimatedDivider';
 
 export function KeyBenefitsSection({ service }) {
   return (
-    <section className="py-20 bg-white dark:bg-gray-800">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate-slide-up">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+    <section className="relative py-20 bg-gradient-to-b from-background to-background/95 overflow-hidden">
+      {/* Futuristic Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] dark:bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)]"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-full mb-6">
+            <Sparkles className="w-6 h-6 text-primary" />
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent">
             Why Choose Our {service.title}?
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
             Here's what makes our service stand out from the competition
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-8 md:px-12 lg:px-20">
-          {service.keyBenefits.map((benefit, index) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          {service.keyBenefits?.map((benefit, index) => (
             <div
               key={index}
-              className="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg animate-slide-up"
-              style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}
+              className="group relative p-6 bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1"
             >
-              <Check className="w-6 h-6 text-success-500 flex-shrink-0" />
-              <span className="text-gray-900 dark:text-white font-medium">
-                {benefit}
-              </span>
+              {/* Corner Indicators */}
+              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+              <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+              <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+
+              {/* Glow Effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl"></div>
+
+              <div className="relative flex items-start gap-4">
+                <div className="flex-shrink-0 p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                  <Check className="w-6 h-6 text-primary" />
+                </div>
+                <span className="text-foreground font-medium text-base leading-relaxed">
+                  {benefit}
+                </span>
+              </div>
+
+              {/* Scan Line Effect on Hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse"></div>
+              </div>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Animated Divider */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <AnimatedDivider />
       </div>
     </section>
   );

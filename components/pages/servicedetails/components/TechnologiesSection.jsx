@@ -1,5 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
+import { AnimatedDivider } from '@/components/ui/AnimatedDivider';
+import { Sparkles } from 'lucide-react';
 
 export function TechnologiesSection({ service }) {
   // Image mapping for common technologies
@@ -126,20 +128,30 @@ export function TechnologiesSection({ service }) {
   };
 
   return (
-    <section className="py-12 bg-gradient-to-br from-gray-50 via-blue-50/30 to-indigo-50/50 dark:from-gray-900 dark:via-blue-950/20 dark:to-indigo-950/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-20 bg-gradient-to-b from-background/95 to-background overflow-hidden">
+      {/* Futuristic Background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px] dark:bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)]"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Title with slide-up animation */}
-        <div className="text-center mb-12 animate-slide-up">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-gray-900 to-blue-600 dark:from-white dark:to-blue-400 bg-clip-text text-transparent">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-full mb-6">
+            <Sparkles className="w-6 h-6 text-primary" />
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground via-primary to-accent bg-clip-text text-transparent">
             Technologies We Use
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto animate-fade-in">
+          <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
             We leverage cutting-edge technologies to deliver the best results
           </p>
         </div>
 
         {/* Cards grid with staggered animations */}
-<div className="grid md:grid-cols-2 gap-5 max-w-6xl mx-auto px-4 sm:px-8 md:px-12 lg:px-20">
+        <div className="grid md:grid-cols-2 gap-6 max-w-6xl mx-auto">
           {service.technologies.map((tech, index) => {
             const colorScheme = getColorScheme(tech.name);
             const levelBadge = getLevelBadge(tech.level);
@@ -147,37 +159,38 @@ export function TechnologiesSection({ service }) {
             return (
               <div
                 key={index}
-                className="relative rounded-xl backdrop-blur-sm bg-white/90 dark:bg-gray-800/90 border border-white/20 dark:border-gray-700/50 shadow-sm hover:shadow-md transition-all duration-300 animate-fade-in"
-                style={{
-                  animationDelay: `${index * 100}ms`,
-                  animationFillMode: 'both'
-                }}
+                className="group relative rounded-xl backdrop-blur-sm bg-card/60 border border-border/50 shadow-sm hover:shadow-xl hover:shadow-primary/10 hover:border-primary/50 transition-all duration-300 hover:-translate-y-1"
               >
                 {/* Background glow animation */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${colorScheme} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${colorScheme} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-xl`} />
                 
-                <div className="relative p-3">
-                  <div className="flex items-center justify-between mb-2">
+                {/* Corner Indicators */}
+                <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+                <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+                <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+                <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-primary/30 group-hover:border-primary transition-colors"></div>
+                
+                <div className="relative p-5">
+                  <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-3">
                       {/* Logo with float animation on hover */}
-                      <div className={`relative w-10 h-10 rounded-lg bg-white dark:bg-gray-700 p-1.5 shadow-md flex items-center justify-center hover:animate-float`}>
-                         <Image 
-    src={getImageUrl(tech.name) || 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/devicon/devicon-original.svg'}
-    // alt={`${tech.name} logo`}
-    width={32}
-    height={32}
-    className="object-contain"
-    unoptimized={true}
-   
-  />
+                      <div className="relative w-12 h-12 rounded-lg bg-primary/10 p-2 shadow-md flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <Image 
+                          src={getImageUrl(tech.name) || 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/devicon/devicon-original.svg'}
+                          alt={`${tech.name} logo`}
+                          width={32}
+                          height={32}
+                          className="object-contain"
+                          unoptimized={true}
+                        />
+                        <div className="absolute inset-0 bg-primary/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity blur-md"></div>
                       </div>
                       
                       <div>
-                        <h3 className="text-lg font-bold text-gray-800 dark:text-white animate-fade-in">
+                        <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
                           {tech.name}
                         </h3>
-                        <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${levelBadge.color} animate-scale-in`}
-                          style={{ animationDelay: `${index * 100 + 200}ms` }}>
+                        <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${levelBadge.color}`}>
                           {levelBadge.label}
                         </span>
                       </div>
@@ -185,26 +198,28 @@ export function TechnologiesSection({ service }) {
                   </div>
 
                   {/* Progress bar with grow animation */}
-                  <div className="mb-2 overflow-hidden">
-                    <div className="flex items-center justify-between text-xs text-gray-600 dark:text-gray-400 mb-1 animate-fade-in">
+                  <div className="overflow-hidden">
+                    <div className="flex items-center justify-between text-xs text-foreground/60 mb-2">
                       <span>Proficiency</span>
-                      <span className="font-medium">{tech.level}%</span>
+                      <span className="font-medium text-foreground">{tech.level}%</span>
                     </div>
                     
-                    <div className="relative h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                    <div className="relative h-2.5 bg-background/50 rounded-full overflow-hidden border border-border/30">
                       <div className={`absolute inset-0 bg-gradient-to-r ${colorScheme} opacity-20 blur-sm`} />
                       
                       <div
-                        className={`h-full bg-gradient-to-r ${colorScheme} rounded-full transition-all duration-1000 ease-out`}
+                        className={`h-full bg-gradient-to-r ${colorScheme} rounded-full transition-all duration-1000 ease-out shadow-lg`}
                         style={{ 
                           width: `${tech.level}%`,
-                          boxShadow: `0 0 4px rgba(59, 130, 246, 0.2)`,
-                          animation: 'scaleIn 0.6s ease-out forwards',
-                          animationDelay: `${index * 100 + 300}ms`
                         }}
                       />
                     </div>
                   </div>
+                </div>
+                
+                {/* Scan Line Effect on Hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                  <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse"></div>
                 </div>
               </div>
             );
@@ -212,30 +227,35 @@ export function TechnologiesSection({ service }) {
         </div>
 
         {/* Stats with fade-in animation */}
-        <div className="mt-10 text-center animate-fade-in" style={{ animationDelay: `${service.technologies.length * 50 + 300}ms` }}>
-          <div className="inline-flex items-center gap-4 px-6 py-3 bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm rounded-xl border border-white/20 dark:border-gray-700/50 shadow hover:scale-[1.02] transition-transform">
+        <div className="mt-12 text-center">
+          <div className="inline-flex items-center gap-6 px-8 py-4 bg-card/60 backdrop-blur-sm rounded-2xl border border-border/50 shadow-lg hover:shadow-xl hover:shadow-primary/10 hover:scale-105 transition-all">
             <div className="text-center">
-              <div className="text-xl font-bold text-blue-600 dark:text-blue-400 animate-pulse">
+              <div className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 {Math.round(service.technologies.reduce((sum, tech) => sum + tech.level, 0) / service.technologies.length)}%
               </div>
-              <div className="text-xs text-gray-600 dark:text-gray-400">Average</div>
+              <div className="text-xs text-foreground/60 font-medium">Average</div>
             </div>
-            <div className="w-px h-6 bg-gray-300 dark:bg-gray-600" />
+            <div className="w-px h-8 bg-border/50" />
             <div className="text-center">
-              <div className="text-xl font-bold text-emerald-600 dark:text-emerald-400 animate-pulse">
+              <div className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 {service.technologies.filter(tech => tech.level >= 90).length}
               </div>
-              <div className="text-xs text-gray-600 dark:text-gray-400">Expert</div>
+              <div className="text-xs text-foreground/60 font-medium">Expert</div>
             </div>
-            <div className="w-px h-6 bg-gray-300 dark:bg-gray-600" />
+            <div className="w-px h-8 bg-border/50" />
             <div className="text-center">
-              <div className="text-xl font-bold text-purple-600 dark:text-purple-400 animate-pulse">
+              <div className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 {service.technologies.length}
               </div>
-              <div className="text-xs text-gray-600 dark:text-gray-400">Technologies</div>
+              <div className="text-xs text-foreground/60 font-medium">Technologies</div>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Animated Divider */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <AnimatedDivider />
       </div>
     </section>
   );
