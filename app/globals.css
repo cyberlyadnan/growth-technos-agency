@@ -198,6 +198,19 @@ html {
   animation-play-state: paused;
 }
 
+/* GPU-Accelerated 3D Service Cards */
+.service-card-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.service-card-3d * {
+  transform-style: preserve-3d;
+}
+
 /* Hero Section Animations */
 @keyframes fade-in-up {
   0% {
