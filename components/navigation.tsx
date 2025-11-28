@@ -56,13 +56,13 @@ export function Navigation() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
+          <Link href="/" className="flex items-center md:py-4 py-1 space-x-2 group">
             <div className="relative">
               <Image
-                src="/growth-technos-logo.png"
+                src="/growth-technos.png"
                 alt="Growth Technos"
-                width={160}
-                height={40}
+                width={140}
+                height={35}
                 priority
                 className="transition-transform duration-300 group-hover:scale-105"
               />
@@ -82,10 +82,8 @@ export function Navigation() {
                     <button
                       className={`flex items-center space-x-1 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                         pathname.startsWith(item.href)
-                          ? "text-primary bg-primary/10"
-                          : isScrolled
-                          ? "text-foreground hover:text-primary hover:bg-secondary/10"
-                          : "text-foreground/80 hover:text-primary hover:bg-foreground/10 backdrop-blur-sm"
+                          ? "text-white bg-primary/10"
+                          : "text-white hover:text-primary hover:bg-secondary/10"
                       }`}
                     >
                       <span>{item.name}</span>
@@ -136,10 +134,8 @@ export function Navigation() {
                     href={item.href}
                     className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                       pathname === item.href
-                        ? "text-primary bg-primary/10"
-                        : isScrolled
-                        ? "text-foreground hover:text-primary hover:bg-muted"
-                        : "text-foreground/80 hover:text-primary hover:bg-foreground/10 backdrop-blur-sm"
+                        ? "text-white bg-primary/10"
+                        : "text-white hover:text-primary hover:bg-muted"
                     }`}
                   >
                     {item.name}
