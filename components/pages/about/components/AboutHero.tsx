@@ -1,116 +1,98 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { Sparkles, Rocket, Target, Zap } from "lucide-react";
+import Image from "next/image";
+import { AnimatedDivider } from "@/components/ui/AnimatedDivider";
 
 export const AboutHero = () => {
   return (
-    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden dark:bg-gray-900">
-      {/* Background Image with Overlay */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`,
-        }}
-      >
-        {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-primary-800/85 to-primary-700/90"></div>
+    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-16">
+      {/* Animated Divider at Top */}
+      <div className="absolute top-0 left-0 right-0 z-20">
+        <AnimatedDivider />
+      </div>
 
-        {/* Animated particles/dots overlay */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-20 left-20 w-2 h-2 bg-white rounded-full animate-pulse"></div>
-          <div className="absolute top-40 right-32 w-1 h-1 bg-primary-200 rounded-full animate-ping"></div>
-          <div className="absolute bottom-32 left-1/4 w-3 h-3 bg-white/50 rounded-full animate-bounce"></div>
-          <div className="absolute top-1/3 right-20 w-2 h-2 bg-primary-300 rounded-full animate-pulse delay-1000"></div>
-          <div className="absolute bottom-20 right-1/3 w-1 h-1 bg-white rounded-full animate-ping delay-500"></div>
-        </div>
+      {/* Background Image with Parallax Effect */}
+      <div className="absolute inset-0">
+        <Image
+          src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1920"
+          alt="Team collaboration"
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* Light Theme-aware Overlay: Lighter for better image visibility */}
+        <div className="absolute inset-0 bg-white/40 dark:bg-black/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/40 to-white/30 dark:from-black/60 dark:via-black/50 dark:to-black/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/15 via-transparent to-transparent"></div>
+      </div>
+
+      {/* Tech Grid Pattern Overlay */}
+      <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.08]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(rgba(156, 30, 42, 0.15) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(156, 30, 42, 0.15) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}></div>
+      </div>
+
+      {/* Floating Orbs */}
+      <div className="absolute top-20 right-10 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-50 animate-pulse"></div>
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl opacity-50 animate-pulse" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-3xl opacity-30"></div>
+
+      {/* Circuit Lines */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-0 w-32 h-px bg-gradient-to-r from-primary/40 to-transparent animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-0 w-32 h-px bg-gradient-to-l from-accent/40 to-transparent animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+        <div className="absolute top-0 left-1/4 w-px h-32 bg-gradient-to-b from-primary/40 to-transparent animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-0 right-1/4 w-px h-32 bg-gradient-to-t from-accent/40 to-transparent animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+      </div>
+
+      {/* Animated Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(20)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-primary/40 rounded-full animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 2}s`,
+              animationDuration: `${2 + Math.random() * 2}s`
+            }}
+          ></div>
+        ))}
       </div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center max-w-5xl mx-auto mb-10 -mt-8">
-          {/* Subtitle badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-primary-100 text-sm font-medium mb-6"
-          >
-            <span className="w-2 h-2 bg-primary-300 rounded-full mr-2 animate-pulse"></span>
-            Digital Innovation Experts
-          </motion.div>
+        <div className="text-center max-w-5xl mx-auto">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/20 dark:bg-primary/30 border border-primary/40 dark:border-primary/50 mb-8 backdrop-blur-md shadow-xl">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-primary">Digital Innovation Experts</span>
+          </div>
 
-          {/* Main heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold mb-8 text-white leading-tight"
-          >
-            About{" "}
-            <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="text-blue-500"
-            >
-              Growth
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
-              className="text-orange-500"
-            >
-              Technos
-            </motion.span>
-          </motion.h1>
+          {/* Main Heading */}
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
+            <span className="text-foreground drop-shadow-lg">About </span>
+            <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent drop-shadow-lg">
+              Growth Technos
+            </span>
+          </h1>
 
           {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg md:text-xl text-primary-100 mb-12 max-w-4xl mx-auto font-light leading-relaxed"
-          >
-            We're a passionate team of digital experts dedicated to helping
-            businesses thrive in the digital landscape through innovative
-            solutions and strategic thinking.
-          </motion.p>
-
-          {/* Stats or highlights */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto"
-          >
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-              <div className="text-3xl font-bold text-white mb-2">500+</div>
-              <div className="text-primary-200 text-sm font-medium">
-                Projects Delivered
-              </div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-              <div className="text-3xl font-bold text-white mb-2">5+</div>
-              <div className="text-primary-200 text-sm font-medium">
-                Years Experience
-              </div>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-              <div className="text-3xl font-bold text-white mb-2">99%</div>
-              <div className="text-primary-200 text-sm font-medium">
-                Client Satisfaction
-              </div>
-            </div>
-          </motion.div>
+          <p className="text-xl sm:text-2xl md:text-3xl text-foreground/90 dark:text-foreground/95 font-light max-w-4xl mx-auto leading-relaxed mb-16 drop-shadow-md">
+            We're a passionate team of digital experts dedicated to helping businesses thrive in the digital landscape through innovative solutions and strategic thinking.
+          </p>
         </div>
       </div>
 
-      {/* Bottom wave decoration */}
-      <div className="absolute bottom-0 left-0 right-0">
+      {/* Bottom Wave Decoration */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
         <svg
           viewBox="0 0 1440 120"
-          className="w-full h-auto text-white dark:text-gray-900"
+          className="w-full h-full text-background dark:text-background"
           preserveAspectRatio="none"
         >
           <path

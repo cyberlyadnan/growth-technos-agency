@@ -52,8 +52,19 @@ const socialLinks = [
 export function Footer() {
   return (
     <footer className="relative md:px-[7%] px-0 bg-background border-t border-border/50 overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/footer-bg.png"
+          alt="Footer Background"
+          fill
+          className="object-cover hidden dark:block opacity-20"
+          priority
+        />
+      </div>
+
       {/* Futuristic Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 dark:from-primary/10 dark:via-accent/10 dark:to-secondary/10"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 dark:from-primary/10 dark:via-accent/10 dark:to-secondary/10 z-0"></div>
       
       {/* Tech Grid Pattern */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
