@@ -1,198 +1,202 @@
-import { ArrowRight, Check, TrendingUp, Users, Award, Zap, Code, Cloud, Shield, Cpu } from 'lucide-react';
-import Image from 'next/image';
+import { Sparkles, Rocket, Brain, Zap, ArrowRight, Code2, Cloud, Shield } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 export const AboutSection = () => {
-  const features = [
-    'Full-stack development & cloud architecture',
-    'AI/ML integration & data analytics',
-    'Cybersecurity & compliance solutions',
-    '24/7 monitoring & dedicated support'
-  ];
-
-  const stats = [
-    { icon: TrendingUp, value: '500+', label: 'Projects Delivered' },
-    { icon: Users, value: '300+', label: 'Global Clients' },
-    { icon: Award, value: '50+', label: 'Team Experts' },
-    { icon: Zap, value: '99.9%', label: 'Uptime Guarantee' }
-  ];
-
-  const technologies = [
-    { icon: Code, name: 'Web & Mobile' },
-    { icon: Cloud, name: 'Cloud & DevOps' },
-    { icon: Cpu, name: 'AI & Machine Learning' },
-    { icon: Shield, name: 'Security' }
-  ];
-
   return (
-    <section className="relative md:px-[5%] px-2 py-20 md:py-32 bg-gradient-to-br from-background via-primary-50/30 to-secondary-50/20 dark:from-background dark:via-primary-950/20 dark:to-secondary-950/20 overflow-hidden">
-      {/* Enhanced background elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary-500/5 rounded-full blur-3xl animate-pulse-slow"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary-500/5 rounded-full blur-3xl animate-pulse-slow delay-1000"></div>
+    <section className="relative py-24 md:py-32 overflow-hidden">
+      {/* Futuristic Background with Primary Colors */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 dark:via-primary/10 to-accent/5 dark:to-accent/10"></div>
       
-      {/* Tech grid background */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] dark:opacity-[0.03]"></div>
-      
-      {/* Circuit lines */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-10 w-px h-32 bg-gradient-to-b from-primary-500/20 via-accent-500/20 to-transparent"></div>
-        <div className="absolute bottom-1/3 right-20 w-px h-48 bg-gradient-to-b from-secondary-500/20 via-primary-500/20 to-transparent"></div>
+      {/* Animated Grid Pattern with Primary Color */}
+      <div className="absolute inset-0 opacity-[0.04] dark:opacity-[0.06]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(rgba(156, 30, 42, 0.15) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(156, 30, 42, 0.15) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}></div>
       </div>
 
+      {/* Floating Orbs with Primary Colors */}
+      <div className="absolute top-20 right-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-3xl"></div>
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
-          {/* Content Side */}
-          <div className="space-y-10">
-            {/* Enhanced Badge */}
-            <div className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-primary-100/80 dark:bg-primary-900/50 border border-primary-200/50 dark:border-primary-800/50 backdrop-blur-sm shadow-lg">
-              <div className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-500 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-primary-600 dark:bg-primary-400"></span>
+        {/* Section 1: Vision Statement */}
+        <div className="max-w-6xl mx-auto mb-16 md:mb-24">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/15 dark:bg-primary/25 border border-primary/30 dark:border-primary/40 mb-8 backdrop-blur-sm shadow-lg">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-primary">Innovation First</span>
+          </div>
+          
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            <span className="text-foreground">
+              Shaping Tomorrow's
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+              Digital Landscape
+            </span>
+          </h2>
+          
+          <p className="text-lg sm:text-xl md:text-2xl text-foreground/80 dark:text-foreground/90 font-light max-w-2xl leading-relaxed">
+            We transform ideas into <span className="font-semibold text-primary">cutting-edge solutions</span> that drive business growth and digital excellence.
+          </p>
+        </div>
+
+        {/* Section 2: Core Values - Minimal Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 md:mb-12 max-w-6xl mx-auto">
+          <div className="group relative p-6 md:p-8 rounded-2xl bg-card/80 dark:bg-card/60 backdrop-blur-xl border-2 border-primary/20 dark:border-primary/30 hover:border-primary transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-1">
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/30 flex items-center justify-center mb-6 group-hover:from-primary/30 group-hover:to-primary/40 transition-all shadow-lg shadow-primary/20">
+                <Rocket className="w-6 h-6 text-primary" />
               </div>
-              <span className="text-sm font-semibold text-primary-900 dark:text-primary-100 tracking-wide">
-                Innovation-Driven Technology Partner
-              </span>
-            </div>
-
-            {/* Enhanced Heading */}
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                Building The{' '}
-                <span className="bg-gradient-to-r from-primary-600 via-accent-600 to-secondary-600 dark:from-primary-400 dark:via-accent-400 dark:to-secondary-400 bg-clip-text text-transparent">
-                  Digital Future
-                </span>
-              </h2>
-              <div className="flex items-center gap-4">
-                <div className="h-1 w-20 bg-gradient-to-r from-primary-500 to-accent-500 rounded-full"></div>
-                <div className="h-1 w-12 bg-gradient-to-r from-accent-500 to-secondary-500 rounded-full"></div>
-                <div className="h-1 w-8 bg-gradient-to-r from-secondary-500 to-primary-500 rounded-full"></div>
-              </div>
-            </div>
-
-            {/* Enhanced Description */}
-            <p className="text-xl md:text-2xl text-slate-700 dark:text-muted-foreground leading-relaxed font-light">
-              We are a <span className="font-semibold text-primary-600 dark:text-primary-400">premier IT solutions agency</span> 
-              {' '}specializing in cutting-edge technology implementations that drive 
-              business transformation and digital innovation.
-            </p>
-
-            {/* Tech Stack Pill */}
-            <div className="flex flex-wrap gap-3">
-              {technologies.map((tech, index) => (
-                <div 
-                  key={index}
-                  className="flex items-center gap-2 px-4 py-3 rounded-xl bg-card/80 backdrop-blur-sm border border-border hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 hover:shadow-lg group"
-                >
-                  <tech.icon className="w-4 h-4 text-primary-600 dark:text-primary-400 group-hover:scale-110 transition-transform" />
-                  <span className="text-sm font-medium text-foreground/80 group-hover:text-foreground">
-                    {tech.name}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Enhanced Features List */}
-            <div className="grid sm:grid-cols-2 gap-4">
-              {features.map((item, index) => (
-                <div 
-                  key={index} 
-                  className="flex items-start space-x-4 p-4 rounded-xl bg-white/60 dark:bg-slate-900/60 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 hover:shadow-lg group"
-                >
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary-100 dark:bg-primary-900/50 flex items-center justify-center group-hover:bg-primary-200 dark:group-hover:bg-primary-800/50 transition-colors mt-0.5">
-                    <Check className="w-3 h-3 text-primary-600 dark:text-primary-400 group-hover:scale-110 transition-transform" />
-                  </div>
-                  <span className="text-base font-medium text-foreground/80 group-hover:text-foreground leading-relaxed">
-                    {item}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            {/* Enhanced CTA Button */}
-            <div className="pt-6">
-              <Button 
-                asChild 
-                size="lg" 
-                className="bg-gradient-to-r from-primary-600 to-accent-600 hover:from-primary-700 hover:to-accent-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105 px-10 py-7 text-lg font-semibold group"
-              >
-                <Link href="/about" className="flex items-center">
-                  Explore Our Expertise
-                  <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
+              <h3 className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">Speed</h3>
+              <p className="text-foreground/70 dark:text-foreground/80 leading-relaxed text-sm md:text-base">
+                Rapid deployment with precision and quality at the core.
+              </p>
             </div>
           </div>
 
-          {/* Enhanced Image Side */}
-          <div className="relative">
-            {/* Main Image Container with Tech Elements */}
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-              <div className="aspect-[4/5] relative">
-                <Image
-                  src="https://images.pexels.com/photos/1181673/pexels-photo-1181673.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Our tech team collaborating"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                />
-                {/* Enhanced overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent"></div>
+          <div className="group relative p-6 md:p-8 rounded-2xl bg-card/80 dark:bg-card/60 backdrop-blur-xl border-2 border-accent/20 dark:border-accent/30 hover:border-accent transition-all duration-500 hover:shadow-2xl hover:shadow-accent/20 hover:-translate-y-1">
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/5 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent/20 to-accent/30 flex items-center justify-center mb-6 group-hover:from-accent/30 group-hover:to-accent/40 transition-all shadow-lg shadow-accent/20">
+                <Brain className="w-6 h-6 text-accent" />
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-accent transition-colors">Intelligence</h3>
+              <p className="text-foreground/70 dark:text-foreground/80 leading-relaxed text-sm md:text-base">
+                AI-powered solutions that learn and adapt to your needs.
+              </p>
+            </div>
+          </div>
+
+          <div className="group relative p-6 md:p-8 rounded-2xl bg-card/80 dark:bg-card/60 backdrop-blur-xl border-2 border-secondary/20 dark:border-secondary/30 hover:border-secondary transition-all duration-500 hover:shadow-2xl hover:shadow-secondary/20 hover:-translate-y-1 sm:col-span-2 lg:col-span-1">
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-secondary/5 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-secondary/20 to-secondary/30 flex items-center justify-center mb-6 group-hover:from-secondary/30 group-hover:to-secondary/40 transition-all shadow-lg shadow-secondary/20">
+                <Zap className="w-6 h-6 text-secondary" />
+              </div>
+              <h3 className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-secondary transition-colors">Excellence</h3>
+              <p className="text-foreground/70 dark:text-foreground/80 leading-relaxed text-sm md:text-base">
+                Uncompromising quality in every project we deliver.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Section 3: What We Do - Enhanced with Icons */}
+        <div className="max-w-6xl mx-auto mb-16 md:mb-24">
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            {/* Full-Stack Development */}
+            <div className="group relative p-6 md:p-8 rounded-2xl bg-gradient-to-br from-card/90 via-card/80 to-primary/5 dark:from-card/70 dark:via-card/60 dark:to-primary/10 backdrop-blur-xl border-2 border-primary/20 dark:border-primary/30 hover:border-primary transition-all duration-500 hover:shadow-2xl hover:shadow-primary/25 hover:-translate-y-2 overflow-hidden">
+              {/* Animated background gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              {/* Decorative corner element */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/20 to-transparent rounded-bl-full opacity-50"></div>
+              
+              <div className="relative z-10">
+                {/* Icon Container */}
+                <div className="relative mb-6">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 via-primary/30 to-primary/40 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-xl shadow-primary/30">
+                    <Code2 className="w-8 h-8 text-primary" />
+                  </div>
+                  {/* Glowing effect */}
+                  <div className="absolute inset-0 w-16 h-16 rounded-2xl bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
                 
-                {/* Floating code elements */}
-                <div className="absolute top-6 left-6 p-3 rounded-xl bg-black/60 backdrop-blur-sm border border-primary-500/30">
-                  <code className="text-xs text-primary-300 font-mono">npm create next-app@latest</code>
-                </div>
-                <div className="absolute bottom-20 right-6 p-3 rounded-xl bg-black/60 backdrop-blur-sm border border-accent-500/30">
-                  <code className="text-xs text-white font-mono">docker-compose up -d</code>
-                </div>
-              </div>
-
-              {/* Enhanced decorative border */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 via-accent-500 to-secondary-500 rounded-3xl opacity-30 blur-lg -z-10 animate-pulse-slow"></div>
-            </div>
-
-            {/* Enhanced Stats Grid */}
-            {/* <div className="grid grid-cols-2 gap-4 mt-8">
-              {stats.map((stat, index) => (
-                <div 
-                  key={index}
-                  className="p-5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-slate-200/50 dark:border-slate-700/50 hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-300 hover:shadow-xl group"
-                >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 rounded-lg bg-primary-100 dark:bg-primary-900/50 group-hover:bg-primary-200 dark:group-hover:bg-primary-800/50 transition-colors">
-                      <stat.icon className="w-4 h-4 text-primary-600 dark:text-primary-400" />
-                    </div>
-                    <div className="text-2xl font-bold text-primary-600 dark:text-primary-400 group-hover:scale-105 transition-transform">
-                      {stat.value}
-                    </div>
-                  </div>
-                  <div className="text-sm font-medium text-slate-700 dark:text-muted-foreground group-hover:text-foreground transition-colors">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
-            </div> */}
-
-            {/* Enhanced Floating badge */}
-            <div className="hidden lg:block absolute -top-8 -right-8 p-5 rounded-2xl bg-gradient-to-br from-primary-600 to-accent-600 text-white shadow-2xl rotate-3 hover:rotate-0 transition-all duration-300 group">
-              <div className="text-center">
-                <Award className="w-8 h-8 mx-auto mb-2 group-hover:scale-110 transition-transform" />
-                <div className="text-sm font-bold tracking-wide">AWARD WINNING</div>
-                <div className="text-xs opacity-90 mt-1">Tech Agency 2024</div>
+                {/* Content */}
+                <h4 className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
+                  Full-Stack Development
+                </h4>
+                <p className="text-foreground/70 dark:text-foreground/80 leading-relaxed text-sm md:text-base">
+                  End-to-end solutions from concept to deployment
+                </p>
+                
+                {/* Animated indicator line */}
+                <div className="mt-4 h-1 w-0 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-500 rounded-full"></div>
               </div>
             </div>
 
-            {/* Additional floating element */}
-            <div className="hidden xl:block absolute -bottom-6 -left-6 p-4 rounded-2xl bg-gradient-to-br from-secondary-600 to-primary-600 text-white shadow-2xl -rotate-6 hover:rotate-0 transition-all duration-300 group">
-              <div className="text-center">
-                <Zap className="w-6 h-6 mx-auto mb-1 group-hover:scale-110 transition-transform" />
-                <div className="text-xs font-semibold">FAST</div>
-                <div className="text-xs opacity-90">Delivery</div>
+            {/* Cloud & AI Integration */}
+            <div className="group relative p-6 md:p-8 rounded-2xl bg-gradient-to-br from-card/90 via-card/80 to-accent/5 dark:from-card/70 dark:via-card/60 dark:to-accent/10 backdrop-blur-xl border-2 border-accent/20 dark:border-accent/30 hover:border-accent transition-all duration-500 hover:shadow-2xl hover:shadow-accent/25 hover:-translate-y-2 overflow-hidden">
+              {/* Animated background gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/0 via-accent/0 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              {/* Decorative corner element */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-accent/20 to-transparent rounded-bl-full opacity-50"></div>
+              
+              <div className="relative z-10">
+                {/* Icon Container */}
+                <div className="relative mb-6">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/20 via-accent/30 to-accent/40 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-xl shadow-accent/30">
+                    <Cloud className="w-8 h-8 text-accent" />
+                  </div>
+                  {/* Glowing effect */}
+                  <div className="absolute inset-0 w-16 h-16 rounded-2xl bg-accent/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                
+                {/* Content */}
+                <h4 className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-accent transition-colors">
+                  Cloud & AI Integration
+                </h4>
+                <p className="text-foreground/70 dark:text-foreground/80 leading-relaxed text-sm md:text-base">
+                  Scalable infrastructure with intelligent automation
+                </p>
+                
+                {/* Animated indicator line */}
+                <div className="mt-4 h-1 w-0 bg-gradient-to-r from-accent to-secondary group-hover:w-full transition-all duration-500 rounded-full"></div>
+              </div>
+            </div>
+
+            {/* Security & Compliance */}
+            <div className="group relative p-6 md:p-8 rounded-2xl bg-gradient-to-br from-card/90 via-card/80 to-secondary/5 dark:from-card/70 dark:via-card/60 dark:to-secondary/10 backdrop-blur-xl border-2 border-secondary/20 dark:border-secondary/30 hover:border-secondary transition-all duration-500 hover:shadow-2xl hover:shadow-secondary/25 hover:-translate-y-2 overflow-hidden">
+              {/* Animated background gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/0 via-secondary/0 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              
+              {/* Decorative corner element */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-secondary/20 to-transparent rounded-bl-full opacity-50"></div>
+              
+              <div className="relative z-10">
+                {/* Icon Container */}
+                <div className="relative mb-6">
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-secondary/20 via-secondary/30 to-secondary/40 flex items-center justify-center group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-xl shadow-secondary/30">
+                    <Shield className="w-8 h-8 text-secondary" />
+                  </div>
+                  {/* Glowing effect */}
+                  <div className="absolute inset-0 w-16 h-16 rounded-2xl bg-secondary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+                
+                {/* Content */}
+                <h4 className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-secondary transition-colors">
+                  Security & Compliance
+                </h4>
+                <p className="text-foreground/70 dark:text-foreground/80 leading-relaxed text-sm md:text-base">
+                  Enterprise-grade protection for your digital assets
+                </p>
+                
+                {/* Animated indicator line */}
+                <div className="mt-4 h-1 w-0 bg-gradient-to-r from-secondary to-primary group-hover:w-full transition-all duration-500 rounded-full"></div>
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Section 4: CTA */}
+        <div className="text-center max-w-2xl mx-auto">
+          <Button 
+            asChild 
+            size="lg" 
+            className="group relative overflow-hidden bg-gradient-to-r from-primary via-accent to-secondary hover:from-primary/90 hover:via-accent/90 hover:to-secondary/90 text-white px-6 md:px-8 py-5 md:py-6 text-base md:text-lg font-semibold rounded-xl shadow-xl hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5"
+          >
+            <Link href="/about" className="flex items-center justify-center gap-2">
+              Discover Our Journey
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>
