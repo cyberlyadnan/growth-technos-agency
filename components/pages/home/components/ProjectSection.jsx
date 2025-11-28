@@ -57,11 +57,11 @@ const ProjectShowcase = ({ project, index }) => {
           {/* Stronger Gradient Overlay for Text Visibility */}
           <div className={`absolute inset-0 ${isEven ? 'bg-gradient-to-r' : 'bg-gradient-to-l'} from-background/98 via-background/90 to-background/70 dark:from-background/99 dark:via-background/95 dark:to-background/85`}></div>
           
-          {/* Overlay on Background Image for Better Contrast - White in light mode, Black in dark mode */}
-          <div className="absolute inset-0 bg-white/40 dark:bg-black/60"></div>
+          {/* Overlay on Background Image for Better Contrast - Very light white in light mode, Black in dark mode */}
+          <div className="absolute inset-0 bg-white/20 dark:bg-black/60"></div>
           
-          {/* Additional Gradient Overlay - White in light mode, Black in dark mode */}
-          <div className="absolute inset-0 bg-gradient-to-t from-white/50 via-white/20 to-transparent dark:from-black/70 dark:via-black/40"></div>
+          {/* Additional Gradient Overlay - Very light white in light mode, Black in dark mode */}
+          <div className="absolute inset-0 bg-gradient-to-t from-white/30 via-white/10 to-transparent dark:from-black/70 dark:via-black/40"></div>
           
           {/* Tech Grid Overlay */}
           <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
