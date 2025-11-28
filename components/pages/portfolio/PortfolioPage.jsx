@@ -45,7 +45,6 @@ export default async function PortfolioPage() {
               A glimpse into the businesses we've helped grow with tailored digital solutions.
             </p>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <div
