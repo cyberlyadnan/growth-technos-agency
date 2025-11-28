@@ -211,6 +211,18 @@ html {
   transform-style: preserve-3d;
 }
 
+/* Scroll Snap for Projects Section */
+.projects-scroll-container {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.projects-scroll-item {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
 /* Hero Section Animations */
 @keyframes fade-in-up {
   0% {

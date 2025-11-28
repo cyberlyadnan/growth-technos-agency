@@ -10,9 +10,17 @@ export const Hero = () => {
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(() => {
-        // Autoplay was prevented, handle gracefully
-      });
+      // Ensure video autoplays and loops
+      videoRef.current.muted = true;
+      videoRef.current.loop = true;
+      videoRef.current.playsInline = true;
+      
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay was prevented, handle gracefully
+        });
+      }
     }
   }, []);
 
@@ -26,7 +34,12 @@ export const Hero = () => {
           loop
           muted
           playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover scale-105"
+          onLoadedData={(e) => {
+            // Force play when video is loaded
+            e.currentTarget.play().catch(() => {});
+          }}
         >
           <source src="/assets/videos/bg-video.mp4" type="video/mp4" />
           {/* Fallback for browsers that don't support video */}

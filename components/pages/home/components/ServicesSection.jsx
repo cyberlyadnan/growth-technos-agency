@@ -3,17 +3,10 @@
 import { useRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { AnimatedDivider } from '@/components/ui/AnimatedDivider';
 import { servicess } from '@/lib/mainData';
-
-// Register GSAP plugins
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 // 3D Service Card Component with GSAP
 const ServiceCard3D = ({ service, serviceDetails, index }) => {
@@ -28,131 +21,155 @@ const ServiceCard3D = ({ service, serviceDetails, index }) => {
     const glow = glowRef.current;
     const border = borderRef.current;
 
-    if (!card) return;
+    if (!card || typeof window === 'undefined') return;
 
-    // Scroll-triggered parallax and reveal
-    const ctx = gsap.context(() => {
-      // Card reveal animation (staggered)
-      gsap.fromTo(
-        card,
-        {
-          opacity: 0,
-          y: 60,
-          scale: 0.9,
-          rotationX: -15,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          rotationX: 0,
-          duration: 1,
-          delay: index * 0.1,
-          ease: 'power3.out',
+    let ctx = null;
+    let handleMouseMove = null;
+    let handleMouseLeave = null;
+
+    // Dynamically import GSAP and ScrollTrigger only on client side
+    Promise.all([
+      import('gsap'),
+      import('gsap/ScrollTrigger')
+    ]).then(([gsapModule, ScrollTriggerModule]) => {
+      const gsap = gsapModule.default;
+      const { ScrollTrigger } = ScrollTriggerModule;
+      
+      // Register plugin
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Scroll-triggered parallax and reveal
+      ctx = gsap.context(() => {
+        // Card reveal animation (staggered)
+        gsap.fromTo(
+          card,
+          {
+            opacity: 0,
+            y: 60,
+            scale: 0.9,
+            rotationX: -15,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            rotationX: 0,
+            duration: 1,
+            delay: index * 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%',
+              end: 'top 50%',
+              toggleActions: 'play none none reverse',
+            },
+          }
+        );
+
+        // Image parallax on scroll
+        if (image) {
+          gsap.to(image, {
+            y: -30,
+            scrollTrigger: {
+              trigger: card,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1,
+            },
+          });
+        }
+
+        // Subtle 3D depth on scroll
+        gsap.to(card, {
+          rotationY: index % 2 === 0 ? 2 : -2,
+          z: index % 3 === 0 ? 20 : index % 3 === 1 ? -20 : 10,
           scrollTrigger: {
             trigger: card,
-            start: 'top 85%',
-            end: 'top 50%',
-            toggleActions: 'play none none reverse',
+            start: 'top 80%',
+            end: 'bottom 20%',
+            scrub: 1,
           },
+        });
+      }, card);
+
+      // 3D tilt on mouse move
+      handleMouseMove = (e) => {
+        if (!card) return;
+        
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        gsap.to(card, {
+          rotationX: rotateX,
+          rotationY: rotateY,
+          transformPerspective: 1000,
+          duration: 0.3,
+          ease: 'power2.out',
+        });
+
+        // Glow effect follows mouse
+        if (glow) {
+          gsap.to(glow, {
+            x: x - centerX,
+            y: y - centerY,
+            opacity: 0.6,
+            duration: 0.3,
+          });
         }
-      );
 
-      // Image parallax on scroll
-      gsap.to(image, {
-        y: -30,
-        scrollTrigger: {
-          trigger: card,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1,
-        },
-      });
+        // Border glow
+        if (border) {
+          gsap.to(border, {
+            opacity: 1,
+            duration: 0.3,
+          });
+        }
+      };
 
-      // Subtle 3D depth on scroll
-      gsap.to(card, {
-        rotationY: index % 2 === 0 ? 2 : -2,
-        z: index % 3 === 0 ? 20 : index % 3 === 1 ? -20 : 10,
-        scrollTrigger: {
-          trigger: card,
-          start: 'top 80%',
-          end: 'bottom 20%',
-          scrub: 1,
-        },
-      });
-    }, card);
-
-    // 3D tilt on mouse move
-    const handleMouseMove = (e) => {
-      if (!card) return;
-      
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      
-      const rotateX = (y - centerY) / 10;
-      const rotateY = (centerX - x) / 10;
-      
-      gsap.to(card, {
-        rotationX: rotateX,
-        rotationY: rotateY,
-        transformPerspective: 1000,
-        duration: 0.3,
-        ease: 'power2.out',
-      });
-
-      // Glow effect follows mouse
-      if (glow) {
-        gsap.to(glow, {
-          x: x - centerX,
-          y: y - centerY,
-          opacity: 0.6,
-          duration: 0.3,
+      handleMouseLeave = () => {
+        gsap.to(card, {
+          rotationX: 0,
+          rotationY: 0,
+          duration: 0.5,
+          ease: 'power2.out',
         });
-      }
 
-      // Border glow
-      if (border) {
-        gsap.to(border, {
-          opacity: 1,
-          duration: 0.3,
-        });
-      }
-    };
+        if (glow) {
+          gsap.to(glow, {
+            opacity: 0,
+            duration: 0.3,
+          });
+        }
 
-    const handleMouseLeave = () => {
-      gsap.to(card, {
-        rotationX: 0,
-        rotationY: 0,
-        duration: 0.5,
-        ease: 'power2.out',
-      });
+        if (border) {
+          gsap.to(border, {
+            opacity: 0,
+            duration: 0.3,
+          });
+        }
+      };
 
-      if (glow) {
-        gsap.to(glow, {
-          opacity: 0,
-          duration: 0.3,
-        });
-      }
-
-      if (border) {
-        gsap.to(border, {
-          opacity: 0,
-          duration: 0.3,
-        });
-      }
-    };
-
-    card.addEventListener('mousemove', handleMouseMove);
-    card.addEventListener('mouseleave', handleMouseLeave);
+      card.addEventListener('mousemove', handleMouseMove);
+      card.addEventListener('mouseleave', handleMouseLeave);
+    });
 
     return () => {
-      ctx.revert();
-      card.removeEventListener('mousemove', handleMouseMove);
-      card.removeEventListener('mouseleave', handleMouseLeave);
+      if (ctx) {
+        ctx.revert();
+      }
+      if (card && handleMouseMove) {
+        card.removeEventListener('mousemove', handleMouseMove);
+      }
+      if (card && handleMouseLeave) {
+        card.removeEventListener('mouseleave', handleMouseLeave);
+      }
     };
   }, [index]);
 
@@ -221,16 +238,16 @@ const ServiceCard3D = ({ service, serviceDetails, index }) => {
             {/* Decorative Corner */}
             <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary/20 to-transparent rounded-bl-full" />
 
-            {/* Icon Badge */}
+            {/* Icon Badge
             <div className="absolute bottom-4 left-4">
               <div className="w-12 h-12 rounded-xl bg-card/90 dark:bg-card/70 backdrop-blur-sm border border-primary/30 flex items-center justify-center shadow-lg">
                 <Sparkles className="w-6 h-6 text-primary" />
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Content */}
-          <div className="p-6 md:p-8 relative z-10">
+          <div className="p-6 md:p-4 relative z-10">
             <h3 className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
               {service.title}
             </h3>
@@ -270,55 +287,73 @@ export const ServicesSection = ({
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const ctx = gsap.context(() => {
-      // Header animation
-      if (headerRef.current) {
-        gsap.fromTo(
-          headerRef.current,
-          {
-            opacity: 0,
-            y: 40,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: headerRef.current,
-              start: 'top 85%',
-              toggleActions: 'play none none reverse',
-            },
-          }
-        );
-      }
+    let ctx = null;
 
-      // CTA button animation
-      if (ctaRef.current) {
-        gsap.fromTo(
-          ctaRef.current,
-          {
-            opacity: 0,
-            y: 30,
-            scale: 0.95,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.8,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: ctaRef.current,
-              start: 'top 90%',
-              toggleActions: 'play none none reverse',
-            },
-          }
-        );
-      }
-    }, sectionRef);
+    // Dynamically import GSAP and ScrollTrigger only on client side
+    Promise.all([
+      import('gsap'),
+      import('gsap/ScrollTrigger')
+    ]).then(([gsapModule, ScrollTriggerModule]) => {
+      const gsap = gsapModule.default;
+      const { ScrollTrigger } = ScrollTriggerModule;
+      
+      // Register plugin
+      gsap.registerPlugin(ScrollTrigger);
 
-    return () => ctx.revert();
+      ctx = gsap.context(() => {
+        // Header animation
+        if (headerRef.current) {
+          gsap.fromTo(
+            headerRef.current,
+            {
+              opacity: 0,
+              y: 40,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: headerRef.current,
+                start: 'top 85%',
+                toggleActions: 'play none none reverse',
+              },
+            }
+          );
+        }
+
+        // CTA button animation
+        if (ctaRef.current) {
+          gsap.fromTo(
+            ctaRef.current,
+            {
+              opacity: 0,
+              y: 30,
+              scale: 0.95,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.8,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: ctaRef.current,
+                start: 'top 90%',
+                toggleActions: 'play none none reverse',
+              },
+            }
+          );
+        }
+      }, sectionRef);
+    });
+
+    return () => {
+      if (ctx) {
+        ctx.revert();
+      }
+    };
   }, []);
 
   return (
