@@ -1,83 +1,85 @@
-
 import React from 'react';
-import { ArrowRight, ExternalLink, Layers, Github, Play, Eye } from 'lucide-react';
+import { ArrowRight, Layers, Sparkles } from 'lucide-react';
 import { PortfolioCard } from './PortfolioCard';
-
-
+import { AnimatedDivider } from '@/components/ui/AnimatedDivider';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 const PortfolioSection = ({ projects }) => {
   return (
-    <section className="relative py-24 bg-gray-50 dark:bg-[#0e0e12] overflow-hidden transition-colors duration-300">
-      {/* Animated Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `linear-gradient(#F8810D 1px, transparent 1px), linear-gradient(90deg, #F8810D 1px, transparent 1px)`,
-          backgroundSize: '60px 60px'
-        }} />
+    <section className="relative px-2 md:px-[5%] py-24 md:py-32 overflow-hidden">
+      {/* Animated Divider at Top */}
+      <div className="absolute top-0 left-0 right-0 z-20">
+        <AnimatedDivider />
       </div>
 
-      {/* Gradient Orbs */}
-      <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-primary rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[128px] opacity-20 dark:opacity-10 animate-pulse" />
-      <div className="absolute bottom-1/4 left-1/3 w-96 h-96 bg-secondary rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-[128px] opacity-20 dark:opacity-10 animate-pulse" style={{ animationDelay: '1.5s' }} />
+      {/* Futuristic Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 dark:via-primary/10 to-accent/5 dark:to-accent/10"></div>
+      
+      {/* Tech Grid Pattern */}
+      <div className="absolute inset-0 opacity-[0.04] dark:opacity-[0.06]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(rgba(156, 30, 42, 0.15) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(156, 30, 42, 0.15) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
+        }}></div>
+      </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Floating Orbs */}
+      <div className="absolute top-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl opacity-50"></div>
+      <div className="absolute bottom-20 left-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-50"></div>
+
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 space-y-6">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white dark:bg-[#1c1b26] border border-gray-200 dark:border-[#2a2a36] shadow-sm opacity-0 animate-fade-in" style={{ animationFillMode: 'forwards' }}>
-            <Layers className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-gray-600 dark:text-gray-300">Featured Work</span>
+        <div className="text-center mb-16 md:mb-20 max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/15 dark:bg-primary/25 border border-primary/30 dark:border-primary/40 mb-8 backdrop-blur-sm shadow-lg">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-primary">Our Portfolio</span>
           </div>
 
-          {/* Main Heading */}
-          <div className="opacity-0 animate-fade-up" style={{ animationDelay: '100ms', animationFillMode: 'forwards' }}>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-              Our{" "}
-              <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Portfolio
-                </span>
-                <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 200 8" fill="none">
-                  <path d="M0 4C50 4 50 8 100 4C150 0 150 4 200 4" stroke="url(#gradient)" strokeWidth="2" />
-                  <defs>
-                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#F8810D" />
-                      <stop offset="100%" stopColor="#4C2E91" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </span>
-            </h2>
-            
-            <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Explore a collection of websites we've built for different industries — from interior design to healthcare
-            </p>
-          </div>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            <span className="text-foreground">Our </span>
+            <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+              Portfolio
+            </span>
+          </h2>
+
+          <p className="text-lg sm:text-xl md:text-2xl text-foreground/80 dark:text-foreground/90 font-light max-w-3xl mx-auto leading-relaxed">
+            Showcasing excellence across industries. Discover how we transform businesses through innovative digital solutions.
+          </p>
         </div>
 
         {/* Portfolio Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-16">
           {projects?.map((project, index) => (
             <PortfolioCard key={index} project={project} index={index} />
           ))}
         </div>
 
         {/* View All Button */}
-        {/* <div 
-          className="text-center opacity-0 animate-fade-up"
-          style={{ 
-            animationDelay: `${projects?.length * 100}ms`,
-            animationFillMode: 'forwards'
-          }}
-        >
-          <button className="group relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-full overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-primary/30 hover:scale-105">
-            <span className="relative z-10">View All Projects</span>
-            <ArrowRight className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-            <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </button>
-        </div> */}
+        <div className="text-center relative">
+          <div className="absolute left-1/2 -translate-x-1/2 -top-8 w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+          
+          <div className="relative inline-block">
+            <Button 
+              asChild 
+              size="lg" 
+              className="group relative overflow-hidden bg-gradient-to-r from-primary via-accent to-secondary hover:from-primary/90 hover:via-accent/90 hover:to-secondary/90 text-white px-8 md:px-10 py-6 md:py-7 text-base md:text-lg font-semibold rounded-xl shadow-xl hover:shadow-2xl hover:shadow-primary/40 transition-all duration-500 hover:-translate-y-1"
+            >
+              <Link href="/portfolio" className="flex items-center justify-center gap-2 relative z-10">
+                <span className="relative">
+                  View All Projects
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-500"></span>
+                </span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
+            
+            {/* Glow effect behind button */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-secondary rounded-xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500 -z-10"></div>
+          </div>
+        </div>
       </div>
-
     </section>
   );
 };
