@@ -2,33 +2,44 @@ import { Metadata } from 'next';
 import  PortfolioPage  from '@/components/pages/portfolio/PortfolioPage';
 
 export const metadata = {
-  title: 'Our Work - Portfolio | Growth Technos',
-  description: 'Explore our portfolio of professionally designed websites and digital solutions for various industries including healthcare, construction, interior design, and more.',
+  title: 'Portfolio - Growth Technos | Our Work & Client Projects',
+  description: 'Explore our portfolio of professionally designed websites and digital solutions for various industries including healthcare, construction, interior design, e-commerce, and more. See how we help businesses grow online.',
   keywords: [
     'Growth Technos portfolio',
     'web development projects',
     'client work Growth Technos',
     'website design samples',
-    'digital agency work',
+    'digital agency portfolio',
     'responsive web design',
-    'branding and development',
+    'e-commerce websites',
+    'portfolio showcase',
+    'case studies',
     'industry specific websites',
   ],
   authors: [{ name: 'Growth Technos' }],
   openGraph: {
-    title: 'Our Portfolio | Growth Technos',
-    description: 'See how Growth Technos brings businesses to life online through clean, modern, and responsive websites across industries.',
+    title: 'Portfolio - Growth Technos | Our Work & Projects',
+    description: 'Explore our portfolio of professionally designed websites and digital solutions. See how Growth Technos brings businesses to life online through clean, modern, and responsive websites across industries.',
     url: 'https://growthtechnos.com/portfolio',
     siteName: 'Growth Technos',
     images: [
       {
-        url: 'https://imgscf.slidemembers.com/docs/1/1/381/our_portfolio_slide_page_380232.jpg', // optional og image
+        url: '/og-portfolio.jpg', // You need to provide this: 1200x630px
         width: 1200,
         height: 630,
         alt: 'Growth Technos Portfolio Showcase',
       },
     ],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Portfolio - Growth Technos | Our Work',
+    description: 'Explore our portfolio of professionally designed websites and digital solutions across various industries.',
+    images: ['/og-portfolio.jpg'],
+  },
+  alternates: {
+    canonical: 'https://growthtechnos.com/portfolio',
   },
 };
 

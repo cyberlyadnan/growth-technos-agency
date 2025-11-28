@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: ServiceDetailPageProps): Prom
 
   if (snapshot.empty) {
     return {
-      title: "Service Not Found",
+      title: "Service Not Found | Growth Technos",
       description: "Requested service was not found in our database.",
     };
   }
@@ -41,7 +41,45 @@ export async function generateMetadata({ params }: ServiceDetailPageProps): Prom
   const service = snapshot.docs[0].data();
 
   return {
-    title: service.metaTitle || service.title || "Service Details",
-    description: service.metaDescription || "Explore our professional services.",
+    title: `${service.metaTitle || service.title || "Service"} - Growth Technos`,
+    description: service.metaDescription || service.description || `Explore ${service.title || "our professional service"} by Growth Technos. Expert digital solutions for your business.`,
+    keywords: [
+      service.title?.toLowerCase() || "",
+      "digital services",
+      "web development",
+      "SEO services",
+      "digital marketing",
+    ],
+    openGraph: {
+      title: `${service.metaTitle || service.title || "Service"} - Growth Technos`,
+      description: service.metaDescription || service.description || `Explore ${service.title || "our professional service"} by Growth Technos.`,
+      url: `https://growthtechnos.com/services/${params.serviceId}`,
+      siteName: "Growth Technos",
+      type: "website",
+      images: service.image ? [
+        {
+          url: service.image,
+          width: 1200,
+          height: 630,
+          alt: service.title || "Service",
+        }
+      ] : [
+        {
+          url: "/og-services.jpg",
+          width: 1200,
+          height: 630,
+          alt: service.title || "Service",
+        }
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${service.metaTitle || service.title || "Service"} - Growth Technos`,
+      description: service.metaDescription || service.description || `Explore ${service.title || "our professional service"}.`,
+      images: service.image ? [service.image] : ["/og-services.jpg"],
+    },
+    alternates: {
+      canonical: `https://growthtechnos.com/services/${params.serviceId}`,
+    },
   };
 }
