@@ -4,7 +4,22 @@ import { Button } from '@/components/ui/button';
 
 export const AboutSection = () => {
   return (
-    <section className="relative py-24 md:py-32 overflow-hidden">
+    <section className="relative py-12 md:py-16 overflow-hidden">
+      {/* Shining Line at Top */}
+      <div className="absolute top-0 left-0 right-0 z-20">
+        <div className="relative flex items-center justify-center">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/50 via-accent/50 to-transparent"></div>
+          </div>
+          <div className="relative bg-background px-6">
+            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-primary via-accent to-secondary animate-pulse"></div>
+            <div className="absolute inset-0 w-3 h-3 rounded-full bg-primary/50 blur-md animate-pulse"></div>
+          </div>
+        </div>
+        {/* Shining line effect */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent animate-pulse"></div>
+      </div>
+
       {/* Futuristic Background with Primary Colors */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 dark:via-primary/10 to-accent/5 dark:to-accent/10"></div>
       
@@ -186,17 +201,28 @@ export const AboutSection = () => {
         </div>
 
         {/* Section 4: CTA */}
-        <div className="text-center max-w-2xl mx-auto">
-          <Button 
-            asChild 
-            size="lg" 
-            className="group relative overflow-hidden bg-gradient-to-r from-primary via-accent to-secondary hover:from-primary/90 hover:via-accent/90 hover:to-secondary/90 text-white px-6 md:px-8 py-5 md:py-6 text-base md:text-lg font-semibold rounded-xl shadow-xl hover:shadow-2xl hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5"
-          >
-            <Link href="/about" className="flex items-center justify-center gap-2">
-              Discover Our Journey
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </Button>
+        <div className="text-center max-w-2xl mx-auto relative">
+          {/* Decorative Elements */}
+          <div className="absolute left-1/2 -translate-x-1/2 -top-8 w-24 h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+          
+          <div className="relative inline-block">
+            <Button 
+              asChild 
+              size="lg" 
+              className="group relative overflow-hidden bg-gradient-to-r from-primary via-accent to-secondary hover:from-primary/90 hover:via-accent/90 hover:to-secondary/90 text-white px-8 md:px-10 py-6 md:py-7 text-base md:text-lg font-semibold rounded-xl shadow-xl hover:shadow-2xl hover:shadow-primary/40 transition-all duration-500 hover:-translate-y-1"
+            >
+              <Link href="/about" className="flex items-center justify-center gap-2 relative z-10">
+                <span className="relative">
+                  Discover Our Journey
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-500"></span>
+                </span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </Button>
+            
+            {/* Glow effect behind button */}
+            <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-secondary rounded-xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500 -z-10"></div>
+          </div>
         </div>
       </div>
     </section>

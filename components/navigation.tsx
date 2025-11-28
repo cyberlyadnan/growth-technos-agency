@@ -49,8 +49,8 @@ export function Navigation() {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         isScrolled 
-          ? "bg-background/95 backdrop-blur-xl shadow-lg border-b border-border"
-          : (pathname === "/" ? "bg-transparent" : "bg-background/95 backdrop-blur-xl shadow-lg border-b border-border")
+          ? "bg-black/90 dark:bg-black-950/95 backdrop-blur-xl shadow-lg border-b border-gray-800 dark:border-gray-700"
+          : "bg-black dark:bg-background backdrop-blur-xl border-b border-gray-800/50 dark:border-gray-700/50"
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,7 +92,7 @@ export function Navigation() {
 
                     {/* Dropdown */}
                     <div
-                      className={`absolute top-full left-0 mt-2 w-56 rounded-xl bg-background shadow-2xl ring-1 ring-border overflow-hidden transition-all duration-300 ${
+                      className={`absolute top-full left-0 mt-2 w-56 rounded-xl bg-gray-900 dark:bg-gray-950 shadow-2xl ring-1 ring-gray-800 dark:ring-gray-700 overflow-hidden transition-all duration-300 ${
                         activeDropdown === item.name
                           ? "opacity-100 translate-y-0 visible"
                           : "opacity-0 -translate-y-2 invisible"
@@ -103,7 +103,7 @@ export function Navigation() {
                           <Link
                             key={dropdownItem.name}
                             href={dropdownItem.href}
-                            className="block px-4 py-3 text-sm text-foreground/80 hover:bg-primary/10 hover:text-primary rounded-lg transition-all duration-200"
+                            className="block px-4 py-3 text-sm text-white/80 hover:bg-primary/20 hover:text-primary rounded-lg transition-all duration-200"
                             style={{ animationDelay: `${index * 50}ms` }}
                           >
                             <div className="flex items-center justify-between">
@@ -154,11 +154,7 @@ export function Navigation() {
               variant="ghost"
               size="sm"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className={`w-10 h-10 p-0 rounded-lg transition-all duration-300 ${
-                isScrolled
-                  ? "hover:bg-muted"
-                  : "hover:bg-foreground/10 backdrop-blur-sm"
-              }`}
+              className="w-10 h-10 p-0 rounded-lg transition-all duration-300 hover:bg-white/10 dark:hover:bg-white/10 text-white"
             >
               <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
               <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
@@ -180,9 +176,7 @@ export function Navigation() {
               variant="ghost"
               size="sm"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className={`w-10 h-10 p-0 rounded-lg ${
-                isScrolled ? "hover:bg-muted" : "hover:bg-foreground/10"
-              }`}
+              className="w-10 h-10 p-0 rounded-lg hover:bg-white/10 text-white"
             >
               <Sun className="h-5 w-5 transition-all dark:-rotate-90 dark:scale-0" />
               <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
@@ -192,9 +186,7 @@ export function Navigation() {
               variant="ghost"
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
-              className={`w-10 h-10 p-0 rounded-lg ${
-                isScrolled ? "hover:bg-muted" : "hover:bg-foreground/10"
-              }`}
+              className="w-10 h-10 p-0 rounded-lg hover:bg-white/10 text-white"
             >
               <div className="relative w-5 h-5">
                 <span
@@ -226,7 +218,7 @@ export function Navigation() {
             : "max-h-0 opacity-0 pointer-events-none"
         }`}
       >
-        <div className="bg-background/95 backdrop-blur-xl border-t border-border shadow-2xl">
+        <div className="bg-gray-900/95 dark:bg-gray-950/95 backdrop-blur-xl border-t border-gray-800 dark:border-gray-700 shadow-2xl">
           <div className="px-4 pt-4 pb-6 space-y-2 max-h-[calc(100vh-5rem)] overflow-y-auto">
             {navItems.map((item, index) => (
               <div
@@ -240,8 +232,8 @@ export function Navigation() {
                       onClick={() => toggleDropdown(item.name)}
                       className={`flex items-center justify-between w-full px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
                         pathname.startsWith(item.href)
-                          ? "text-primary bg-primary/10"
-                          : "text-foreground hover:bg-muted"
+                          ? "text-primary bg-primary/20"
+                          : "text-white hover:bg-white/10"
                       }`}
                     >
                       <span>{item.name}</span>
@@ -267,7 +259,7 @@ export function Navigation() {
                               setIsOpen(false);
                               setActiveDropdown(null);
                             }}
-                            className="block px-4 py-2.5 rounded-lg text-sm font-medium text-foreground/80 hover:text-primary hover:bg-primary/10 transition-all duration-200"
+                            className="block px-4 py-2.5 rounded-lg text-sm font-medium text-white/80 hover:text-primary hover:bg-primary/20 transition-all duration-200"
                           >
                             {dropdownItem.name}
                           </Link>
@@ -281,8 +273,8 @@ export function Navigation() {
                     onClick={() => setIsOpen(false)}
                     className={`block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
                       pathname === item.href
-                        ? "text-primary bg-primary/10"
-                        : "text-foreground hover:bg-muted"
+                        ? "text-primary bg-primary/20"
+                        : "text-white hover:bg-white/10"
                     }`}
                   >
                     {item.name}
