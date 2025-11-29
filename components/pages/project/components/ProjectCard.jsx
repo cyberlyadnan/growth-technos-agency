@@ -83,7 +83,7 @@ export const ProjectCard = ({ project, index }) => {
           </div>
 
           {/* Features Tags */}
-          {project.features && project.features.length > 0 && (
+          {/* {project.features && project.features.length > 0 && (
             <div className="flex flex-wrap gap-2 pt-2">
               {project.features.slice(0, 3).map((feature, idx) => (
                 <span
@@ -99,7 +99,7 @@ export const ProjectCard = ({ project, index }) => {
                 </span>
               )}
             </div>
-          )}
+          )} */}
 
           {/* CTA Button */}
           <div className="pt-4 border-t border-border/50">

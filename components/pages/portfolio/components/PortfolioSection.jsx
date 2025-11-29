@@ -9,9 +9,9 @@ const PortfolioSection = ({ projects }) => {
   return (
     <section className="relative px-2 md:px-[5%] py-24 md:py-32 overflow-hidden">
       {/* Animated Divider at Top */}
-      <div className="absolute top-0 left-0 right-0 z-20">
+      {/* <div className="absolute top-0 left-0 right-0 z-20">
         <AnimatedDivider />
-      </div>
+      </div> */}
 
       {/* Futuristic Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 dark:via-primary/10 to-accent/5 dark:to-accent/10"></div>

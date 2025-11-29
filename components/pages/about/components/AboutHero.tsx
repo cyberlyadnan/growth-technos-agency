@@ -6,9 +6,9 @@ export const AboutHero = () => {
   return (
     <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden pt-16">
       {/* Animated Divider at Top */}
-      <div className="absolute top-0 left-0 right-0 z-20">
+      {/* <div className="absolute top-0 left-0 right-0 z-20">
         <AnimatedDivider />
-      </div>
+      </div> */}
 
       {/* Background Image with Parallax Effect */}
       <div className="absolute inset-0">

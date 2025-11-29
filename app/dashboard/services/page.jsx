@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { collection, getDocs, deleteDoc, doc, updateDoc, addDoc } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,26 +13,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Briefcase, Plus, Edit, Trash2, Loader2, Sparkles } from "lucide-react";
+import { Briefcase, Plus, Edit, Trash2, Loader2 } from "lucide-react";
+import Link from "next/link";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
 
 export default function ServicesPage() {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [editingService, setEditingService] = useState(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [deleteDialog, setDeleteDialog] = useState({ open: false, id: null });
 
   useEffect(() => {
@@ -55,46 +43,6 @@ export default function ServicesPage() {
     }
   };
 
-  const handleEdit = (service) => {
-    setEditingService({ ...service });
-    setIsDialogOpen(true);
-  };
-
-  const handleSave = async (e) => {
-    e.preventDefault();
-    try {
-      if (editingService.id) {
-        await updateDoc(doc(db, "services", editingService.id), {
-          title: editingService.title,
-          description: editingService.description,
-          iconName: editingService.iconName || "",
-        });
-        toast.success("Service updated successfully");
-      } else {
-        await addDoc(collection(db, "services"), {
-          title: editingService.title,
-          description: editingService.description,
-          iconName: editingService.iconName || "",
-        });
-        toast.success("Service added successfully");
-      }
-      setIsDialogOpen(false);
-      setEditingService(null);
-      fetchServices();
-    } catch (error) {
-      console.error("Error saving service:", error);
-      toast.error("Failed to save service");
-    }
-  };
-
-  const handleAddNew = () => {
-    setEditingService({
-      title: "",
-      description: "",
-      iconName: "",
-    });
-    setIsDialogOpen(true);
-  };
 
   const handleDelete = async () => {
     try {
@@ -127,79 +75,12 @@ export default function ServicesPage() {
           </h1>
           <p className="text-foreground/60">Manage your services portfolio</p>
         </div>
-        <Button
-          onClick={handleAddNew}
-          className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white"
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          Add Service
-        </Button>
-        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogContent className="sm:max-w-[600px]">
-            <DialogHeader>
-              <DialogTitle className="flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-primary" />
-                {editingService?.id ? "Edit Service" : "Add New Service"}
-              </DialogTitle>
-              <DialogDescription>
-                {editingService?.id ? "Update service details" : "Create a new service"}
-              </DialogDescription>
-            </DialogHeader>
-            {editingService && (
-              <form onSubmit={handleSave} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="title">Title</Label>
-                  <Input
-                    id="title"
-                    value={editingService.title || ""}
-                    onChange={(e) =>
-                      setEditingService({ ...editingService, title: e.target.value })
-                    }
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="description">Description</Label>
-                  <Textarea
-                    id="description"
-                    value={editingService.description || ""}
-                    onChange={(e) =>
-                      setEditingService({ ...editingService, description: e.target.value })
-                    }
-                    required
-                    rows={4}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="iconName">Icon Name (Lucide icon)</Label>
-                  <Input
-                    id="iconName"
-                    value={editingService.iconName || ""}
-                    onChange={(e) =>
-                      setEditingService({ ...editingService, iconName: e.target.value })
-                    }
-                    placeholder="e.g., Briefcase"
-                  />
-                </div>
-                <div className="flex justify-end gap-2">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => {
-                      setIsDialogOpen(false);
-                      setEditingService(null);
-                    }}
-                  >
-                    Cancel
-                  </Button>
-                  <Button type="submit" className="bg-gradient-to-r from-primary to-accent">
-                    Save
-                  </Button>
-                </div>
-              </form>
-            )}
-          </DialogContent>
-        </Dialog>
+        <Link href="/dashboard/services/add">
+          <Button className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white">
+            <Plus className="w-4 h-4 mr-2" />
+            Add Service
+          </Button>
+        </Link>
       </div>
 
       {/* Services Table */}
@@ -236,18 +117,16 @@ export default function ServicesPage() {
                       </TableCell>
                       <TableCell>
                         <code className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">
-                          {service.iconName || "N/A"}
+                          {service.icon || "N/A"}
                         </code>
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            onClick={() => handleEdit(service)}
-                          >
-                            <Edit className="w-4 h-4" />
-                          </Button>
+                          <Link href={`/dashboard/services/${service.id}/edit`}>
+                            <Button variant="outline" size="icon">
+                              <Edit className="w-4 h-4" />
+                            </Button>
+                          </Link>
                           <Button
                             variant="outline"
                             size="icon"
