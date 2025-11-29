@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Briefcase, FolderKanban, MessageSquare, TrendingUp, Sparkles } from "lucide-react";
+import { Briefcase, FolderKanban, MessageSquare, FileText, Sparkles } from "lucide-react";
 
 export default function DashboardOverview() {
   const [stats, setStats] = useState({
     services: 0,
     projects: 0,
+    blogs: 0,
     inquiries: 0,
     loading: true,
   });
@@ -17,15 +18,17 @@ export default function DashboardOverview() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const [servicesSnapshot, projectsSnapshot, inquiriesSnapshot] = await Promise.all([
+        const [servicesSnapshot, projectsSnapshot, blogsSnapshot, inquiriesSnapshot] = await Promise.all([
           getDocs(collection(db, "services")),
           getDocs(collection(db, "projects")),
+          getDocs(collection(db, "blogs")),
           getDocs(collection(db, "inquiries")),
         ]);
 
         setStats({
           services: servicesSnapshot.size,
           projects: projectsSnapshot.size,
+          blogs: blogsSnapshot.size,
           inquiries: inquiriesSnapshot.size,
           loading: false,
         });
@@ -54,6 +57,13 @@ export default function DashboardOverview() {
       href: "/dashboard/projects",
     },
     {
+      title: "Blogs",
+      value: stats.blogs,
+      icon: FileText,
+      gradient: "from-orange-500 to-red-500",
+      href: "/dashboard/blogs",
+    },
+    {
       title: "Inquiries",
       value: stats.inquiries,
       icon: MessageSquare,
@@ -73,7 +83,7 @@ export default function DashboardOverview() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {statCards.map((stat, index) => {
           const Icon = stat.icon;
           return (
@@ -135,6 +145,14 @@ export default function DashboardOverview() {
               <FolderKanban className="w-5 h-5 text-primary mb-2 group-hover:scale-110 transition-transform" />
               <h3 className="font-semibold mb-1">Manage Projects</h3>
               <p className="text-sm text-foreground/60">Add, edit, or delete projects</p>
+            </a>
+            <a
+              href="/dashboard/blogs"
+              className="p-4 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group"
+            >
+              <FileText className="w-5 h-5 text-primary mb-2 group-hover:scale-110 transition-transform" />
+              <h3 className="font-semibold mb-1">Manage Blogs</h3>
+              <p className="text-sm text-foreground/60">Add, edit, or delete blog posts</p>
             </a>
             <a
               href="/dashboard/inquiries"

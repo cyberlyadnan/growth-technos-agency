@@ -23,6 +23,7 @@ const navItems = [
   },
   { name: "Projects", href: "/projects" },
   { name: "Portfolio", href: "/portfolio" },
+  { name: "Blogs", href: "/blog" },
   { name: "Contact", href: "/contact" },
 ];
 

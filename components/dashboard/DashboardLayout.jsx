@@ -9,6 +9,7 @@ import {
   Briefcase,
   FolderKanban,
   MessageSquare,
+  FileText,
   LogOut,
   Menu,
   X,
@@ -21,6 +22,7 @@ const navItems = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
   { href: "/dashboard/services", label: "Services", icon: Briefcase },
   { href: "/dashboard/projects", label: "Projects", icon: FolderKanban },
+  { href: "/dashboard/blogs", label: "Blogs", icon: FileText },
   { href: "/dashboard/inquiries", label: "Inquiries", icon: MessageSquare },
 ];
 

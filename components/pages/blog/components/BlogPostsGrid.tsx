@@ -1,37 +1,28 @@
 "use client";
-import { motion } from "framer-motion";
 import BlogPostCard from "./BlogPostCard";
 
-interface Props {
-  posts: any[];
-}
+export default function BlogPostsGrid({ posts, formatDate }) {
+  if (!posts || posts.length === 0) {
+    return (
+      <section className="py-16 px-4 md:px-[5%] bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center py-12 text-foreground/60">
+            <p>No blog posts found.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
-export default function BlogPostsGrid({ posts }: Props) {
   return (
-    <section className="py-16 px-4 md:px-[5%] bg-gray-50 dark:bg-gray-900">
+    <section className="py-16 px-4 md:px-[5%] bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <h2 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white">
-            Latest Articles
-          </h2>
-        </motion.div>
+        <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          Latest Articles
+        </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post, i) => (
-            <motion.div
-              key={post.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <BlogPostCard post={post} />
-            </motion.div>
+          {posts.map((post) => (
+            <BlogPostCard key={post.id} post={post} formatDate={formatDate} />
           ))}
         </div>
       </div>

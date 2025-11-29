@@ -6,6 +6,7 @@ import ProjectsSection from "../components/pages/home/components/ProjectSection"
 import { TestimonialsSection } from "../components/pages/home/components/TestimonialsSection";
 import { Newsletter } from "../components/pages/home/components/Newsletter";
 import { AboutSection } from "@/components/pages/home/components/AboutSection";
+import { FeaturedBlogSection } from "@/components/pages/home/components/FeaturedBlogSection";
 import { useServices } from "@/hooks/useServices";
 import { servicess } from "@/lib/data";
 import { projectsss } from "@/lib/projects";
@@ -73,6 +74,7 @@ const HomePage = async () => {
       <ServicesSection hideViewAllSection={true} title={"Our Services"} desc={"We offer comprehensive digital solutions to help your business grow and succeed online."} services={services.slice(0,6)} />
       <ProjectsSection projects={projects.slice(0,6)}/>
       <PortfolioSection projects={portfolioProjects.slice(0,6)}/>
+      <FeaturedBlogSection />
       <TestimonialsSection />
       <Newsletter />
     </div>
