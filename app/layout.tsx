@@ -2,8 +2,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
+import { ConditionalLayout } from "@/components/ConditionalLayout";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -164,9 +165,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navigation />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
+          <AuthProvider>
+            <ConditionalLayout>{children}</ConditionalLayout>
+            <Toaster />
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
