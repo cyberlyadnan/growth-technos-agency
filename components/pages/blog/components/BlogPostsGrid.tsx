@@ -1,7 +1,12 @@
 "use client";
 import BlogPostCard from "./BlogPostCard";
 
-export default function BlogPostsGrid({ posts, formatDate }) {
+interface BlogPostsGridProps {
+  posts: any[];
+  formatDate: (date: any) => string;
+}
+
+export default function BlogPostsGrid({ posts, formatDate }: BlogPostsGridProps) {
   if (!posts || posts.length === 0) {
     return (
       <section className="py-16 px-4 md:px-[5%] bg-background">
@@ -22,7 +27,7 @@ export default function BlogPostsGrid({ posts, formatDate }) {
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post) => (
-            <BlogPostCard key={post.id} post={post} formatDate={formatDate} />
+            <BlogPostCard key={post.id} post={post} />
           ))}
         </div>
       </div>

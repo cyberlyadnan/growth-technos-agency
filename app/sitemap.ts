@@ -55,12 +55,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let projectPages: MetadataRoute.Sitemap = [];
   try {
     const projects = await getAllProjects();
-    projectPages = projects.map((project) => ({
-      url: `${baseUrl}/projects/${project.id}`,
-      lastModified: project.updatedAt?.toDate() || new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    }));
+    projectPages = projects.map((project: any) => {
+      const updatedAt = (project.updatedAt as any)?.toDate?.() || 
+                        (project.updatedAt instanceof Date ? project.updatedAt : null) ||
+                        new Date();
+      return {
+        url: `${baseUrl}/projects/${project.id}`,
+        lastModified: updatedAt,
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+      };
+    });
   } catch (error) {
     console.error('Error fetching projects for sitemap:', error);
   }
