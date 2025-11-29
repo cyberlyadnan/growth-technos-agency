@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Lock, Mail, Sparkles, Eye, EyeOff, AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -19,11 +21,31 @@ export default function LoginPage() {
   const { login, user } = useAuth();
   const router = useRouter();
 
+
   useEffect(() => {
     if (user) {
       router.push("/dashboard");
     }
   }, [user, router]);
+
+  // Debug: Fetch and log projects
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, "services"));
+        const projects = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        console.log("📦 Projects fetched from Firebase:", projects);
+        console.log("📊 Total projects:", projects.length);
+      } catch (error) {
+        console.error("❌ Error fetching projects:", error);
+      }
+    };
+
+    fetchProjects();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

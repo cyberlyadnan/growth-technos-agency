@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { collection, getDocs, deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,26 +13,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { FolderKanban, Plus, Edit, Trash2, Loader2, Sparkles, ExternalLink } from "lucide-react";
+import { FolderKanban, Plus, Edit, Trash2, Loader2, ExternalLink } from "lucide-react";
+import Link from "next/link";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 import { toast } from "sonner";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [editingProject, setEditingProject] = useState(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [deleteDialog, setDeleteDialog] = useState({ open: false, id: null });
 
   useEffect(() => {
@@ -55,27 +43,6 @@ export default function ProjectsPage() {
     }
   };
 
-  const handleEdit = (project) => {
-    setEditingProject({ ...project });
-    setIsDialogOpen(true);
-  };
-
-  const handleSave = async (e) => {
-    e.preventDefault();
-    try {
-      if (editingProject.id) {
-        const { id, ...updateData } = editingProject;
-        await updateDoc(doc(db, "projects", id), updateData);
-        toast.success("Project updated successfully");
-      }
-      setIsDialogOpen(false);
-      setEditingProject(null);
-      fetchProjects();
-    } catch (error) {
-      console.error("Error saving project:", error);
-      toast.error("Failed to save project");
-    }
-  };
 
   const handleDelete = async () => {
     try {
@@ -108,6 +75,12 @@ export default function ProjectsPage() {
           </h1>
           <p className="text-foreground/60">Manage your projects portfolio</p>
         </div>
+        <Link href="/dashboard/projects/add">
+          <Button className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white">
+            <Plus className="w-4 h-4 mr-2" />
+            Add Project
+          </Button>
+        </Link>
       </div>
 
       {/* Projects Table */}
@@ -169,13 +142,11 @@ export default function ProjectsPage() {
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex justify-end gap-2">
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            onClick={() => handleEdit(project)}
-                          >
-                            <Edit className="w-4 h-4" />
-                          </Button>
+                          <Link href={`/dashboard/projects/${project.id}/edit`}>
+                            <Button variant="outline" size="icon">
+                              <Edit className="w-4 h-4" />
+                            </Button>
+                          </Link>
                           <Button
                             variant="outline"
                             size="icon"
@@ -194,106 +165,6 @@ export default function ProjectsPage() {
           )}
         </CardContent>
       </Card>
-
-      {/* Edit Dialog */}
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-primary" />
-              Edit Project
-            </DialogTitle>
-            <DialogDescription>Update project details</DialogDescription>
-          </DialogHeader>
-          {editingProject && (
-            <form onSubmit={handleSave} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="title">Title</Label>
-                  <Input
-                    id="title"
-                    value={editingProject.title || ""}
-                    onChange={(e) =>
-                      setEditingProject({ ...editingProject, title: e.target.value })
-                    }
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="category">Category</Label>
-                  <Input
-                    id="category"
-                    value={editingProject.category || ""}
-                    onChange={(e) =>
-                      setEditingProject({ ...editingProject, category: e.target.value })
-                    }
-                  />
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="client">Client</Label>
-                  <Input
-                    id="client"
-                    value={editingProject.client || ""}
-                    onChange={(e) =>
-                      setEditingProject({ ...editingProject, client: e.target.value })
-                    }
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="budget">Budget</Label>
-                  <Input
-                    id="budget"
-                    value={editingProject.budget || ""}
-                    onChange={(e) =>
-                      setEditingProject({ ...editingProject, budget: e.target.value })
-                    }
-                  />
-                </div>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="description">Description</Label>
-                <Textarea
-                  id="description"
-                  value={editingProject.description || ""}
-                  onChange={(e) =>
-                    setEditingProject({ ...editingProject, description: e.target.value })
-                  }
-                  rows={4}
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="liveUrl">Live URL</Label>
-                <Input
-                  id="liveUrl"
-                  type="url"
-                  value={editingProject.liveUrl || ""}
-                  onChange={(e) =>
-                    setEditingProject({ ...editingProject, liveUrl: e.target.value })
-                  }
-                  placeholder="https://example.com"
-                />
-              </div>
-              <div className="flex justify-end gap-2">
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={() => {
-                    setIsDialogOpen(false);
-                    setEditingProject(null);
-                  }}
-                >
-                  Cancel
-                </Button>
-                <Button type="submit" className="bg-gradient-to-r from-primary to-accent">
-                  Save Changes
-                </Button>
-              </div>
-            </form>
-          )}
-        </DialogContent>
-      </Dialog>
 
       {/* Delete Confirmation Dialog */}
       <AlertDialog open={deleteDialog.open} onOpenChange={(open) => setDeleteDialog({ open, id: null })}>
