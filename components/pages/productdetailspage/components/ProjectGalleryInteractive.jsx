@@ -101,3 +101,4 @@ export default function ProjectGalleryInteractive({ images, title }) {
   );
 }
 
+
