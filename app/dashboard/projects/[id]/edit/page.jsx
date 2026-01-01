@@ -56,6 +56,7 @@ export default function EditProjectPage() {
 
   const [imageFile, setImageFile] = useState(null);
   const [galleryFiles, setGalleryFiles] = useState([]);
+  const [galleryUrl, setGalleryUrl] = useState("");
   const [testimonialAvatarFile, setTestimonialAvatarFile] = useState(null);
 
   useEffect(() => {
@@ -234,6 +235,17 @@ export default function EditProjectPage() {
       toast.error("Failed to upload gallery images");
     } finally {
       setUploadingImages(false);
+    }
+  };
+
+  const handleAddGalleryUrl = () => {
+    if (galleryUrl.trim()) {
+      setFormData({
+        ...formData,
+        gallery: [...formData.gallery, galleryUrl.trim()],
+      });
+      setGalleryUrl("");
+      toast.success("Gallery image URL added");
     }
   };
 
@@ -544,28 +556,48 @@ export default function EditProjectPage() {
                 ))}
               </div>
             )}
-            <div className="flex items-center gap-4">
-              <Input
-                type="file"
-                accept="image/*"
-                multiple
-                onChange={(e) => setGalleryFiles(Array.from(e.target.files || []))}
-                className="flex-1"
-              />
-              {galleryFiles.length > 0 && (
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <Input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={(e) => setGalleryFiles(Array.from(e.target.files || []))}
+                  className="flex-1"
+                />
+                {galleryFiles.length > 0 && (
+                  <Button
+                    type="button"
+                    onClick={() => handleGalleryUpload(galleryFiles)}
+                    disabled={uploadingImages}
+                  >
+                    {uploadingImages ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <Upload className="w-4 h-4" />
+                    )}
+                    Upload {galleryFiles.length} Image(s)
+                  </Button>
+                )}
+              </div>
+              <div className="flex items-center gap-2">
+                <Input
+                  type="url"
+                  placeholder="Or enter image URL"
+                  value={galleryUrl}
+                  onChange={(e) => setGalleryUrl(e.target.value)}
+                  onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), handleAddGalleryUrl())}
+                  className="flex-1"
+                />
                 <Button
                   type="button"
-                  onClick={() => handleGalleryUpload(galleryFiles)}
-                  disabled={uploadingImages}
+                  onClick={handleAddGalleryUrl}
+                  variant="outline"
                 >
-                  {uploadingImages ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <Upload className="w-4 h-4" />
-                  )}
-                  Upload {galleryFiles.length} Image(s)
+                  <Plus className="w-4 h-4" />
+                  Add URL
                 </Button>
-              )}
+              </div>
             </div>
           </CardContent>
         </Card>

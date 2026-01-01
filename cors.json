@@ -1,0 +1,10 @@
+[
+  {
+    "origin": ["http://localhost:3000", "https://growthtechnos.com", "https://www.growthtechnos.com"],
+    "method": ["GET", "HEAD", "PUT", "POST", "DELETE"],
+    "maxAgeSeconds": 3600,
+    "responseHeader": ["Content-Type", "Authorization", "Content-Length", "User-Agent", "x-goog-resumable"]
+  }
+]
+
+
