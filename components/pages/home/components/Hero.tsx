@@ -122,7 +122,7 @@ export const Hero = () => {
               <span className="text-sm font-semibold text-white tracking-wide" style={{
                 textShadow: '0 1px 3px rgba(0,0,0,0.5)'
               }}>
-                Trusted by 500+ businesses
+                Leading Digital Agency in Noida - Trusted by 500+ Businesses
               </span>
               <Sparkles className="w-4 h-4 text-primary animate-pulse drop-shadow-lg" />
             </div>
@@ -138,35 +138,44 @@ export const Hero = () => {
             <span className="block text-white mb-2" style={{ 
               textShadow: '0 4px 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.4)'
             }}>
-              Transform Your
+              Best Digital Marketing Agency
             </span>
             <span className="block relative">
               <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent" style={{
                 textShadow: '0 4px 20px rgba(156,30,42,0.5), 0 2px 10px rgba(194,52,64,0.4)',
                 WebkitTextStroke: '1px rgba(255,255,255,0.1)'
               }}>
-                Digital Future
+                Web Development
               </span>
               {/* Glowing effect */}
               <span className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent blur-2xl opacity-40 -z-10">
-                Digital Future
+                Web Development & SEO Services 
               </span>
             </span>
           </h1>
 
           {/* Description */}
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-12 text-white max-w-4xl mx-auto leading-relaxed font-light animate-fade-in-up animation-delay-200" style={{
-            textShadow: '0 2px 15px rgba(0,0,0,0.9), 0 1px 5px rgba(0,0,0,0.7)'
-          }}>
-            We deliver{" "}
-            <span className="font-bold text-primary relative" style={{
-              textShadow: '0 2px 10px rgba(156,30,42,0.6), 0 0 20px rgba(156,30,42,0.3)'
-            }}>
-              <span className="relative z-10">cutting-edge IT solutions</span>
-              <span className="absolute bottom-0 left-0 right-0 h-2 bg-primary/40 -z-0 transform -skew-x-12 blur-sm"></span>
-            </span>{" "}
-            that drive innovation, efficiency, and growth for forward-thinking businesses in the digital age.
-          </p>
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-12 text-white max-w-4xl mx-auto leading-relaxed font-light animate-fade-in-up animation-delay-200"
+  style={{
+    textShadow: '0 2px 15px rgba(0,0,0,0.9), 0 1px 5px rgba(0,0,0,0.7)'
+  }}
+>
+  Growth Technos is a{" "}
+  <span
+    className="font-bold text-primary relative"
+    style={{
+      textShadow: '0 2px 10px rgba(156,30,42,0.6), 0 0 20px rgba(156,30,42,0.3)'
+    }}
+  >
+    <span className="relative z-10">
+      trusted digital marketing agency and web development company
+    </span>
+    <span className="absolute bottom-0 left-0 right-0 h-2 bg-primary/40 -z-0 transform -skew-x-12 blur-sm"></span>
+  </span>{" "}
+  delivering SEO-driven websites, high-performance e-commerce solutions, and
+  result-oriented digital marketing strategies. 
+</p>
+
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-in-up animation-delay-300">

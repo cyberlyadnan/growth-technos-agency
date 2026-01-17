@@ -38,21 +38,21 @@ export const AboutSection = () => {
         <div className="max-w-6xl mx-auto mb-16 md:mb-24">
           <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary/15 dark:bg-primary/25 border border-primary/30 dark:border-primary/40 mb-8 backdrop-blur-sm shadow-lg">
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm font-semibold text-primary">Innovation First</span>
+            <span className="text-sm font-semibold text-primary">Award-Winning Digital Agency</span>
           </div>
           
           <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
             <span className="text-foreground">
-              Shaping Tomorrow's
+              Top Web Development Company
             </span>
             <br />
             <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-              Digital Landscape
+              & SEO Services Provider
             </span>
           </h2>
           
           <p className="text-lg sm:text-xl md:text-2xl text-foreground/80 dark:text-foreground/90 font-light max-w-2xl leading-relaxed">
-            We transform ideas into <span className="font-semibold text-primary">cutting-edge solutions</span> that drive business growth and digital excellence.
+            Growth Technos is a leading <span className="font-semibold text-primary">digital marketing agency and web development company</span> based . We specialize in creating high-performance websites, implementing advanced SEO strategies, and delivering comprehensive digital marketing solutions that help businesses rank #1 on Google and achieve sustainable online growth.
           </p>
         </div>
 
@@ -64,9 +64,9 @@ export const AboutSection = () => {
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/30 flex items-center justify-center mb-6 group-hover:from-primary/30 group-hover:to-primary/40 transition-all shadow-lg shadow-primary/20">
                 <Rocket className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">Speed</h3>
+              <h3 className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">Fast Website Development</h3>
               <p className="text-foreground/70 dark:text-foreground/80 leading-relaxed text-sm md:text-base">
-                Rapid deployment with precision and quality at the core.
+                Rapid website development and deployment with precision, quality, and SEO optimization at the core. We deliver fast-loading, mobile-responsive websites that rank higher on Google.
               </p>
             </div>
           </div>
@@ -77,9 +77,9 @@ export const AboutSection = () => {
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-accent/20 to-accent/30 flex items-center justify-center mb-6 group-hover:from-accent/30 group-hover:to-accent/40 transition-all shadow-lg shadow-accent/20">
                 <Brain className="w-6 h-6 text-accent" />
               </div>
-              <h3 className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-accent transition-colors">Intelligence</h3>
+              <h3 className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-accent transition-colors">Data-Driven SEO & Marketing</h3>
               <p className="text-foreground/70 dark:text-foreground/80 leading-relaxed text-sm md:text-base">
-                AI-powered solutions that learn and adapt to your needs.
+                Advanced SEO services and AI-powered digital marketing solutions that learn, adapt, and optimize to drive maximum ROI and top Google rankings for your business.
               </p>
             </div>
           </div>
@@ -90,9 +90,9 @@ export const AboutSection = () => {
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-secondary/20 to-secondary/30 flex items-center justify-center mb-6 group-hover:from-secondary/30 group-hover:to-secondary/40 transition-all shadow-lg shadow-secondary/20">
                 <Zap className="w-6 h-6 text-secondary" />
               </div>
-              <h3 className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-secondary transition-colors">Excellence</h3>
+              <h3 className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-secondary transition-colors">Premium Quality Services</h3>
               <p className="text-foreground/70 dark:text-foreground/80 leading-relaxed text-sm md:text-base">
-                Uncompromising quality in every project we deliver.
+                Uncompromising quality in every web development project, SEO campaign, and digital marketing strategy we deliver. We ensure your website ranks at the top of Google search results.
               </p>
             </div>
           </div>
@@ -121,10 +121,10 @@ export const AboutSection = () => {
                 
                 {/* Content */}
                 <h4 className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors">
-                  Full-Stack Development
+                  Professional Web Development Services
                 </h4>
                 <p className="text-foreground/70 dark:text-foreground/80 leading-relaxed text-sm md:text-base">
-                  End-to-end solutions from concept to deployment
+                  Full-stack web development services from concept to deployment. We build custom websites, e-commerce platforms, and web applications optimized for SEO and performance.
                 </p>
                 
                 {/* Animated indicator line */}
@@ -152,10 +152,10 @@ export const AboutSection = () => {
                 
                 {/* Content */}
                 <h4 className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-accent transition-colors">
-                  Cloud & AI Integration
+                  Advanced SEO & Digital Marketing
                 </h4>
                 <p className="text-foreground/70 dark:text-foreground/80 leading-relaxed text-sm md:text-base">
-                  Scalable infrastructure with intelligent automation
+                  Comprehensive SEO services, content marketing, social media marketing, and PPC advertising. We help your business achieve top Google rankings and drive qualified leads.
                 </p>
                 
                 {/* Animated indicator line */}
@@ -183,10 +183,10 @@ export const AboutSection = () => {
                 
                 {/* Content */}
                 <h4 className="text-xl md:text-2xl font-bold mb-3 text-foreground group-hover:text-secondary transition-colors">
-                  Security & Compliance
+                  E-commerce & Branding Solutions
                 </h4>
                 <p className="text-foreground/70 dark:text-foreground/80 leading-relaxed text-sm md:text-base">
-                  Enterprise-grade protection for your digital assets
+                  Complete e-commerce website development, branding, and UI/UX design services. We create conversion-optimized online stores that drive sales and enhance brand identity.
                 </p>
                 
                 {/* Animated indicator line */}
