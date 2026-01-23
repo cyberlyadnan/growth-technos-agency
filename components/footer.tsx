@@ -42,11 +42,11 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { name: 'WhatsApp', href: '#', icon: MessageCircle },
-  { name: 'Facebook', href: '#', icon: Facebook },
-  { name: 'Twitter', href: '#', icon: Twitter },
-  { name: 'Instagram', href: '#', icon: Instagram },
-  { name: 'LinkedIn', href: '#', icon: Linkedin },
+  { name: 'WhatsApp', href: 'https://wa.me/919756896250?text=Hello, I am interested in your services.', icon: MessageCircle },
+  { name: 'Facebook', href: 'https://www.facebook.com/share/1MRFznQTrN/?mibextid=wwXIfr', icon: Facebook },
+  // { name: 'Twitter', href: '#', icon: Twitter },
+  { name: 'Instagram', href: 'https://www.instagram.com/growthtechnos/', icon: Instagram },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/growth-technos-8305b3363/', icon: Linkedin },
 ];
 
 export function Footer() {

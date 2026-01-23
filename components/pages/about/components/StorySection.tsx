@@ -41,7 +41,7 @@ const storyTimeline = [
   {
     period: '2018',
     title: 'The Beginning',
-    description: 'Growth Technos was founded with a simple yet powerful vision: to help businesses grow through innovative digital solutions. What started as a small team of passionate developers and marketers has grown into a full-service digital agency.',
+    description: 'Growth Technos was founded in Noida with a vision to help businesses succeed online. Starting as a small digital marketing agency, we focused on delivering quality web development and SEO services that helped local businesses achieve top Google rankings.',
     icon: Calendar,
     color: 'primary',
     image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800'
@@ -49,7 +49,7 @@ const storyTimeline = [
   {
     period: '2019-2021',
     title: 'Growth & Learning',
-    description: 'Over the years, we\'ve had the privilege of working with hundreds of clients across various industries, from ambitious startups to established enterprises. Each project has been a learning experience, helping us refine our approach.',
+    description: 'We expanded our services to include comprehensive digital marketing solutions, e-commerce development, and advanced SEO strategies. Working with businesses across India, we refined our approach to help clients achieve measurable growth.',
     icon: Users,
     color: 'accent',
     image: 'https://images.pexels.com/photos/3184405/pexels-photo-3184405.jpeg?auto=compress&cs=tinysrgb&w=800'
@@ -57,7 +57,7 @@ const storyTimeline = [
   {
     period: '2022-Present',
     title: 'Today & Beyond',
-    description: 'Today, we\'re proud to be a trusted partner for businesses looking to establish or enhance their digital presence. Our team continues to grow, but our commitment to excellence, innovation, and client success remains the cornerstone.',
+    description: 'Today, Growth Technos is recognized as one of the leading digital marketing agencies in Noida. With 500+ successful projects, we continue to help businesses achieve #1 Google rankings through proven SEO services and professional web development.',
     icon: Trophy,
     color: 'secondary',
     image: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800'
@@ -103,7 +103,7 @@ export const StorySection = () => {
             </span>
           </h2>
           <p className="text-lg sm:text-xl md:text-2xl text-foreground/80 dark:text-foreground/90 font-light max-w-3xl mx-auto leading-relaxed">
-            From humble beginnings to digital excellence - discover how we became the trusted partner for businesses worldwide.
+            From a small web development company in Noida to a leading digital marketing agency - discover our journey of helping businesses achieve top Google rankings through professional website development and SEO services.
           </p>
         </div>
 

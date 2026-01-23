@@ -38,7 +38,7 @@ const IconComponent = iconComponents[service.icon as keyof typeof iconComponents
     >
       <Link
         href={`/services/${service.id}`}
-        className="group rounded-xl bg-white dark:bg-gray-800 p-5 border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
+        className="group rounded-xl bg-card p-5 border border-border/50 hover:border-primary/50 hover:shadow-xl transition-all duration-300 h-full flex flex-col"
       >
         {/* Icon container with dynamic classes */}
         <div
@@ -47,11 +47,11 @@ const IconComponent = iconComponents[service.icon as keyof typeof iconComponents
           <IconComponent className="w-6 h-6" />
         </div>
 
-        <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
+        <h3 className="text-xl font-semibold mb-2 text-foreground">
           {service.title}
         </h3>
 
-        <p className="text-gray-600 dark:text-gray-300 mb-4 text-sm leading-relaxed">
+        <p className="text-foreground/70 mb-4 text-sm leading-relaxed">
           {service.description.split(".")[0]}
         </p>
 
@@ -59,23 +59,23 @@ const IconComponent = iconComponents[service.icon as keyof typeof iconComponents
           {service.features.slice(0, 4).map((feature, featureIndex) => (
             <li
               key={featureIndex}
-              className="flex items-center text-sm text-gray-600 dark:text-gray-400"
+              className="flex items-center text-sm text-foreground/70"
             >
-              <Check className="w-4 h-4 text-green-500 mr-2" />
+              <Check className="w-4 h-4 text-primary mr-2" />
               {feature.title}
             </li>
           ))}
         </ul>
 
-        <div className="pt-2 border-t border-gray-100 dark:border-gray-700 mb-4">
-          <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
+        <div className="pt-2 border-t border-border/50 mb-4">
+          <p className="text-xs text-foreground/60 mb-2">
             Technologies:
           </p>
           <div className="flex flex-wrap gap-2">
             {service.technologies.slice(0, 3).map((tech, techIndex) => (
               <span
                 key={techIndex}
-                className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-xs rounded-md text-gray-600 dark:text-gray-300"
+                className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-md border border-primary/20"
               >
                 {tech.name}
               </span>
@@ -83,11 +83,11 @@ const IconComponent = iconComponents[service.icon as keyof typeof iconComponents
           </div>
         </div>
 
-        <div className="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-gray-700 mt-auto">
-          <span className="text-sm font-medium text-primary-600 dark:text-primary-400 group-hover:text-primary-700 transition-colors duration-300">
+        <div className="flex items-center justify-between pt-2 border-t border-border/50 mt-auto">
+          <span className="text-sm font-medium text-primary group-hover:text-accent transition-colors duration-300">
             Learn More
           </span>
-          <ArrowRight className="w-4 h-4 text-primary-600 dark:text-primary-400 group-hover:text-primary-700 group-hover:translate-x-1 transition-all duration-300" />
+          <ArrowRight className="w-4 h-4 text-primary group-hover:text-accent group-hover:translate-x-1 transition-all duration-300" />
         </div>
       </Link>
     </div>

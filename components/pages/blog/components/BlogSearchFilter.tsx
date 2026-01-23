@@ -3,13 +3,21 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 
+interface BlogSearchFilterProps {
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+  selectedCategory: string;
+  setSelectedCategory: (category: string) => void;
+  categories: string[];
+}
+
 export default function BlogSearchFilter({
   searchQuery,
   setSearchQuery,
   selectedCategory,
   setSelectedCategory,
   categories,
-}) {
+}: BlogSearchFilterProps) {
   return (
     <section className="py-8 px-4 md:px-[5%] bg-background border-b border-border/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">

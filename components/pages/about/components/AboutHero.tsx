@@ -82,7 +82,7 @@ export const AboutHero = () => {
 
           {/* Description */}
           <p className="text-xl sm:text-2xl md:text-3xl text-foreground/90 dark:text-foreground/95 font-light max-w-4xl mx-auto leading-relaxed mb-16 drop-shadow-md">
-            We're a passionate team of digital experts dedicated to helping businesses thrive in the digital landscape through innovative solutions and strategic thinking.
+            We're a leading digital marketing agency and web development company. We specialize in SEO services, e-commerce development, and digital marketing solutions that help businesses achieve top Google rankings and drive sustainable growth.
           </p>
         </div>
       </div>

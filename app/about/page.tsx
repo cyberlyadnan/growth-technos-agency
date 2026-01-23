@@ -7,23 +7,35 @@ import { TeamSection } from "@/components/pages/about/components/TeamSection";
 
 
 export const metadata: Metadata = {
-  title: "About Us - Growth Technos | Our Story, Mission & Vision",
+  title: "About Us - Growth Technos | Leading Digital Marketing Agency in Noida | Web Development & SEO Services",
   description:
-    "Learn about Growth Technos, our mission, vision, values, and the passionate team behind our digital solutions. Discover how we help businesses grow through innovative web development, SEO, and digital marketing services.",
+    "Growth Technos is a premier digital marketing agency and web development company. We specialize in SEO services, e-commerce development, website design, and digital marketing solutions. With 500+ successful projects, we help businesses rank #1 on Google and achieve measurable growth through innovative digital strategies.",
   keywords: [
+    "digital marketing agency Noida",
+    "web development company Noida",
+    "SEO services Noida",
+    "digital agency India",
     "about Growth Technos",
-    "digital agency team",
-    "web development company",
-    "SEO agency",
-    "digital marketing team",
-    "company mission",
-    "company vision",
-    "Noida digital agency",
+    "web development services Noida",
+    "SEO company Noida",
+    "digital marketing company Noida",
+    "website development company",
+    "e-commerce development Noida",
+    "best digital marketing agency",
+    "top SEO agency Noida",
+    "web design company Noida",
+    "digital marketing services Delhi NCR",
+    "affordable SEO services Noida",
+    "professional web development",
+    "content marketing services",
+    "social media marketing Noida",
+    "PPC advertising services",
+    "WordPress development Noida",
   ],
   openGraph: {
-    title: "About Us - Growth Technos | Our Story & Mission",
+    title: "About Us - Growth Technos | Leading Digital Marketing Agency in Noida",
     description:
-      "Learn about Growth Technos, our mission, vision, and the passionate team behind our digital solutions. We're dedicated to helping businesses grow online.",
+      "Growth Technos is a premier digital marketing agency and web development company. We specialize in SEO services, e-commerce development, and digital marketing solutions. With 500+ successful projects, we help businesses rank #1 on Google.",
     url: "https://growthtechnos.com/about",
     siteName: "Growth Technos",
     images: [
@@ -31,16 +43,17 @@ export const metadata: Metadata = {
         url: "/og-about.jpg", // You need to provide this: 1200x630px
         width: 1200,
         height: 630,
-        alt: "About Growth Technos - Our Team & Mission",
+        alt: "About Growth Technos - Leading Digital Marketing Agency & Web Development Company in Noida",
       },
     ],
     type: "website",
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Us - Growth Technos",
+    title: "About Us - Growth Technos | Digital Marketing Agency Noida",
     description:
-      "Learn about Growth Technos, our mission, vision, and the passionate team behind our digital solutions.",
+      "Leading digital marketing agency and web development company in Noida. Specializing in SEO services, e-commerce development, and comprehensive digital marketing solutions.",
     images: ["/og-about.jpg"],
   },
   alternates: {
@@ -49,8 +62,56 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  // Structured Data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Growth Technos",
+      "description": "Leading digital marketing agency and web development company. We specialize in SEO services, e-commerce development, website design, and comprehensive digital marketing solutions.",
+      "url": "https://growthtechnos.com",
+      "logo": "https://growthtechnos.com/growth-technos-logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Noida",
+        "addressRegion": "Uttar Pradesh",
+        "addressCountry": "IN"
+      },
+      "sameAs": [
+        "https://www.facebook.com/growthtechnos",
+        "https://www.linkedin.com/company/growthtechnos"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "knowsAbout": [
+        "Digital Marketing",
+        "SEO Services",
+        "Web Development",
+        "E-commerce Development",
+        "Website Design",
+        "Search Engine Optimization",
+        "Content Marketing",
+        "Social Media Marketing"
+      ],
+      "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "value": "50+"
+      },
+      "foundingDate": "2018"
+    }
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
       <div className="min-h-screen pt-16">
         <AboutHero />
         <MissionVision />

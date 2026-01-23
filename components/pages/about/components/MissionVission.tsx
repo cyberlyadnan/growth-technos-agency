@@ -100,7 +100,7 @@ export const MissionVision = () => {
 
                   {/* Description */}
                   <p className="text-lg text-foreground/90 dark:text-foreground/95 leading-relaxed mb-8 drop-shadow-md">
-                    To empower businesses with cutting-edge digital solutions that drive growth, enhance online presence, and deliver measurable results. We believe that every business deserves to succeed in the digital world.
+                    To empower businesses with cutting-edge web development, SEO services, and digital marketing solutions that drive growth and enhance online visibility. As a leading digital marketing agency in Noida, we help businesses rank #1 on Google through proven SEO strategies and professional website development.
                   </p>
 
                   {/* Stats */}
@@ -178,7 +178,7 @@ export const MissionVision = () => {
 
                   {/* Description */}
                   <p className="text-lg text-foreground/90 dark:text-foreground/95 leading-relaxed mb-8 drop-shadow-md">
-                    Our vision is to be the leading digital agency that shapes the future of online business, setting new standards for innovation, quality, and client satisfaction in the digital marketing industry. We strive to empower brands with cutting-edge digital solutions that enhance visibility, boost conversions, and accelerate sustainable growth.</p>
+                    To be India's most trusted digital marketing agency and web development company, recognized for excellence in SEO services and innovative digital solutions. We aim to help businesses achieve top Google rankings and build powerful online presences through comprehensive web development and SEO optimization.</p>
 
                   {/* Stats */}
                   <div className="grid grid-cols-3 gap-4 pt-6 border-t border-border/40">

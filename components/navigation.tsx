@@ -8,18 +8,24 @@ import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-const navItems = [
+type NavItem = {
+  name: string;
+  href: string;
+  dropdown?: Array<{ name: string; href: string }>;
+};
+
+const navItems: NavItem[] = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   {
     name: "Services",
     href: "/services",
-    dropdown: [
-      { name: "Web Development", href: "/services/web-development" },
-      { name: "SEO Services", href: "/services/seo" },
-      { name: "Digital Marketing", href: "/services/digital-marketing" },
-      { name: "Branding", href: "/services/branding" },
-    ],
+    // dropdown: [
+    //   { name: "Web Development", href: "/services/web-development" },
+    //   { name: "SEO Services", href: "/services/seo" },
+    //   { name: "Digital Marketing", href: "/services/digital-marketing" },
+    //   { name: "Branding", href: "/services/branding" },
+    // ],
   },
   { name: "Projects", href: "/projects" },
   { name: "Portfolio", href: "/portfolio" },
