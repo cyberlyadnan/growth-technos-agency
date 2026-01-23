@@ -22,7 +22,7 @@ export default function FeaturedBlogCard({ post, formatDate }) {
         <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
           Featured Article
         </h2>
-        <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 border-border/50 bg-background/80 backdrop-blur-sm">
+        <Card className="overflow-hidden hover:shadow-lg transition-shadow duration-300 border-border/50 bg-card">
           <div className="grid lg:grid-cols-2 gap-0">
             <div className="aspect-video lg:aspect-square relative">
               <Image
@@ -74,7 +74,7 @@ export default function FeaturedBlogCard({ post, formatDate }) {
                   ))}
                 </div>
               )}
-              <Button asChild className="bg-gradient-to-r from-primary to-accent">
+              <Button asChild className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white">
                 <Link href={`/blog/${post.slug || post.id}`}>
                   Read More
                   <ArrowRight className="w-4 h-4 ml-2" />

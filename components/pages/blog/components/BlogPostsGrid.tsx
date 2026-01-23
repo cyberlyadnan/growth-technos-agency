@@ -27,7 +27,7 @@ export default function BlogPostsGrid({ posts, formatDate }: BlogPostsGridProps)
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post) => (
-            <BlogPostCard key={post.id} post={post} />
+            <BlogPostCard key={post.id || post.slug} post={post} />
           ))}
         </div>
       </div>

@@ -21,7 +21,7 @@ export default function BlogSearchFilter({
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 bg-background border-border/50"
+              className="pl-10 bg-card border-border text-foreground placeholder:text-foreground/50"
             />
           </div>
           <div className="flex flex-wrap gap-2">
@@ -33,8 +33,8 @@ export default function BlogSearchFilter({
                 onClick={() => setSelectedCategory(category)}
                 className={
                   selectedCategory === category
-                    ? "bg-gradient-to-r from-primary to-accent text-white"
-                    : ""
+                    ? "bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white border-0 shadow-md shadow-primary/20"
+                    : "border-border/50 hover:border-primary/50 hover:bg-primary/5 text-foreground"
                 }
               >
                 {category}

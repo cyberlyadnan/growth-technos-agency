@@ -14,7 +14,7 @@ export const Hero = () => {
       videoRef.current.muted = true;
       videoRef.current.loop = true;
       videoRef.current.playsInline = true;
-      
+
       const playPromise = videoRef.current.play();
       if (playPromise !== undefined) {
         playPromise.catch(() => {
@@ -38,35 +38,35 @@ export const Hero = () => {
           className="absolute inset-0 w-full h-full object-cover scale-105"
           onLoadedData={(e) => {
             // Force play when video is loaded
-            e.currentTarget.play().catch(() => {});
+            e.currentTarget.play().catch(() => { });
           }}
         >
           <source src="/assets/videos/bg-video.mp4" type="video/mp4" />
           {/* Fallback for browsers that don't support video */}
           <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/10 to-secondary/10"></div>
         </video>
-        
+
         {/* Base dark overlay - reduced by 30% */}
         <div className="absolute inset-0 bg-black/42"></div>
-        
+
         {/* Radial gradient overlay - reduced by 30% */}
-        <div className="absolute inset-0" 
-             style={{
-               background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.595) 0%, rgba(0,0,0,0.525) 40%, rgba(0,0,0,0.385) 100%)'
-             }}></div>
-        
+        <div className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse at center, rgba(0,0,0,0.595) 0%, rgba(0,0,0,0.525) 40%, rgba(0,0,0,0.385) 100%)'
+          }}></div>
+
         {/* Vignette effect for focus on center content */}
-        <div className="absolute inset-0" 
-             style={{
-               background: 'radial-gradient(ellipse 80% 50% at 50% 50%, transparent 0%, rgba(0,0,0,0.07) 100%)'
-             }}></div>
-        
+        <div className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse 80% 50% at 50% 50%, transparent 0%, rgba(0,0,0,0.07) 100%)'
+          }}></div>
+
         {/* Top and bottom gradient overlays - reduced by 30% */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/63 via-transparent to-black/56"></div>
-        
+
         {/* Subtle colored overlay with theme colors */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-secondary/15 mix-blend-soft-light"></div>
-        
+
         {/* Animated gradient orbs */}
         <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-float opacity-40"></div>
         <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float-delayed opacity-40"></div>
@@ -135,7 +135,7 @@ export const Hero = () => {
         <div className="max-w-5xl mx-auto text-center">
           {/* Main Heading */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold mb-6 text-balance leading-tight animate-fade-in-up animation-delay-100">
-            <span className="block text-white mb-2" style={{ 
+            <span className="block text-white mb-2" style={{
               textShadow: '0 4px 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.4)'
             }}>
               Best Digital Marketing Agency
@@ -149,32 +149,32 @@ export const Hero = () => {
               </span>
               {/* Glowing effect */}
               <span className="absolute inset-0 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent blur-2xl opacity-40 -z-10">
-                Web Development & SEO Services 
+                Web Development & SEO Services
               </span>
             </span>
           </h1>
 
           {/* Description */}
           <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl mb-12 text-white max-w-4xl mx-auto leading-relaxed font-light animate-fade-in-up animation-delay-200"
-  style={{
-    textShadow: '0 2px 15px rgba(0,0,0,0.9), 0 1px 5px rgba(0,0,0,0.7)'
-  }}
->
-  Growth Technos is a{" "}
-  <span
-    className="font-bold text-primary relative"
-    style={{
-      textShadow: '0 2px 10px rgba(156,30,42,0.6), 0 0 20px rgba(156,30,42,0.3)'
-    }}
-  >
-    <span className="relative z-10">
-      trusted digital marketing agency and web development company
-    </span>
-    <span className="absolute bottom-0 left-0 right-0 h-2 bg-primary/40 -z-0 transform -skew-x-12 blur-sm"></span>
-  </span>{" "}
-  delivering SEO-driven websites, high-performance e-commerce solutions, and
-  result-oriented digital marketing strategies. 
-</p>
+            style={{
+              textShadow: '0 2px 15px rgba(0,0,0,0.9), 0 1px 5px rgba(0,0,0,0.7)'
+            }}
+          >
+            Growth Technos is a{" "}
+            <span
+              className="font-bold text-primary relative"
+              style={{
+                textShadow: '0 2px 10px rgba(156,30,42,0.6), 0 0 20px rgba(156,30,42,0.3)'
+              }}
+            >
+              <span className="relative z-10">
+                trusted digital marketing agency and web development company
+              </span>
+              <span className="absolute bottom-0 left-0 right-0 h-2 bg-primary/40 -z-0 transform -skew-x-12 blur-sm"></span>
+            </span>{" "}
+            delivering SEO-driven websites, high-performance e-commerce solutions, and
+            result-oriented digital marketing strategies.
+          </p>
 
 
           {/* CTA Buttons */}
