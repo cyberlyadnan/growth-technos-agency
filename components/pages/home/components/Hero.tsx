@@ -122,7 +122,7 @@ export const Hero = () => {
               <span className="text-sm font-semibold text-white tracking-wide" style={{
                 textShadow: '0 1px 3px rgba(0,0,0,0.5)'
               }}>
-                Leading Digital Agency in Noida - Trusted by 500+ Businesses
+                Software Development Company
               </span>
               <Sparkles className="w-4 h-4 text-primary animate-pulse drop-shadow-lg" />
             </div>
@@ -138,7 +138,7 @@ export const Hero = () => {
             <span className="block text-white mb-2" style={{
               textShadow: '0 4px 20px rgba(0,0,0,0.8), 0 2px 10px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.4)'
             }}>
-              Best Digital Marketing Agency
+              Marketing Agency
             </span>
             <span className="block relative">
               <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent" style={{

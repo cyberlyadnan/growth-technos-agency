@@ -1,91 +1,54 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConditionalLayout } from "@/components/ConditionalLayout";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { Toaster } from "@/components/ui/sonner";
 
+const META_PIXEL_ID = "1595721014882625";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
-    default: "Growth Technos - Digital Agency | Web Development, SEO & Digital Marketing",
+    default:
+      "Growth Technos - Digital Agency | Web Development, SEO & Digital Marketing",
     template: "%s | Growth Technos",
   },
   description:
-    "Growth Technos is a leading digital agency specializing in web development, SEO services, digital marketing, branding, and e-commerce solutions. We help businesses grow online with cutting-edge technology and strategic digital solutions.",
-  keywords: [
-    "digital agency",
-    "web development",
-    "SEO services",
-    "digital marketing",
-    "branding",
-    "e-commerce solutions",
-    "website design",
-    "responsive web design",
-    "UI/UX design",
-    "content marketing",
-    "social media marketing",
-    "PPC advertising",
-    "Noida digital agency",
-    "India web development",
-    "growth technos",
-  ],
-  authors: [{ name: "Growth Technos", url: "https://growthtechnos.com" }],
-  creator: "Growth Technos",
-  publisher: "Growth Technos",
+    "Growth Technos is a leading digital agency specializing in web development, SEO services, digital marketing, branding, and e-commerce solutions.",
   metadataBase: new URL("https://growthtechnos.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
     url: "https://growthtechnos.com",
-    siteName: "Growth Technos",
-    title: "Growth Technos - Digital Agency | Web Development, SEO & Digital Marketing",
+    title:
+      "Growth Technos - Digital Agency | Web Development, SEO & Digital Marketing",
     description:
-      "Leading digital agency specializing in web development, SEO, digital marketing, and branding solutions. Transform your business with our innovative digital strategies.",
+      "Leading digital agency specializing in web development, SEO, digital marketing, and branding solutions.",
     images: [
       {
-        url: "/og-image.jpg", // You need to provide this: 1200x630px
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Growth Technos - Digital Agency",
-        type: "image/jpeg",
+        alt: "Growth Technos",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Growth Technos - Digital Agency | Web Development & SEO",
+    title: "Growth Technos - Digital Agency",
     description:
-      "Leading digital agency specializing in web development, SEO, digital marketing, and branding solutions.",
-    images: ["/og-image.jpg"], // You need to provide this: 1200x630px
-    creator: "@growthtechnos", // Update with your Twitter handle if available
+      "Web development, SEO & digital marketing solutions for growing businesses.",
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  verification: {
-    google: "your-google-verification-code", // Replace with your Google Search Console verification code
-    // yandex: "your-yandex-verification-code", // Optional
-    // bing: "your-bing-verification-code", // Optional
-  },
-  category: "Digital Agency",
-  classification: "Business",
-  other: {
-    "apple-mobile-web-app-capable": "yes",
-    "apple-mobile-web-app-status-bar-style": "black-translucent",
   },
 };
 
@@ -97,50 +60,21 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Theme preload */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              (function() {
+              (function () {
                 try {
-                  const theme = localStorage.getItem('theme') || 'dark';
-                  if (theme === 'dark' || (!('theme' in localStorage))) {
-                    document.documentElement.classList.add('dark');
-                  } else {
-                    document.documentElement.classList.remove('dark');
-                  }
+                  const theme = localStorage.getItem("theme") || "dark";
+                  document.documentElement.classList.toggle("dark", theme === "dark");
                 } catch (e) {}
               })();
             `,
           }}
         />
-        {/* Meta Pixel Code */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '1595721014882625');
-              fbq('track', 'PageView');
-            `,
-          }}
-        />
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=1595721014882625&ev=PageView&noscript=1"
-            alt=""
-          />
-        </noscript>
-        {/* End Meta Pixel Code */}
-        {/* Structured Data - Organization */}
+
+        {/* Organization Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -150,58 +84,49 @@ export default function RootLayout({
               name: "Growth Technos",
               url: "https://growthtechnos.com",
               logo: "https://growthtechnos.com/growth-technos-logo.png",
-              description:
-                "Leading digital agency specializing in web development, SEO, digital marketing, and branding solutions.",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "Noida Sector 62",
-                addressLocality: "Noida",
-                addressRegion: "Uttar Pradesh",
-                addressCountry: "IN",
-              },
               contactPoint: {
                 "@type": "ContactPoint",
                 telephone: "+91-98979-21038",
-                contactType: "Customer Service",
+                contactType: "customer service",
                 email: "info@growthtechnos.com",
-                areaServed: "IN",
-                availableLanguage: "en",
               },
               sameAs: [
-                // Add your social media URLs here
                 "https://www.instagram.com/growthtechnos",
                 "https://www.linkedin.com/in/growth-technos-8305b3363/",
-                
-                // "https://www.facebook.com/growthtechnos",
-                // "https://www.twitter.com/growthtechnos",
-                // "https://www.linkedin.com/company/growthtechnos",
-                // "https://www.instagram.com/growthtechnos",
               ],
             }),
           }}
         />
-        {/* Structured Data - WebSite */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "Growth Technos",
-              url: "https://growthtechnos.com",
-              potentialAction: {
-                "@type": "SearchAction",
-                target: {
-                  "@type": "EntryPoint",
-                  urlTemplate: "https://growthtechnos.com/search?q={search_term_string}",
-                },
-                "query-input": "required name=search_term_string",
-              },
-            }),
-          }}
-        />
       </head>
+
       <body className={inter.className}>
+        {/* ✅ META PIXEL – CORRECT IMPLEMENTATION */}
+        <Script id="facebook-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '${META_PIXEL_ID}');
+            fbq('track', 'PageView');
+          `}
+        </Script>
+
+        {/* NoScript fallback */}
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src={`https://www.facebook.com/tr?id=${META_PIXEL_ID}&ev=PageView&noscript=1`}
+            alt=""
+          />
+        </noscript>
+
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
