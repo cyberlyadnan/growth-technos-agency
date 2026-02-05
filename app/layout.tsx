@@ -7,7 +7,7 @@ import { ConditionalLayout } from "@/components/ConditionalLayout";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { Toaster } from "@/components/ui/sonner";
 
-const META_PIXEL_ID = "1595721014882625";
+const META_PIXEL_ID = "875792118565045";
 
 const inter = Inter({ subsets: ["latin"] });
 
