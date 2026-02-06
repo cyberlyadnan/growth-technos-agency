@@ -130,21 +130,21 @@ export const portfolioProjects = [
 
 export const testimonials = [
   {
-    name: 'Sarah Johnson',
-    role: 'CEO, TechStart Inc.',
-    content: 'Growth Technos transformed our online presence completely. Their expertise in web development and digital marketing helped us increase our revenue by 200%.',
+    name: 'Tarun Kumar',
+    role: '1 review · 10 months ago',
+    content: 'An excellent choice for website design! I\'m very happy with the services, and the team is extremely helpful. I highly recommend them to others.',
     rating: 5
   },
   {
-    name: 'Michael Chen',
-    role: 'Marketing Director, Global Corp',
-    content: 'The team\'s SEO strategies brought our website from page 10 to the top 3 results. Outstanding work and great communication throughout the project.',
+    name: 'Shruti Rai',
+    role: '2 reviews · 10 months ago',
+    content: 'One of the best choice for Website Designing... I am very happy with services and team is also very helpful. I would love to recommend to other.',
     rating: 5
   },
   {
-    name: 'Emily Rodriguez',
-    role: 'Founder, Creative Studio',
-    content: 'Professional, creative, and results-driven. Growth Technos delivered exactly what we needed to establish our brand in the market.',
+    name: 'Aman Malik',
+    role: '1 review · 11 months ago',
+    content: 'Good service and great work and very helpful to save time.',
     rating: 5
   }
 ];
