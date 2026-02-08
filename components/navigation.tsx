@@ -169,7 +169,7 @@ export function Navigation() {
 
             <Button
               asChild
-              className="relative px-6 py-2.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-0.5 overflow-hidden group"
+              className="relative px-6 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg shadow-lg shadow-primary/25 hover:shadow-primary/40 transition-all duration-300 hover:-translate-y-0.5 overflow-hidden group"
             >
               <Link href="/contact">
                 <span className="relative z-10 font-medium">Get Started</span>

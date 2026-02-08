@@ -53,17 +53,17 @@ export default function ContactMap() {
             {/* Subtle Overlay */}
             <div className="absolute inset-0 bg-background/10 dark:bg-background/20 z-10 pointer-events-none"></div>
 
-            {/* Address Card - Positioned at bottom right */}
-            <div className="absolute bottom-6 right-6 z-20 bg-card/95 dark:bg-card/90 backdrop-blur-xl border border-border/50 dark:border-border/40 p-5 rounded-2xl shadow-2xl max-w-[280px] group/card hover:scale-105 transition-transform duration-300">
+            {/* Address Card - Positioned at bottom right, visible in both themes */}
+            <div className="absolute bottom-6 right-6 z-20 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl border border-neutral-200/80 dark:border-neutral-700/80 p-5 rounded-2xl shadow-2xl max-w-[280px] group/card hover:scale-105 transition-transform duration-300">
               <div className="flex items-start gap-4">
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex-shrink-0">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/15 dark:bg-primary/25 flex-shrink-0">
                   <MapPin className="w-6 h-6 text-primary" />
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold mb-1.5 text-foreground">Our Location</h3>
-                  <p className="text-sm text-foreground/90 dark:text-foreground/95 font-medium mb-1">Noida Sector 62</p>
-                  <p className="text-xs text-foreground/70 dark:text-foreground/80 mb-2">Uttar Pradesh, India</p>
-                  <p className="text-xs text-foreground/60 dark:text-foreground/70">Mon–Fri, 8am–6pm</p>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-lg font-bold mb-1.5 text-neutral-900 dark:text-neutral-100">Our Location</h3>
+                  <p className="text-sm font-medium text-neutral-800 dark:text-neutral-200 mb-1">Noida Sector 62</p>
+                  <p className="text-xs text-neutral-700 dark:text-neutral-300 mb-2">Uttar Pradesh, India</p>
+                  <p className="text-xs text-neutral-600 dark:text-neutral-400">Mon–Fri, 8am–6pm</p>
                 </div>
               </div>
             </div>

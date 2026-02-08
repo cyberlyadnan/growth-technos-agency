@@ -1,15 +1,37 @@
-// hooks/server/getServiceById.ts
+// hooks/getServiceById.ts
 import { adminDb } from "@/lib/firebase-admin";
-import { Service } from "./useServices";
+
+export type Service = {
+  id: string;
+  title?: string;
+  description?: string;
+  iconName?: string;
+  slug?: string;
+  [key: string]: unknown;
+};
 
 export async function getServiceById(serviceId: string): Promise<Service | null> {
+  if (!serviceId?.trim()) return null;
   if (!adminDb) {
-    throw new Error("Firebase Admin SDK is not initialized");
+    console.warn("Firebase Admin SDK is not initialized");
+    return null;
   }
 
-  const doc = await adminDb.collection("services").doc(serviceId).get();
+  // Try lookup by slug first (URLs often use slug)
+  const bySlug = await adminDb
+    .collection("services")
+    .where("slug", "==", serviceId)
+    .limit(1)
+    .get();
 
-  if (!doc.exists) return null;
+  if (!bySlug.empty) {
+    const doc = bySlug.docs[0];
+    return { id: doc.id, ...(doc.data() as Omit<Service, "id">) };
+  }
 
-  return { id: doc.id, ...(doc.data() as Omit<Service, "id">) };
+  // Fallback: lookup by document ID
+  const docRef = await adminDb.collection("services").doc(serviceId).get();
+  if (!docRef.exists) return null;
+
+  return { id: docRef.id, ...(docRef.data() as Omit<Service, "id">) };
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Send, Zap, CheckCircle2 } from "lucide-react";
+import { Send, Zap, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,6 +13,30 @@ const services = [
   "Web Development", "SEO Services", "Digital Marketing", "Branding",
   "UI/UX Design", "Mobile Development", "E-commerce Solutions", "Analytics & Reporting", "Other"
 ];
+
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_REGEX = /^[\d\s+\-()]{10,}$/;
+
+function validateForm(data: { name: string; email: string; phone: string; message: string }) {
+  const errors: Record<string, string> = {};
+  const name = data.name.trim();
+  const email = data.email.trim();
+  const message = data.message.trim();
+  const phone = data.phone.trim();
+
+  if (!name) errors.name = "Name is required.";
+  else if (name.length < 2) errors.name = "Name must be at least 2 characters.";
+
+  if (!email) errors.email = "Email is required.";
+  else if (!EMAIL_REGEX.test(email)) errors.email = "Please enter a valid email address.";
+
+  if (phone && !PHONE_REGEX.test(phone)) errors.phone = "Please enter a valid phone number (at least 10 digits).";
+
+  if (!message) errors.message = "Message is required.";
+  else if (message.length < 10) errors.message = "Message must be at least 10 characters.";
+
+  return errors;
+}
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -27,14 +51,34 @@ export default function ContactForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: "" }));
+    setSubmitError(null);
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
+
+    const validation = validateForm({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+    });
+
+    if (Object.keys(validation).length > 0) {
+      setErrors(validation);
+      return;
+    }
+
     setIsSubmitting(true);
+    setErrors({});
 
     try {
       await addDoc(collection(db, "inquiries"), {
@@ -42,17 +86,26 @@ export default function ContactForm() {
         createdAt: Timestamp.now(),
       });
 
-      await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        setSubmitError(data.message || "Something went wrong. Please try again.");
+        setIsSubmitting(false);
+        return;
+      }
 
       setIsSubmitted(true);
       setFormData({ name: "", email: "", company: "", phone: "", service: "", budget: "", message: "" });
       setTimeout(() => setIsSubmitted(false), 5000);
     } catch (err) {
       console.error("Submission failed:", err);
+      setSubmitError("Something went wrong. Please try again.");
     }
 
     setIsSubmitting(false);
@@ -89,6 +142,13 @@ export default function ContactForm() {
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-6">
+          {submitError && (
+            <div className="flex items-center gap-2 p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-600 dark:text-red-400 text-sm">
+              <AlertCircle className="w-5 h-5 shrink-0" />
+              {submitError}
+            </div>
+          )}
+
           <div className="grid md:grid-cols-2 gap-6">
             <div className="group">
               <Label htmlFor="name" className="text-foreground/90 mb-2 block">Name *</Label>
@@ -98,9 +158,11 @@ export default function ContactForm() {
                 value={formData.name} 
                 onChange={handleChange} 
                 required 
-                className="bg-background border-border focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all text-foreground placeholder:text-muted-foreground"
+                minLength={2}
+                className={`bg-background border-border focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all text-foreground placeholder:text-foreground/50 dark:placeholder:text-foreground/40 ${errors.name ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : ""}`}
                 placeholder="Your full name"
               />
+              {errors.name && <p className="mt-1 text-sm text-red-500">{errors.name}</p>}
             </div>
             <div className="group">
               <Label htmlFor="email" className="text-foreground/90 mb-2 block">Email *</Label>
@@ -111,9 +173,10 @@ export default function ContactForm() {
                 value={formData.email} 
                 onChange={handleChange} 
                 required 
-                className="bg-background border-border focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all text-foreground placeholder:text-muted-foreground"
+                className={`bg-background border-border focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all text-foreground placeholder:text-foreground/50 dark:placeholder:text-foreground/40 ${errors.email ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : ""}`}
                 placeholder="your.email@example.com"
               />
+              {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
             </div>
           </div>
 
@@ -125,7 +188,7 @@ export default function ContactForm() {
                 name="company" 
                 value={formData.company} 
                 onChange={handleChange} 
-                className="bg-background border-border focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all text-foreground placeholder:text-muted-foreground"
+                className="bg-background border-border focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all text-foreground placeholder:text-foreground/50 dark:placeholder:text-foreground/40"
                 placeholder="Your company name"
               />
             </div>
@@ -137,13 +200,14 @@ export default function ContactForm() {
                 type="tel" 
                 value={formData.phone} 
                 onChange={handleChange} 
-                className="bg-background border-border focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all text-foreground placeholder:text-muted-foreground"
+                className={`bg-background border-border focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all text-foreground placeholder:text-foreground/50 dark:placeholder:text-foreground/40 ${errors.phone ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : ""}`}
                 placeholder="+91 12345 67890"
               />
+              {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-1 gap-6">
             <div className="group">
               <Label htmlFor="service" className="text-foreground/90 mb-2 block">Service Needed</Label>
               <select
@@ -185,10 +249,12 @@ export default function ContactForm() {
               value={formData.message}
               onChange={handleChange}
               required
+              minLength={10}
               rows={5}
-              className="bg-background border-border focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all resize-none text-foreground placeholder:text-muted-foreground"
+              className={`bg-background border-border focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all resize-none text-foreground placeholder:text-foreground/50 dark:placeholder:text-foreground/40 ${errors.message ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : ""}`}
               placeholder="Tell us about your project, goals, and any specific requirements..."
             />
+            {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
           </div>
 
           <Button
