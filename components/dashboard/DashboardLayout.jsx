@@ -15,6 +15,7 @@ import {
   X,
   Sparkles,
   User,
+  Mail,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -24,6 +25,7 @@ const navItems = [
   { href: "/dashboard/projects", label: "Projects", icon: FolderKanban },
   { href: "/dashboard/blogs", label: "Blogs", icon: FileText },
   { href: "/dashboard/inquiries", label: "Inquiries", icon: MessageSquare },
+  { href: "/dashboard/subscribers", label: "Subscribers", icon: Mail },
 ];
 
 export function DashboardLayout({ children }) {

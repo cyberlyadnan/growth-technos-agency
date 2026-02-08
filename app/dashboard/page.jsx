@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Briefcase, FolderKanban, MessageSquare, FileText, Sparkles } from "lucide-react";
+import { Briefcase, FolderKanban, MessageSquare, FileText, Sparkles, Mail } from "lucide-react";
 
 export default function DashboardOverview() {
   const [stats, setStats] = useState({
@@ -12,17 +12,19 @@ export default function DashboardOverview() {
     projects: 0,
     blogs: 0,
     inquiries: 0,
+    subscribers: 0,
     loading: true,
   });
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const [servicesSnapshot, projectsSnapshot, blogsSnapshot, inquiriesSnapshot] = await Promise.all([
+        const [servicesSnapshot, projectsSnapshot, blogsSnapshot, inquiriesSnapshot, subscribersSnapshot] = await Promise.all([
           getDocs(collection(db, "services")),
           getDocs(collection(db, "projects")),
           getDocs(collection(db, "blogs")),
           getDocs(collection(db, "inquiries")),
+          getDocs(collection(db, "subscribers")),
         ]);
 
         setStats({
@@ -30,6 +32,7 @@ export default function DashboardOverview() {
           projects: projectsSnapshot.size,
           blogs: blogsSnapshot.size,
           inquiries: inquiriesSnapshot.size,
+          subscribers: subscribersSnapshot.size,
           loading: false,
         });
       } catch (error) {
@@ -69,6 +72,13 @@ export default function DashboardOverview() {
       icon: MessageSquare,
       gradient: "from-green-500 to-emerald-500",
       href: "/dashboard/inquiries",
+    },
+    {
+      title: "Subscribers",
+      value: stats.subscribers,
+      icon: Mail,
+      gradient: "from-teal-500 to-cyan-500",
+      href: "/dashboard/subscribers",
     },
   ];
 
@@ -161,6 +171,14 @@ export default function DashboardOverview() {
               <MessageSquare className="w-5 h-5 text-primary mb-2 group-hover:scale-110 transition-transform" />
               <h3 className="font-semibold mb-1">View Inquiries</h3>
               <p className="text-sm text-foreground/60">Review and respond to inquiries</p>
+            </a>
+            <a
+              href="/dashboard/subscribers"
+              className="p-4 rounded-lg border border-border/50 hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 group"
+            >
+              <Mail className="w-5 h-5 text-primary mb-2 group-hover:scale-110 transition-transform" />
+              <h3 className="font-semibold mb-1">Newsletter Subscribers</h3>
+              <p className="text-sm text-foreground/60">View and manage email subscribers</p>
             </a>
           </div>
         </CardContent>

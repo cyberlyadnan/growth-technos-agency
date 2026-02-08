@@ -1,8 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Sparkles } from "lucide-react";
+import { SubscribeForm } from "@/components/SubscribeForm";
 
 export default function NewsletterCTA() {
   return (
@@ -30,19 +29,16 @@ export default function NewsletterCTA() {
           <p className="text-lg text-foreground/70 mb-8">
             Subscribe to our newsletter to get the latest articles, insights, and tips delivered to your inbox.
           </p>
-          <form className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <Input
-              type="email"
+          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto justify-center">
+            <SubscribeForm
+              source="blog"
+              variant="inline"
               placeholder="Enter your email"
-              className="flex-1 bg-card border-border text-foreground placeholder:text-foreground/50"
+              buttonText="Subscribe"
+              inputClassName="flex-1 bg-card border-border text-foreground placeholder:text-foreground/50"
+              buttonClassName="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white shrink-0"
             />
-            <Button
-              type="submit"
-              className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white"
-            >
-              Subscribe
-            </Button>
-          </form>
+          </div>
         </motion.div>
       </div>
     </section>

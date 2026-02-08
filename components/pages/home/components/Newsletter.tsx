@@ -1,13 +1,25 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Mail, Sparkles, Zap, Rocket } from "lucide-react";
+import { ArrowRight, Mail, Sparkles, Zap, Rocket, CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { AnimatedDivider } from "@/components/ui/AnimatedDivider";
 import { motion } from "framer-motion";
+import { useSubscribe } from "@/hooks/useSubscribe";
 
 export const Newsletter = () => {
+  const [email, setEmail] = useState("");
+  const { subscribe, loading, success, error, reset } = useSubscribe("home");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    const ok = await subscribe(email);
+    if (ok) setEmail("");
+  };
+
   return (
     <>
       {/* Newsletter Section - Futuristic Design */}
@@ -61,59 +73,65 @@ export const Newsletter = () => {
             </p>
 
             {/* Futuristic Newsletter Form */}
-            <motion.form
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
               className="relative max-w-2xl mx-auto"
-              onSubmit={(e) => e.preventDefault()}
             >
-              {/* Glassmorphism Container */}
-              <div className="relative p-1 rounded-2xl bg-card/60 dark:bg-card/40 backdrop-blur-xl border border-border/50 dark:border-border/40 group-hover:border-primary/50 dark:group-hover:border-primary/50 transition-all duration-500">
-                {/* Glow Effect */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-secondary rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 -z-10"></div>
-
-                {/* Circuit Lines */}
-                <div className="absolute inset-0 overflow-hidden rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                  <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"></div>
+              {success ? (
+                <div className="flex items-center justify-center gap-2 py-6 text-emerald-600 dark:text-emerald-400">
+                  <CheckCircle2 className="w-6 h-6" />
+                  <span className="text-lg font-medium">Thank you for subscribing!</span>
                 </div>
-
-                <div className="flex flex-col sm:flex-row gap-3 p-2">
-                  {/* Email Input */}
-                  <div className="relative flex-1">
-                    <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
-                      <Mail className="w-5 h-5 text-foreground/40" />
+              ) : (
+                <form
+                  onSubmit={handleSubmit}
+                  className="relative"
+                >
+                  {/* Glassmorphism Container */}
+                  <div className="relative p-1 rounded-2xl bg-card/60 dark:bg-card/40 backdrop-blur-xl border border-border/50 dark:border-border/40 group-hover:border-primary/50 dark:group-hover:border-primary/50 transition-all duration-500">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-secondary rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 -z-10"></div>
+                    <div className="absolute inset-0 overflow-hidden rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+                      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"></div>
                     </div>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="Enter your email address"
-                      required
-                      className="pl-12 pr-4 py-6 bg-card/80 dark:bg-card/60 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 text-foreground placeholder:text-foreground/50 text-base rounded-xl transition-all duration-300"
-                    />
-                  </div>
 
-                  {/* Subscribe Button */}
-                  <Button
-                    type="submit"
-                    className="group relative overflow-hidden bg-gradient-to-r from-primary via-accent to-secondary hover:from-primary/90 hover:via-accent/90 hover:to-secondary/90 text-white px-8 py-6 text-base font-semibold rounded-xl shadow-xl hover:shadow-2xl hover:shadow-primary/40 transition-all duration-500 hover:-translate-y-1"
-                  >
-                    <span className="relative z-10 flex items-center gap-2">
-                      <Zap className="w-5 h-5" />
-                      Subscribe
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                    
-                    {/* Shine Effect */}
-                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-                    
-                    {/* Glow Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-secondary rounded-xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500 -z-10"></div>
-                  </Button>
-                </div>
-              </div>
+                    <div className="flex flex-col sm:flex-row gap-3 p-2">
+                      <div className="relative flex-1">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 z-10">
+                          <Mail className="w-5 h-5 text-foreground/40" />
+                        </div>
+                        <Input
+                          id="newsletter-email"
+                          type="email"
+                          placeholder="Enter your email address"
+                          required
+                          value={email}
+                          onChange={(e) => { setEmail(e.target.value); reset(); }}
+                          disabled={loading}
+                          className="pl-12 pr-4 py-6 bg-card/80 dark:bg-card/60 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 text-foreground placeholder:text-foreground/50 text-base rounded-xl transition-all duration-300"
+                        />
+                      </div>
+                      <Button
+                        type="submit"
+                        disabled={loading}
+                        className="group relative overflow-hidden bg-gradient-to-r from-primary via-accent to-secondary hover:from-primary/90 hover:via-accent/90 hover:to-secondary/90 text-white px-8 py-6 text-base font-semibold rounded-xl shadow-xl hover:shadow-2xl hover:shadow-primary/40 transition-all duration-500 hover:-translate-y-1"
+                      >
+                        <span className="relative z-10 flex items-center gap-2">
+                          {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Zap className="w-5 h-5" />}
+                          Subscribe
+                          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </span>
+                        <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-secondary rounded-xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500 -z-10"></div>
+                      </Button>
+                    </div>
+                  </div>
+                  {error && <p className="mt-2 text-center text-sm text-red-500 dark:text-red-400">{error}</p>}
+                </form>
+              )}
 
               {/* Trust Indicators */}
               <div className="mt-6 flex items-center justify-center gap-6 text-xs text-foreground/60 dark:text-foreground/70">
@@ -126,7 +144,7 @@ export const Newsletter = () => {
                   <span>Unsubscribe anytime</span>
                 </div>
               </div>
-            </motion.form>
+            </motion.div>
           </motion.div>
         </div>
       </section>

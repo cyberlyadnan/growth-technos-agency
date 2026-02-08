@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Image from 'next/image';
 import { AnimatedDivider } from '@/components/ui/AnimatedDivider';
+import { FooterSubscribeForm } from '@/components/FooterSubscribeForm';
 
 const footerLinks = {
   services: [
@@ -260,26 +261,7 @@ export function Footer() {
               <p className="text-sm text-foreground/70 dark:text-foreground/80 leading-relaxed">
                 Get the latest insights, updates, and exclusive content delivered to your inbox.
               </p>
-              <form className="space-y-4">
-                <div className="relative group">
-                  <Input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="w-full bg-card/50 dark:bg-card/30 backdrop-blur-sm border-border/50 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 text-foreground placeholder:text-foreground/50 transition-all duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/10 to-primary/0 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 -z-10"></div>
-                </div>
-                <Button 
-                  type="submit" 
-                  className="w-full group relative overflow-hidden bg-gradient-to-r from-primary via-accent to-secondary hover:from-primary/90 hover:via-accent/90 hover:to-secondary/90 text-white font-semibold shadow-lg hover:shadow-xl hover:shadow-primary/40 transition-all duration-500 hover:-translate-y-0.5"
-                >
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    Subscribe
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-secondary rounded-md blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500 -z-10"></div>
-                </Button>
-              </form>
+              <FooterSubscribeForm />
             </div>
           </div>
         </div>
