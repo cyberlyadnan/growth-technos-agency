@@ -13,6 +13,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Plus, X, Upload, Loader2, ArrowLeft, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
+import { slugify } from "@/lib/utils";
 
 export default function EditProjectPage() {
   const router = useRouter();
@@ -24,6 +25,7 @@ export default function EditProjectPage() {
 
   const [formData, setFormData] = useState({
     title: "",
+    slug: "",
     category: "",
     client: "",
     description: "",
@@ -69,6 +71,7 @@ export default function EditProjectPage() {
           const data = docSnap.data();
           setFormData({
             title: data.title || "",
+            slug: data.slug || slugify(data.title || ""),
             category: data.category || "",
             client: data.client || "",
             description: data.description || "",
@@ -284,6 +287,7 @@ export default function EditProjectPage() {
       // Prepare project data
       const projectData = {
         title: formData.title,
+        slug: slugify(formData.title || "") || formData.slug,
         category: formData.category,
         client: formData.client,
         description: formData.description,
@@ -357,7 +361,14 @@ export default function EditProjectPage() {
                 <Label>Title *</Label>
                 <Input
                   value={formData.title}
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                  onChange={(e) => {
+                    const newTitle = e.target.value;
+                    setFormData((prev) => ({
+                      ...prev,
+                      title: newTitle,
+                      slug: slugify(newTitle),
+                    }));
+                  }}
                   required
                 />
               </div>
@@ -369,6 +380,15 @@ export default function EditProjectPage() {
                   required
                 />
               </div>
+            </div>
+            <div className="space-y-2">
+              <Label>Slug (URL)</Label>
+              <Input
+                value={formData.slug}
+                readOnly
+                className="font-mono text-sm bg-muted/50"
+              />
+              <p className="text-xs text-foreground/60">Auto-generated from title for the project URL.</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">

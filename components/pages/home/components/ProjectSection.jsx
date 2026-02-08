@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { AnimatedDivider } from "@/components/ui/AnimatedDivider";
 import { motion } from "framer-motion";
+import { getProjectSlug } from "@/lib/utils";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 24 },
@@ -26,7 +27,7 @@ function FeaturedProjectCard({ project, index }) {
       className="group h-full"
     >
       <Link
-        href={`/projects/${project.id}`}
+        href={`/projects/${getProjectSlug(project)}`}
         className="relative block h-full rounded-2xl overflow-hidden border border-border/60 dark:border-border/50 bg-card/70 dark:bg-card/50 backdrop-blur-sm shadow-lg shadow-black/[0.02] dark:shadow-black/10 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 dark:hover:shadow-primary/10 hover:border-primary/30 dark:hover:border-primary/40 hover:-translate-y-1"
       >
         {/* Image */}

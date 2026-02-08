@@ -3,17 +3,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, ArrowRight, Sparkles, Zap } from "lucide-react";
+import { getProjectSlug } from "@/lib/utils";
 
 export const ProjectCard = ({ project, index }) => {
   const coverImage = project.coverImage || project.image || "/placeholder.jpg";
-  
+  const projectSlug = getProjectSlug(project);
+
   return (
     <div className="group relative h-full min-h-[550px] overflow-hidden rounded-2xl bg-card/60 backdrop-blur-sm border border-border/50 hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2">
       {/* Glow Effect */}
       <div className="absolute -inset-1 bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 rounded-2xl opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-500 -z-10"></div>
       
       {/* Main Card Link */}
-      <Link href={`/projects/${project.id}`} className="block">
+      <Link href={`/projects/${projectSlug}`} className="block">
         {/* Image Section with Overlay */}
         <div className="relative h-64 overflow-hidden">
           <Image

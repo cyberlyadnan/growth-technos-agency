@@ -73,12 +73,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let projectPages: MetadataRoute.Sitemap = [];
   try {
     const projects = await getAllProjects();
+    const { getProjectSlug } = await import("@/lib/utils");
     projectPages = projects.map((project: any) => {
       const updatedAt = (project.updatedAt as any)?.toDate?.() || 
                         (project.updatedAt instanceof Date ? project.updatedAt : null) ||
                         new Date();
+      const slug = getProjectSlug(project) || project.id;
       return {
-        url: `${baseUrl}/projects/${project.id}`,
+        url: `${baseUrl}/projects/${slug}`,
         lastModified: updatedAt,
         changeFrequency: 'monthly' as const,
         priority: 0.7,
