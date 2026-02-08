@@ -58,7 +58,7 @@ export default function ContactHero() {
         </div>
 
         {/* Quick Contact Cards */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {/* Email Card */}
           <div className="group relative overflow-hidden rounded-2xl bg-card/60 dark:bg-card/40 backdrop-blur-xl border border-border/50 dark:border-border/40 hover:border-primary/50 dark:hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 p-6">
             <div className="absolute -inset-1 bg-gradient-to-br from-primary/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 -z-10"></div>
@@ -81,6 +81,12 @@ export default function ContactHero() {
             <a href="tel:+919897921038" className="text-foreground/80 dark:text-foreground/90 hover:text-accent transition-colors font-medium block">
               +91 98979 21038
             </a>
+            <a href="tel:+919756896250" className="text-foreground/80 dark:text-foreground/90 hover:text-accent transition-colors font-medium block mt-1">
+              +91 9756896250
+            </a>
+            <a href="tel:+919286706250" className="text-foreground/80 dark:text-foreground/90 hover:text-accent transition-colors font-medium block mt-1">
+              +91 9286706250
+            </a>
           </div>
 
           {/* Location Card */}
@@ -94,6 +100,23 @@ export default function ContactHero() {
               Noida Sector 62, UP
             </p>
           </div>
+
+          {/* WhatsApp Card - highlighted */}
+          <a
+            href="https://wa.me/919286706250?text=Hello%2C%20I'm%20interested%20in%20your%20services."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative overflow-hidden rounded-2xl bg-[#25D366] hover:bg-[#20BD5A] border-2 border-[#25D366] hover:border-white/30 transition-all duration-500 hover:shadow-2xl hover:shadow-[#25D366]/40 hover:-translate-y-2 p-6 flex flex-col items-center text-center"
+          >
+            <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors rounded-2xl" />
+            <div className="relative inline-flex items-center justify-center w-14 h-14 rounded-xl bg-white/20 mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+              <MessageCircle className="w-8 h-8 text-white" />
+            </div>
+            <h3 className="text-lg font-bold mb-2 text-white">Chat on WhatsApp</h3>
+            <p className="text-white/90 text-sm font-medium">
+              Quick reply • +91 9286706250
+            </p>
+          </a>
         </div>
       </div>
     </section>

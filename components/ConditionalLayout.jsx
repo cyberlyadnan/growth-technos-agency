@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 
 export function ConditionalLayout({ children }) {
   const pathname = usePathname();
@@ -24,6 +25,7 @@ export function ConditionalLayout({ children }) {
       <Navigation />
       <main className="min-h-screen">{children}</main>
       <Footer />
+      <WhatsAppFloat />
     </>
   );
 }

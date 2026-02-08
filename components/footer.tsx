@@ -41,8 +41,10 @@ const footerLinks = {
   ],
 };
 
+const WHATSAPP_URL = 'https://wa.me/919286706250?text=' + encodeURIComponent('Hello, I\'m interested in your services.');
+
 const socialLinks = [
-  { name: 'WhatsApp', href: 'https://wa.me/919756896250?text=Hello, I am interested in your services.', icon: MessageCircle },
+  { name: 'WhatsApp', href: WHATSAPP_URL, icon: MessageCircle },
   { name: 'Facebook', href: 'https://www.facebook.com/share/1MRFznQTrN/?mibextid=wwXIfr', icon: Facebook },
   // { name: 'Twitter', href: '#', icon: Twitter },
   { name: 'Instagram', href: 'https://www.instagram.com/growthtechnos/', icon: Instagram },
@@ -148,24 +150,34 @@ export function Footer() {
                     </span>
                   </Link>
 
-                  <div className="flex items-center gap-3">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
                     <Link 
                       href="tel:+919897921038" 
-                      className="group flex items-center gap-2.5 text-xs hover:text-primary transition-colors flex-1"
+                      className="group flex items-center gap-2.5 text-xs hover:text-primary transition-colors"
                     >
                       <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                       <span className="text-foreground/70 dark:text-foreground/80">
                         +91 9897921038
                       </span>
                     </Link>
-                    <span className="text-foreground/30">|</span>
+                    <span className="text-foreground/30 hidden sm:inline">|</span>
                     <Link 
                       href="tel:+919756896250" 
-                      className="group flex items-center gap-2.5 text-xs hover:text-primary transition-colors flex-1"
+                      className="group flex items-center gap-2.5 text-xs hover:text-primary transition-colors"
                     >
                       <Phone className="w-4 h-4 text-primary flex-shrink-0" />
                       <span className="text-foreground/70 dark:text-foreground/80">
                         +91 9756896250
+                      </span>
+                    </Link>
+                    <span className="text-foreground/30 hidden sm:inline">|</span>
+                    <Link 
+                      href="tel:+919286706250" 
+                      className="group flex items-center gap-2.5 text-xs hover:text-primary transition-colors"
+                    >
+                      <Phone className="w-4 h-4 text-primary flex-shrink-0" />
+                      <span className="text-foreground/70 dark:text-foreground/80">
+                        +91 9286706250
                       </span>
                     </Link>
                   </div>
@@ -176,6 +188,17 @@ export function Footer() {
                       Noida Sector 62, U.P, India
                     </span>
                   </div>
+
+                  {/* WhatsApp CTA - highlighted */}
+                  <Link
+                    href={WHATSAPP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 flex items-center justify-center gap-2 w-full py-2.5 rounded-lg bg-[#25D366] hover:bg-[#20BD5A] text-white text-sm font-semibold transition-all hover:shadow-lg hover:shadow-[#25D366]/30"
+                  >
+                    <MessageCircle className="w-5 h-5" />
+                    Chat on WhatsApp
+                  </Link>
                 </div>
               </div>
             </div>

@@ -16,9 +16,11 @@ const contactInfo = [
     title: "Phone", 
     content: "+91 98979 21038", 
     content2: "+91 9756896250",
+    content3: "+91 9286706250",
     description: "Mon-Saturday from 8am to 6pm", 
     link: "tel:+919897921038",
     link2: "tel:+919756896250",
+    link3: "tel:+919286706250",
     color: "accent"
   },
   { 
@@ -147,13 +149,28 @@ export default function ContactInfoGrid() {
                   info.link2 ? (
                     <Link
                       href={info.link2}
-                      className="block text-foreground/90 dark:text-foreground/95 font-medium hover:text-primary transition-colors mb-2"
+                      className={`block text-foreground/90 dark:text-foreground/95 font-medium hover:text-primary transition-colors ${info.content3 ? "mb-1" : "mb-2"}`}
                     >
                       {info.content2}
                     </Link>
                   ) : (
-                    <p className="text-foreground/90 dark:text-foreground/95 font-medium mb-2">
+                    <p className={`text-foreground/90 dark:text-foreground/95 font-medium ${info.content3 ? "mb-1" : "mb-2"}`}>
                       {info.content2}
+                    </p>
+                  )
+                )}
+
+                {info.content3 && (
+                  info.link3 ? (
+                    <Link
+                      href={info.link3}
+                      className="block text-foreground/90 dark:text-foreground/95 font-medium hover:text-primary transition-colors mb-2"
+                    >
+                      {info.content3}
+                    </Link>
+                  ) : (
+                    <p className="text-foreground/90 dark:text-foreground/95 font-medium mb-2">
+                      {info.content3}
                     </p>
                   )
                 )}

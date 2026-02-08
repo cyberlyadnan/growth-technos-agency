@@ -159,7 +159,7 @@ export function FeaturedBlogSectionClient({ blogs }) {
                 <Link href={`/blog/${blog.slug || blog.id}`}>
                   <Button
                     variant="ghost"
-                    className="w-full group-hover:text-primary group-hover:bg-primary/10 transition-colors"
+                    className="w-full group-hover:text-white group-hover:bg-primary/10 transition-colors"
                   >
                     Read More
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />

@@ -90,7 +90,7 @@ export function Navigation() {
                       className={`flex items-center space-x-1 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                         pathname.startsWith(item.href)
                           ? "text-white bg-primary/10"
-                          : "text-white hover:text-primary hover:bg-secondary/10"
+                          : "text-white hover:text-primary hover:bg-secondary/10 dark:hover:bg-white dark:hover:text-black"
                       }`}
                     >
                       <span>{item.name}</span>
@@ -142,7 +142,7 @@ export function Navigation() {
                     className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
                       pathname === item.href
                         ? "text-white bg-primary/10"
-                        : "text-white hover:text-primary hover:bg-muted"
+                        : "text-white hover:text-primary hover:bg-muted dark:hover:bg-white dark:hover:text-black"
                     }`}
                   >
                     {item.name}
@@ -240,7 +240,7 @@ export function Navigation() {
                       className={`flex items-center justify-between w-full px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
                         pathname.startsWith(item.href)
                           ? "text-primary bg-primary/20"
-                          : "text-white hover:bg-white/10"
+                          : "text-white hover:bg-white/10 dark:hover:bg-white dark:hover:text-black"
                       }`}
                     >
                       <span>{item.name}</span>
@@ -281,7 +281,7 @@ export function Navigation() {
                     className={`block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
                       pathname === item.href
                         ? "text-primary bg-primary/20"
-                        : "text-white hover:bg-white/10"
+                        : "text-white hover:bg-white/10 dark:hover:bg-white dark:hover:text-black"
                     }`}
                   >
                     {item.name}
