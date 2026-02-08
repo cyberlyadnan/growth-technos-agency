@@ -53,11 +53,17 @@ export async function generateMetadata({ params }: ServiceDetailPageProps): Prom
     };
   }
 
+  const desc =
+    typeof service.metaDescription === "string"
+      ? service.metaDescription
+      : typeof service.description === "string"
+        ? service.description
+        : `Explore ${String(service.title || "our professional service")} by Growth Technos. Expert digital solutions for your business.`;
   return {
     title: `${service.metaTitle || service.title || "Service"} - Growth Technos`,
-    description: service.metaDescription || service.description || `Explore ${service.title || "our professional service"} by Growth Technos. Expert digital solutions for your business.`,
+    description: desc,
     keywords: [
-      service.title?.toLowerCase() || "",
+      typeof service.title === "string" ? service.title.toLowerCase() : "",
       "digital services",
       "web development",
       "SEO services",
@@ -65,31 +71,31 @@ export async function generateMetadata({ params }: ServiceDetailPageProps): Prom
     ],
     openGraph: {
       title: `${service.metaTitle || service.title || "Service"} - Growth Technos`,
-      description: service.metaDescription || service.description || `Explore ${service.title || "our professional service"} by Growth Technos.`,
+      description: desc,
       url: `https://growthtechnos.com/services/${serviceId}`,
       siteName: "Growth Technos",
       type: "website",
-      images: service.image ? [
+      images: typeof service.image === "string" ? [
         {
           url: service.image,
           width: 1200,
           height: 630,
-          alt: service.title || "Service",
+          alt: typeof service.title === "string" ? service.title : "Service",
         }
       ] : [
         {
           url: "/og-services.jpg",
           width: 1200,
           height: 630,
-          alt: service.title || "Service",
+          alt: typeof service.title === "string" ? service.title : "Service",
         }
       ],
     },
     twitter: {
       card: "summary_large_image",
       title: `${service.metaTitle || service.title || "Service"} - Growth Technos`,
-      description: service.metaDescription || service.description || `Explore ${service.title || "our professional service"}.`,
-      images: service.image ? [service.image] : ["/og-services.jpg"],
+      description: desc,
+      images: typeof service.image === "string" ? [service.image] : ["/og-services.jpg"],
     },
     alternates: {
       canonical: `https://growthtechnos.com/services/${serviceId}`,
