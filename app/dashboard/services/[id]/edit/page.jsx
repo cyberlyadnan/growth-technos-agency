@@ -4,13 +4,12 @@ import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { uploadImage } from "@/lib/imageUpload";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Plus, X, Upload, Loader2, ArrowLeft, Sparkles } from "lucide-react";
+import { Plus, X, Loader2, ArrowLeft, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
 
@@ -20,7 +19,6 @@ export default function EditServicePage() {
   const serviceId = params.id;
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [uploadingImages, setUploadingImages] = useState(false);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -54,10 +52,6 @@ export default function EditServicePage() {
     keyBenefits: [],
     pricing: { starting: "", timeline: "", included: [] },
   });
-
-  const [heroImageFile, setHeroImageFile] = useState(null);
-  const [featureImageFile, setFeatureImageFile] = useState(null);
-  const [currentFeatureIndex, setCurrentFeatureIndex] = useState(null);
 
   useEffect(() => {
     const fetchService = async () => {
@@ -168,7 +162,6 @@ export default function EditServicePage() {
         features: [...formData.features, { ...tempFeature }],
       });
       setTempFeature({ title: "", description: "", iconImage: "" });
-      setFeatureImageFile(null);
     }
   };
 
@@ -229,43 +222,12 @@ export default function EditServicePage() {
     });
   };
 
-  const handleImageUpload = async (file, type) => {
-    try {
-      setUploadingImages(true);
-      const url = await uploadImage(file, "services/images", true);
-
-      if (type === "hero") {
-        setFormData({ ...formData, heroImage: url });
-        setHeroImageFile(null);
-      } else if (type === "feature" && currentFeatureIndex !== null) {
-        const updatedFeatures = [...formData.features];
-        updatedFeatures[currentFeatureIndex].iconImage = url;
-        setFormData({ ...formData, features: updatedFeatures });
-        setFeatureImageFile(null);
-        setCurrentFeatureIndex(null);
-      }
-
-      toast.success("Image uploaded successfully");
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      toast.error("Failed to upload image");
-    } finally {
-      setUploadingImages(false);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
 
     try {
-      // Upload hero image if file is selected
-      let heroImageUrl = formData.heroImage;
-      if (heroImageFile) {
-        heroImageUrl = await uploadImage(heroImageFile, "services/images", true);
-      }
-
-      // Prepare service data
+      // Prepare service data (images are URL-only)
       const serviceData = {
         title: formData.title,
         subtitle: formData.subtitle,
@@ -273,7 +235,7 @@ export default function EditServicePage() {
         icon: formData.icon,
         iconColor: formData.iconColor,
         iconBg: formData.iconBg,
-        heroImage: heroImageUrl,
+        heroImage: formData.heroImage?.trim() || "",
         keyBenefits: formData.keyBenefits,
         technologies: formData.technologies,
         features: formData.features,
@@ -392,39 +354,17 @@ export default function EditServicePage() {
         <Card className="border-border/50 bg-background/80 backdrop-blur-sm">
           <CardHeader>
             <CardTitle>Hero Image</CardTitle>
-            <CardDescription>Upload the main service image</CardDescription>
+            <CardDescription>Enter image URL (any domain supported)</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {formData.heroImage && (
               <div className="relative w-full h-64 rounded-lg overflow-hidden border border-border/50">
-                <img src={formData.heroImage} alt="Hero" className="w-full h-full object-cover" />
+                <img src={formData.heroImage} alt="Hero" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
             )}
-            <div className="flex items-center gap-4">
-              <Input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setHeroImageFile(e.target.files[0])}
-                className="flex-1"
-              />
-              {heroImageFile && (
-                <Button
-                  type="button"
-                  onClick={() => handleImageUpload(heroImageFile, "hero")}
-                  disabled={uploadingImages}
-                >
-                  {uploadingImages ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <Upload className="w-4 h-4" />
-                  )}
-                  Upload
-                </Button>
-              )}
-            </div>
             <Input
               type="url"
-              placeholder="Or enter image URL"
+              placeholder="https://example.com/image.jpg"
               value={formData.heroImage}
               onChange={(e) => setFormData({ ...formData, heroImage: e.target.value })}
             />
@@ -533,21 +473,12 @@ export default function EditServicePage() {
                 placeholder="Feature description"
                 rows={2}
               />
-              <div className="flex gap-2">
-                <Input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => setFeatureImageFile(e.target.files[0])}
-                  className="flex-1"
-                  placeholder="Icon image"
-                />
-                <Input
-                  type="url"
-                  value={tempFeature.iconImage}
-                  onChange={(e) => setTempFeature({ ...tempFeature, iconImage: e.target.value })}
-                  placeholder="Or icon image URL"
-                />
-              </div>
+              <Input
+                type="url"
+                value={tempFeature.iconImage}
+                onChange={(e) => setTempFeature({ ...tempFeature, iconImage: e.target.value })}
+                placeholder="Icon image URL (any domain)"
+              />
               <Button type="button" onClick={handleAddFeature}>
                 <Plus className="w-4 h-4 mr-2" />
                 Add Feature
@@ -559,7 +490,7 @@ export default function EditServicePage() {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       {feature.iconImage && (
-                        <img src={feature.iconImage} alt={feature.title} className="w-6 h-6" />
+                        <img src={feature.iconImage} alt={feature.title} className="w-6 h-6" referrerPolicy="no-referrer" />
                       )}
                       <span className="font-medium">{feature.title}</span>
                     </div>

@@ -9,10 +9,10 @@ interface BlogPostsGridProps {
 export default function BlogPostsGrid({ posts, formatDate }: BlogPostsGridProps) {
   if (!posts || posts.length === 0) {
     return (
-      <section className="py-16 px-4 md:px-[5%] bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center py-12 text-foreground/60">
-            <p>No blog posts found.</p>
+      <section className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto text-center">
+          <div className="max-w-md mx-auto py-12 px-6 rounded-2xl bg-muted/30 border border-border/50">
+            <p className="text-muted-foreground text-base sm:text-lg">No articles match your filters. Try another category or search.</p>
           </div>
         </div>
       </section>
@@ -20,14 +20,16 @@ export default function BlogPostsGrid({ posts, formatDate }: BlogPostsGridProps)
   }
 
   return (
-    <section className="py-16 px-4 md:px-[5%] bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-          Latest Articles
+    <section className="py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto">
+        <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8 text-foreground">
+          <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            Latest Articles
+          </span>
         </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {posts.map((post) => (
-            <BlogPostCard key={post.id || post.slug} post={post} />
+            <BlogPostCard key={post.id || post.slug} post={post} formatDate={formatDate} />
           ))}
         </div>
       </div>

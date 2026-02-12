@@ -96,7 +96,7 @@ export function DashboardLayout({ children }) {
                     className={`w-full justify-start gap-3 ${
                       isActive
                         ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg shadow-primary/20"
-                        : "hover:bg-primary/5"
+                        : "hover:bg-primary/10 hover:text-foreground dark:hover:bg-primary/20 dark:hover:text-foreground"
                     }`}
                     onClick={() => setSidebarOpen(false)}
                   >

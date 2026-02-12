@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { doc, getDoc, updateDoc, Timestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { uploadImage } from "@/lib/imageUpload";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,7 +11,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import RichTextEditor from "@/components/ui/RichTextEditor";
-import { Upload, Loader2, ArrowLeft, Sparkles, Plus, X } from "lucide-react";
+import { Loader2, ArrowLeft, Sparkles, Plus, X } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
 
@@ -22,7 +21,6 @@ export default function EditBlogPage() {
   const blogId = params.id;
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [uploadingImage, setUploadingImage] = useState(false);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -42,7 +40,6 @@ export default function EditBlogPage() {
 
   const [tempTag, setTempTag] = useState("");
   const [tempKeyword, setTempKeyword] = useState("");
-  const [featuredImageFile, setFeaturedImageFile] = useState(null);
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -138,35 +135,12 @@ export default function EditBlogPage() {
     });
   };
 
-  const handleImageUpload = async () => {
-    if (!featuredImageFile) return;
-
-    try {
-      setUploadingImage(true);
-      const url = await uploadImage(featuredImageFile, "blogs/images", true);
-      setFormData({ ...formData, featuredImage: url });
-      setFeaturedImageFile(null);
-      toast.success("Image uploaded successfully");
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      toast.error("Failed to upload image");
-    } finally {
-      setUploadingImage(false);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
 
     try {
-      // Upload featured image if file is selected
-      let featuredImageUrl = formData.featuredImage;
-      if (featuredImageFile) {
-        featuredImageUrl = await uploadImage(featuredImageFile, "blogs/images", true);
-      }
-
-      // Prepare blog data
+      // Prepare blog data (featured image is URL-only)
       const blogData = {
         title: formData.title,
         slug: formData.slug || generateSlug(formData.title),
@@ -175,7 +149,7 @@ export default function EditBlogPage() {
         content: formData.content,
         category: formData.category,
         author: formData.author,
-        featuredImage: featuredImageUrl,
+        featuredImage: formData.featuredImage?.trim() || "",
         tags: formData.tags,
         published: formData.published,
         seoTitle: formData.seoTitle || formData.title,
@@ -312,7 +286,7 @@ export default function EditBlogPage() {
         <Card className="border-border/50 bg-background/80 backdrop-blur-sm">
           <CardHeader>
             <CardTitle>Featured Image</CardTitle>
-            <CardDescription>Upload the main blog image</CardDescription>
+            <CardDescription>Enter image URL (any domain supported)</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {formData.featuredImage && (
@@ -321,34 +295,13 @@ export default function EditBlogPage() {
                   src={formData.featuredImage}
                   alt="Featured"
                   className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
                 />
               </div>
             )}
-            <div className="flex items-center gap-4">
-              <Input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setFeaturedImageFile(e.target.files[0])}
-                className="flex-1"
-              />
-              {featuredImageFile && (
-                <Button
-                  type="button"
-                  onClick={handleImageUpload}
-                  disabled={uploadingImage}
-                >
-                  {uploadingImage ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <Upload className="w-4 h-4" />
-                  )}
-                  Upload
-                </Button>
-              )}
-            </div>
             <Input
               type="url"
-              placeholder="Or enter image URL"
+              placeholder="https://example.com/image.jpg"
               value={formData.featuredImage}
               onChange={(e) => setFormData({ ...formData, featuredImage: e.target.value })}
             />
@@ -359,9 +312,9 @@ export default function EditBlogPage() {
         <Card className="border-border/50 bg-background/80 backdrop-blur-sm">
           <CardHeader>
             <CardTitle>Content</CardTitle>
-            <CardDescription>Write your blog post content</CardDescription>
+            <CardDescription>Use the toolbar for headings, bold, lists, links, and more. Works in light and dark mode.</CardDescription>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-0 sm:p-6">
             <RichTextEditor
               value={formData.content}
               onChange={(value) => setFormData({ ...formData, content: value })}

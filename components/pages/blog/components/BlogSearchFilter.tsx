@@ -19,20 +19,21 @@ export default function BlogSearchFilter({
   categories,
 }: BlogSearchFilterProps) {
   return (
-    <section className="py-8 px-4 md:px-[5%] bg-background border-b border-border/50">
+    <section className="sticky top-16 z-20 py-4 sm:py-6 bg-background/95 backdrop-blur-md border-b border-border/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-foreground/40 w-5 h-5" />
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="relative w-full lg:max-w-sm">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground pointer-events-none" />
             <Input
               type="text"
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 bg-card border-border text-foreground placeholder:text-foreground/50"
+              className="pl-9 sm:pl-10 h-11 bg-card border-border text-foreground placeholder:text-muted-foreground focus-visible:ring-primary/50"
+              aria-label="Search blog articles"
             />
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
             {categories.map((category) => (
               <Button
                 key={category}
@@ -41,8 +42,8 @@ export default function BlogSearchFilter({
                 onClick={() => setSelectedCategory(category)}
                 className={
                   selectedCategory === category
-                    ? "bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white border-0 shadow-md shadow-primary/20"
-                    : "border-border/50 hover:border-primary/50 hover:bg-primary/5 text-foreground"
+                    ? "rounded-full bg-gradient-to-r from-primary to-accent text-white border-0 shadow-lg shadow-primary/25"
+                    : "rounded-full border-border/60 hover:border-primary/50 hover:bg-primary/5 hover:text-foreground"
                 }
               >
                 {category}

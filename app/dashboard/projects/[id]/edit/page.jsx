@@ -4,13 +4,12 @@ import { useState, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
-import { uploadImage, uploadMultipleImages } from "@/lib/imageUpload";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Plus, X, Upload, Loader2, ArrowLeft, Sparkles } from "lucide-react";
+import { Plus, X, Loader2, ArrowLeft, Sparkles } from "lucide-react";
 import { toast } from "sonner";
 import Link from "next/link";
 import { slugify } from "@/lib/utils";
@@ -21,7 +20,6 @@ export default function EditProjectPage() {
   const projectId = params.id;
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  const [uploadingImages, setUploadingImages] = useState(false);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -55,11 +53,7 @@ export default function EditProjectPage() {
   const [tempAchievement, setTempAchievement] = useState("");
   const [tempChallenge, setTempChallenge] = useState("");
   const [tempTech, setTempTech] = useState({ name: "", logo: "" });
-
-  const [imageFile, setImageFile] = useState(null);
-  const [galleryFiles, setGalleryFiles] = useState([]);
   const [galleryUrl, setGalleryUrl] = useState("");
-  const [testimonialAvatarFile, setTestimonialAvatarFile] = useState(null);
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -198,49 +192,6 @@ export default function EditProjectPage() {
     });
   };
 
-  const handleImageUpload = async (file, type) => {
-    try {
-      setUploadingImages(true);
-      const url = await uploadImage(file, "projects/images", true);
-      
-      if (type === "main") {
-        setFormData({ ...formData, image: url });
-        setImageFile(null);
-      } else if (type === "testimonial") {
-        setFormData({
-          ...formData,
-          testimonial: { ...formData.testimonial, avatar: url },
-        });
-        setTestimonialAvatarFile(null);
-      }
-      
-      toast.success("Image uploaded successfully");
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      toast.error("Failed to upload image");
-    } finally {
-      setUploadingImages(false);
-    }
-  };
-
-  const handleGalleryUpload = async (files) => {
-    try {
-      setUploadingImages(true);
-      const urls = await uploadMultipleImages(Array.from(files), "projects/gallery", true);
-      setFormData({
-        ...formData,
-        gallery: [...formData.gallery, ...urls],
-      });
-      setGalleryFiles([]);
-      toast.success("Gallery images uploaded successfully");
-    } catch (error) {
-      console.error("Error uploading gallery:", error);
-      toast.error("Failed to upload gallery images");
-    } finally {
-      setUploadingImages(false);
-    }
-  };
-
   const handleAddGalleryUrl = () => {
     if (galleryUrl.trim()) {
       setFormData({
@@ -257,34 +208,7 @@ export default function EditProjectPage() {
     setSaving(true);
 
     try {
-      // Upload main image if file is selected
-      let imageUrl = formData.image;
-      if (imageFile) {
-        imageUrl = await uploadImage(imageFile, "projects/images", true);
-      }
-
-      // Upload testimonial avatar if file is selected
-      let testimonialData = { ...formData.testimonial };
-      if (testimonialAvatarFile) {
-        testimonialData.avatar = await uploadImage(
-          testimonialAvatarFile,
-          "projects/testimonials",
-          true
-        );
-      }
-
-      // Upload gallery images if files are selected
-      let galleryUrls = [...formData.gallery];
-      if (galleryFiles.length > 0) {
-        const newUrls = await uploadMultipleImages(
-          Array.from(galleryFiles),
-          "projects/gallery",
-          true
-        );
-        galleryUrls = [...galleryUrls, ...newUrls];
-      }
-
-      // Prepare project data
+      // Prepare project data (images are URL-only)
       const projectData = {
         title: formData.title,
         slug: slugify(formData.title || "") || formData.slug,
@@ -297,14 +221,14 @@ export default function EditProjectPage() {
         completionDate: formData.completionDate,
         team: formData.team,
         liveUrl: formData.liveUrl,
-        image: imageUrl,
+        image: formData.image?.trim() || "",
         features: formData.features,
-        gallery: galleryUrls,
+        gallery: formData.gallery,
         technologies: formData.technologies,
         solutions: formData.solutions,
         achievements: formData.achievements,
         challenges: formData.challenges,
-        testimonial: testimonialData,
+        testimonial: formData.testimonial,
       };
 
       // Update in Firestore
@@ -467,39 +391,17 @@ export default function EditProjectPage() {
         <Card className="border-border/50 bg-background/80 backdrop-blur-sm">
           <CardHeader>
             <CardTitle>Main Image</CardTitle>
-            <CardDescription>Upload the main project image</CardDescription>
+            <CardDescription>Enter image URL (any domain supported)</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {formData.image && (
               <div className="relative w-full h-64 rounded-lg overflow-hidden border border-border/50">
-                <img src={formData.image} alt="Main" className="w-full h-full object-cover" />
+                <img src={formData.image} alt="Main" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
             )}
-            <div className="flex items-center gap-4">
-              <Input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setImageFile(e.target.files[0])}
-                className="flex-1"
-              />
-              {imageFile && (
-                <Button
-                  type="button"
-                  onClick={() => handleImageUpload(imageFile, "main")}
-                  disabled={uploadingImages}
-                >
-                  {uploadingImages ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <Upload className="w-4 h-4" />
-                  )}
-                  Upload
-                </Button>
-              )}
-            </div>
             <Input
               type="url"
-              placeholder="Or enter image URL"
+              placeholder="https://example.com/image.jpg"
               value={formData.image}
               onChange={(e) => setFormData({ ...formData, image: e.target.value })}
             />
@@ -546,7 +448,7 @@ export default function EditProjectPage() {
         <Card className="border-border/50 bg-background/80 backdrop-blur-sm">
           <CardHeader>
             <CardTitle>Gallery</CardTitle>
-            <CardDescription>Upload multiple images for the project gallery</CardDescription>
+            <CardDescription>Add image URLs for the project gallery (any domain supported)</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {formData.gallery.length > 0 && (
@@ -557,6 +459,7 @@ export default function EditProjectPage() {
                       src={url}
                       alt={`Gallery ${index + 1}`}
                       className="w-full h-32 object-cover rounded-lg border border-border/50"
+                      referrerPolicy="no-referrer"
                     />
                     <Button
                       type="button"
@@ -576,48 +479,23 @@ export default function EditProjectPage() {
                 ))}
               </div>
             )}
-            <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <Input
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  onChange={(e) => setGalleryFiles(Array.from(e.target.files || []))}
-                  className="flex-1"
-                />
-                {galleryFiles.length > 0 && (
-                  <Button
-                    type="button"
-                    onClick={() => handleGalleryUpload(galleryFiles)}
-                    disabled={uploadingImages}
-                  >
-                    {uploadingImages ? (
-                      <Loader2 className="w-4 h-4 animate-spin" />
-                    ) : (
-                      <Upload className="w-4 h-4" />
-                    )}
-                    Upload {galleryFiles.length} Image(s)
-                  </Button>
-                )}
-              </div>
-              <div className="flex items-center gap-2">
-                <Input
-                  type="url"
-                  placeholder="Or enter image URL"
-                  value={galleryUrl}
-                  onChange={(e) => setGalleryUrl(e.target.value)}
-                  onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), handleAddGalleryUrl())}
-                  className="flex-1"
-                />
-                <Button
-                  type="button"
-                  onClick={handleAddGalleryUrl}
-                  variant="outline"
-                >
-                  <Plus className="w-4 h-4" />
-                  Add URL
-                </Button>
-              </div>
+            <div className="flex items-center gap-2">
+              <Input
+                type="url"
+                placeholder="https://example.com/image.jpg"
+                value={galleryUrl}
+                onChange={(e) => setGalleryUrl(e.target.value)}
+                onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), handleAddGalleryUrl())}
+                className="flex-1"
+              />
+              <Button
+                type="button"
+                onClick={handleAddGalleryUrl}
+                variant="outline"
+              >
+                <Plus className="w-4 h-4" />
+                Add URL
+              </Button>
             </div>
           </CardContent>
         </Card>
@@ -649,7 +527,7 @@ export default function EditProjectPage() {
               {formData.technologies.map((tech, index) => (
                 <div key={index} className="flex items-center justify-between p-2 bg-muted/50 rounded">
                   <div className="flex items-center gap-2">
-                    <img src={tech.logo} alt={tech.name} className="w-6 h-6" />
+                    <img src={tech.logo} alt={tech.name} className="w-6 h-6" referrerPolicy="no-referrer" />
                     <span>{tech.name}</span>
                   </div>
                   <Button
@@ -828,34 +706,13 @@ export default function EditProjectPage() {
                   src={formData.testimonial.avatar}
                   alt="Avatar"
                   className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
                 />
               </div>
             )}
-            <div className="flex items-center gap-4">
-              <Input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setTestimonialAvatarFile(e.target.files[0])}
-                className="flex-1"
-              />
-              {testimonialAvatarFile && (
-                <Button
-                  type="button"
-                  onClick={() => handleImageUpload(testimonialAvatarFile, "testimonial")}
-                  disabled={uploadingImages}
-                >
-                  {uploadingImages ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                  ) : (
-                    <Upload className="w-4 h-4" />
-                  )}
-                  Upload Avatar
-                </Button>
-              )}
-            </div>
             <Input
               type="url"
-              placeholder="Or enter avatar URL"
+              placeholder="https://example.com/avatar.jpg"
               value={formData.testimonial.avatar}
               onChange={(e) =>
                 setFormData({

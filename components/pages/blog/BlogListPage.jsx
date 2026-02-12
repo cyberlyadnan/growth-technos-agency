@@ -6,9 +6,6 @@ import BlogSearchFilter from "./components/BlogSearchFilter";
 import FeaturedBlogCard from "./components/FeaturedBlogCard";
 import BlogPostsGrid from "./components/BlogPostsGrid";
 import NewsletterCTA from "./components/NewsletterCTA";
-import Image from "next/image";
-import Link from "next/link";
-import { Calendar, Clock, User } from "lucide-react";
 
 const categories = [
   "All",
@@ -27,12 +24,13 @@ export default function BlogListPage({ blogs }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredPosts = useMemo(() => {
-    return blogs
-      .filter((post) => post.published !== false) // Only show published blogs
+    return (blogs || [])
+      .filter((post) => post.published !== false)
       .filter((post) => {
         const matchesCategory =
           selectedCategory === "All" || post.category === selectedCategory;
         const matchesSearch =
+          !searchQuery.trim() ||
           post.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
           post.excerpt?.toLowerCase().includes(searchQuery.toLowerCase()) ||
           post.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -48,7 +46,6 @@ export default function BlogListPage({ blogs }) {
 
   const formatDate = (date) => {
     if (!date) return "";
-    
     let d;
     try {
       if (date?.toDate && typeof date.toDate === "function") {
@@ -58,25 +55,19 @@ export default function BlogListPage({ blogs }) {
       } else {
         d = new Date(date);
       }
-      
-      // Check if date is valid
-      if (isNaN(d.getTime())) {
-        return "";
-      }
-      
+      if (isNaN(d.getTime())) return "";
       return new Intl.DateTimeFormat("en-US", {
         year: "numeric",
         month: "long",
         day: "numeric",
       }).format(d);
-    } catch (error) {
-      console.error("Error formatting date:", error);
+    } catch {
       return "";
     }
   };
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen pt-14 sm:pt-16">
       <BlogHero />
       <BlogSearchFilter
         searchQuery={searchQuery}
@@ -85,10 +76,11 @@ export default function BlogListPage({ blogs }) {
         setSelectedCategory={setSelectedCategory}
         categories={categories}
       />
-      {featuredPost && <FeaturedBlogCard post={featuredPost} formatDate={formatDate} />}
+      {featuredPost && (
+        <FeaturedBlogCard post={featuredPost} formatDate={formatDate} />
+      )}
       <BlogPostsGrid posts={otherPosts} formatDate={formatDate} />
       <NewsletterCTA />
     </div>
   );
 }
-
