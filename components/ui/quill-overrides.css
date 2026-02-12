@@ -1,0 +1,33 @@
+/* Override Quill toolbar icons - load after quill.snow.css so these win */
+
+/* Light mode: dark icons */
+.rich-text-editor-wrapper .ql-toolbar.ql-snow .ql-stroke,
+.rich-text-editor-wrapper .ql-toolbar .ql-stroke {
+  stroke: #1a1a1a !important;
+}
+
+.rich-text-editor-wrapper .ql-toolbar.ql-snow .ql-fill,
+.rich-text-editor-wrapper .ql-toolbar .ql-fill {
+  fill: #1a1a1a !important;
+}
+
+.rich-text-editor-wrapper .ql-toolbar.ql-snow .ql-picker-label,
+.rich-text-editor-wrapper .ql-toolbar .ql-picker-label {
+  color: #1a1a1a !important;
+}
+
+/* Dark mode: white icons */
+.dark .rich-text-editor-wrapper .ql-toolbar.ql-snow .ql-stroke,
+.dark .rich-text-editor-wrapper .ql-toolbar .ql-stroke {
+  stroke: #e5e5e7 !important;
+}
+
+.dark .rich-text-editor-wrapper .ql-toolbar.ql-snow .ql-fill,
+.dark .rich-text-editor-wrapper .ql-toolbar .ql-fill {
+  fill: #e5e5e7 !important;
+}
+
+.dark .rich-text-editor-wrapper .ql-toolbar.ql-snow .ql-picker-label,
+.dark .rich-text-editor-wrapper .ql-toolbar .ql-picker-label {
+  color: #e5e5e7 !important;
+}
