@@ -67,7 +67,17 @@ export function Footer() {
       </div>
 
       {/* Futuristic Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 dark:from-primary/10 dark:via-accent/10 dark:to-secondary/10 z-0"></div>
+      {/* <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 dark:from-primary/10 dark:via-accent/10 dark:to-secondary/10 z-0"></div> */}
+      <div className="absolute inset-0 
+bg-gradient-to-br 
+from-primary/5 
+via-accent/5 
+to-secondary/5 
+dark:from-black/40 
+dark:via-black/50 
+dark:to-black/60 
+z-0">
+</div>
       
       {/* Tech Grid Pattern */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]">
@@ -91,7 +101,7 @@ export function Footer() {
                 <div className="relative">
                   {/* Light mode logo */}
                   <Image
-                    src="./growth-technos-dark.png"
+                    src="/growth-technos-dark.png"
                     alt="Growth Technos"
                     width={160}
                     height={40}
@@ -100,7 +110,7 @@ export function Footer() {
                   />
                   {/* Dark mode logo */}
                   <Image
-                    src="./growth-technos.png"
+                    src="/growth-technos.png"
                     alt="Growth Technos"
                     width={160}
                     height={40}
