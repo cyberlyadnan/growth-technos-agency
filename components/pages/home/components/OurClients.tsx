@@ -14,17 +14,17 @@ const OurClients = () => {
     { name: "UrbanGray", logo: "https://urbangreyfurniture.com/wp-content/uploads/2025/05/logo-1.png" },
     { name: "Mauligi", logo: "https://maulijee.org/wp-content/uploads/2025/04/Moujiya-logo.webp" },
     { name: "Seerah Library", logo: "https://the-seerah-library.vercel.app/_next/image?url=%2Fimages%2Flogo%2Fcompany-logo.webp&w=384&q=75" },
-    { name: "TechCraft", logo: "https://app.mimicogroupinc.ca/assets/image/main-logo.png" },
+    // { name: "TechCraft", logo: "https://app.mimicogroupinc.ca/assets/image/main-logo.png" },
     { name: "Woodsy", logo: "https://urbangreyfurniture.com/wp-content/uploads/2025/05/logo-1.png" },
     { name: "HrClicks", logo: "https://hrclicks.com/NewTheme/image/HRLOGO.png" },
     { name: "Litversee", logo: "https://litversee.vercel.app/images/icon.png" },
     { name: "Zeptik", logo: "https://zeptik-sit-v2.vercel.app/icons/zeptik-green-logo.svg" },
-    { name: "OJas Life", logo: "https://ojaslife.multivisiontechcells.com/assets/images/logo/logo-final.webp" },
-    { name: "Food Protection Global", logo: "https://foodprotectionglobal.multivisiontechcells.com/wp-content/uploads/2025/08/Food-Protection-Global-1-1024x569.png" },
+    // { name: "OJas Life", logo: "https://ojaslife.multivisiontechcells.com/assets/images/logo/logo-final.webp" },
+    // { name: "Food Protection Global", logo: "https://foodprotectionglobal.multivisiontechcells.com/wp-content/uploads/2025/08/Food-Protection-Global-1-1024x569.png" },
   ];
 
   return (
-    <section className="relative py-8 md:py-18 overflow-hidden">
+    <section className="relative py-8 md:py-20 overflow-hidden">
       {/* Futuristic Dividing Line at Top */}
       <div className="absolute top-0 left-0 right-0 z-20">
         <div className="relative flex items-center justify-center">
@@ -147,18 +147,18 @@ const OurClients = () => {
             <div className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
           </div>
           <div className="relative bg-background px-6">
-            <div className="w-3 h-3 rounded-full bg-primary/50 animate-pulse"></div>
+            {/* <div className="w-3 h-3 rounded-full bg-primary/50 animate-pulse"></div> */}
           </div>
         </div>
 
         {/* Logo Marquee - Single Row Futuristic Design */}
         <div className="relative">
           {/* Gradient Fade Edges with Enhanced Effect */}
-          <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-background via-background/90 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-background via-background/90 to-transparent z-10 pointer-events-none"></div>
+          {/* <div className="absolute left-0 top-0 bottom-0 w-40 bg-gradient-to-r from-background via-background/90 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-40 bg-gradient-to-l from-background via-background/90 to-transparent z-10 pointer-events-none"></div> */}
           
           {/* Scan Line Effect */}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-50 animate-pulse pointer-events-none"></div>
+          {/* <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent opacity-50 animate-pulse pointer-events-none"></div> */}
           
           <div className="flex overflow-hidden">
             <div className="flex animate-scroll-right">
@@ -166,30 +166,34 @@ const OurClients = () => {
                 <div key={`client-${index}`} className="flex-shrink-0 mx-4 my-8 md:mx-6 group">
                   <div className="relative w-40 h-28 sm:w-48 sm:h-32 md:w-56 md:h-36 flex items-center justify-center">
                     {/* Multi-layer Glow effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/40 via-accent/40 to-secondary/40 rounded-2xl opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-700"></div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
+                    {/* <div className="absolute inset-0 bg-gradient-to-r from-primary/40 via-accent/40 to-secondary/40 rounded-2xl opacity-0 group-hover:opacity-100 blur-2xl transition-opacity duration-700"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-secondary/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div> */}
                     
                     {/* Card with Holographic Effect */}
-                    <div className="relative w-full h-full bg-card/95 dark:bg-card/80 backdrop-blur-xl rounded-2xl p-5 md:p-7 border-2 border-border/50 dark:border-border/30 group-hover:border-primary/70 dark:group-hover:border-primary/70 shadow-xl group-hover:shadow-2xl group-hover:shadow-primary/30 transition-all duration-700 group-hover:scale-110 group-hover:-translate-y-3 flex items-center justify-center overflow-hidden">
+                    <div className="relative w-full h-full  backdrop-blur-xl rounded-2xl p-5 md:p-7 border-2 border-border/50 dark:border-border/40 group-hover:border-primary/70 dark:group-hover:border-primary/70 shadow-xl group-hover:shadow-2xl group-hover:shadow-primary/30 transition-all duration-700 group-hover:scale-110 group-hover:-translate-y-3 flex items-center justify-center overflow-hidden">
                       {/* Animated Scan Line */}
                       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse"></div>
                       </div>
                       
                       {/* Decorative corners with gradient */}
-                      <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-bl-full"></div>
-                      <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-accent/15 to-transparent rounded-tr-full"></div>
+                      {/* <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-bl-full"></div> */}
+                      {/* <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-accent/15 to-transparent rounded-tr-full"></div> */}
                       
                       {/* Corner Tech Indicators */}
                       <div className="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       <div className="absolute bottom-2 left-2 w-2 h-2 bg-accent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ transitionDelay: '0.1s' }}></div>
                       
-                      {/* Logo - Show as is without filters */}
-                      <img 
-                        src={client.logo} 
-                        alt={client.name} 
-                        className="relative z-10 max-w-full max-h-full object-contain transition-all duration-700 group-hover:scale-110"
-                      />
+                      {/* Logo surface to keep dark logos visible in dark mode */}
+                      <div className="relative z-10 w-full h-full flex items-center justify-center rounded-xl bg-white/85 dark:bg-white/95 ring-1 ring-black/5 dark:ring-black/10 shadow-sm">
+                        <img
+                          src={client.logo}
+                          alt={client.name}
+                          className="max-w-[85%] max-h-[80%] object-contain transition-all duration-700 group-hover:scale-110"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
                       
                       {/* Animated Border Gradient */}
                       <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-primary/50 transition-all duration-700"></div>
